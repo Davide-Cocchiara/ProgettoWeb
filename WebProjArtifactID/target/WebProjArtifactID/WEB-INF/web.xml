@@ -1,15 +1,29 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
   <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>Servlet2</servlet-name>
-        <servlet-class>Servlet2</servlet-class>
+        <servlet-class>unitn.progweb.cocchiara.Servlet2</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet2</servlet-name>
-        <url-pattern>/paolo/</url-pattern>
+        <url-pattern>/Paolo</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FormEx</servlet-name>
+        <jsp-file>/FormEx.html</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormEx</servlet-name>
+        <url-pattern>/FormEx</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FormEx_Post</servlet-name>
+        <servlet-class>unitn.progweb.cocchiara.FormEx_Post</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormEx_Post</servlet-name>
+        <url-pattern>/FormEx_Post</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
