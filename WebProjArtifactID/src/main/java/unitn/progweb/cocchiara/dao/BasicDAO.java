@@ -61,7 +61,7 @@ public class BasicDAO {
         return stmt;
     }
 // Example query; Should be never used if not for testing. Extracts the users and sends them as obj string.
-    static public String exampleUserQuery() {
+     public String exampleUserQuery() {
         String query = "SELECT * FROM users";
         Connection conn = startConnection();
         Statement stmt = readyBasicStatement(conn);
@@ -73,6 +73,9 @@ public class BasicDAO {
                 String password = results.getString(2);
                 out += (String.format("\t%s %s<br/>", username, password));
             }
+            results.close();
+            stmt.close();
+            conn.close();
         }
         catch (SQLException ex) {
             System.err.println("Impossible to get the users: " + ex.getMessage());
