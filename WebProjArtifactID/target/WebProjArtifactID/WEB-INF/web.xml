@@ -2,11 +2,11 @@
   <display-name>Archetype Created Web Application</display-name>
     <servlet>
         <servlet-name>Servlet2</servlet-name>
-        <servlet-class>unitn.progweb.cocchiara.Servlet2</servlet-class>
+        <servlet-class>unitn.progweb.cocchiara.servlet.Servlet2</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet2</servlet-name>
-        <url-pattern>/Paolo</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>FormEx</servlet-name>
@@ -18,12 +18,26 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>FormEx_Post</servlet-name>
-        <servlet-class>unitn.progweb.cocchiara.FormEx_Post</servlet-class>
+        <servlet-class>unitn.progweb.cocchiara.servlet.FormEx_Post</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FormEx_Post</servlet-name>
         <url-pattern>/FormEx_Post</url-pattern>
     </servlet-mapping>
-
+    <env-entry>
+        <env-entry-name>dbstring</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>jdbc:postgresql://localhost/webprog</env-entry-value>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>dbuser</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>postgres</env-entry-value>
+    </env-entry>
+    <env-entry>
+        <env-entry-name>dbpass</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>qwerty123</env-entry-value>
+    </env-entry>
 
 </web-app>

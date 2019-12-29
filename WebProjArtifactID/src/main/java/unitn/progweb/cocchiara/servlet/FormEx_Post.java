@@ -1,4 +1,4 @@
-package unitn.progweb.cocchiara;
+package unitn.progweb.cocchiara.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

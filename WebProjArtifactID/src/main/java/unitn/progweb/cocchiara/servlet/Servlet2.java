@@ -1,4 +1,4 @@
-package unitn.progweb.cocchiara;// Import required java libraries
+package unitn.progweb.cocchiara.servlet;// Import required java libraries
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
