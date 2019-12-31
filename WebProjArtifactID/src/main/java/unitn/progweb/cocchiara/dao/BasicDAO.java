@@ -62,7 +62,7 @@ public class BasicDAO {
     }
 // Example query; Should be never used if not for testing. Extracts the users and sends them as obj string.
      public String exampleUserQuery() {
-        String query = "SELECT * FROM users";
+        String query = "SELECT username,type FROM account";
         Connection conn = startConnection();
         Statement stmt = readyBasicStatement(conn);
         String out = "";
@@ -70,8 +70,8 @@ public class BasicDAO {
             ResultSet results = stmt.executeQuery(query);
             while (results.next()) {
                 String username = results.getString(1);
-                String password = results.getString(2);
-                out += (String.format("\t%s %s<br/>", username, password));
+                String type = results.getString(2);
+                out += (String.format("\t%s %s<br/>", username, type));
             }
             results.close();
             stmt.close();

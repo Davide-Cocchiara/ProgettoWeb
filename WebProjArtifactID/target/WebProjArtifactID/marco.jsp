@@ -7,8 +7,7 @@
 <body>
 <%
     User marco = (User)request.getAttribute("marco");
-
-    out.println(marco.getUsername() + " " + marco.getPassword());
+    out.println(marco.getUsername() + " " + marco.getType());
 %>
 </body>
 </html>

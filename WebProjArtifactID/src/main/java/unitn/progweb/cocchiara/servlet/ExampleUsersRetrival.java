@@ -35,7 +35,7 @@ public class ExampleUsersRetrival extends HttpServlet {
         UserDAO dao = new UserDAO();
         List<User> users = dao.getUsers();
         for (User u:users) {
-            out.println("<h1>Username:" + u.getUsername() + " Password:"+ u.getPassword()+ "</h1>");
+            out.println("<h1>Username:" + u.getUsername() + " Type:"+ u.getType()+ "</h1>");
         }
     }
 

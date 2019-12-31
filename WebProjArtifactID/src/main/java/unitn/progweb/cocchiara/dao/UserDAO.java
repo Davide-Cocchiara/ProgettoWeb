@@ -7,8 +7,19 @@ import java.util.ArrayList;
 
 public class UserDAO extends BasicDAO {
 
+    /*
+
+
+INSERT INTO account (username,hashpass,type)
+VALUES ('Marco',crypt('PassOne', gen_salt('bf', 8)),'PT'),
+('Paolo',crypt('PasswordPaolo', gen_salt('bf', 8)),'DC')
+
+
+SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('PassOne', hashpass)
+     */
+
     public ArrayList<User> getUsers() {
-        String query = "SELECT * FROM users";
+        String query = "SELECT username,type FROM account";
         Connection conn = startConnection();
         Statement stmt = readyBasicStatement(conn);
         ArrayList<User> out = new ArrayList<User>();
@@ -16,8 +27,8 @@ public class UserDAO extends BasicDAO {
             ResultSet results = stmt.executeQuery(query);
             while (results.next()) {
                 String username = results.getString(1);
-                String password = results.getString(2);
-                out.add(new User(username,password));
+                String type = results.getString(2);
+                out.add(new User(username,type));
             }
             results.close();
             stmt.close();
@@ -30,11 +41,11 @@ public class UserDAO extends BasicDAO {
     }
 
     public User getUserCred(String username,String password) {
-        String query = "SELECT * FROM users WHERE username=";
+        String query = "SELECT username,type FROM account WHERE username=? AND hashpass=crypt(?, hashpass)";
         Connection conn = startConnection();
         User out = new User();
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * from users where username = ? AND password= ?");
+            PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
             ResultSet results = stmt.executeQuery();

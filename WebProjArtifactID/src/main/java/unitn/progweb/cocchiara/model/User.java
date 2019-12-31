@@ -3,11 +3,11 @@ package unitn.progweb.cocchiara.model;
 public class User {
     public User() {
         this.username="";
-        this.password="";
+        this.type="";
     }
-    public User(String username,String password) {
+    public User(String username,String type) {
         this.username=username;
-        this.password=password;
+        this.type=type;
     }
     String username;
     public String getUsername() {
@@ -16,14 +16,13 @@ public class User {
     private void setUsername(String username) {
         this.username = username;
     }
-
-    String password;
-    public String getPassword() {
-        return password;
+    String type;
+    public String getType() {
+        return type;
     }
 
-    private void setPassword(String password) {
-        this.password = password;
+    public void setType(String type) {
+        this.type = type;
     }
 
 }
