@@ -14,7 +14,7 @@
     <env-entry>
         <env-entry-name>dbstring</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>jdbc:postgresql://localhost/webprog</env-entry-value>
+        <env-entry-value>jdbc:postgresql://localhost:5433/webprog</env-entry-value>
     </env-entry>
     <env-entry>
         <env-entry-name>dbuser</env-entry-name>
