@@ -1,10 +1,8 @@
-package unitn.progweb.cocchiara.servlet;// Import required java libraries
+package unitn.progweb.cocchiara.servlet.examples;// Import required java libraries
 
-import unitn.progweb.cocchiara.dao.BasicDAO;
 import unitn.progweb.cocchiara.dao.UserDAO;
 import unitn.progweb.cocchiara.model.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +15,8 @@ import java.util.List;
 
 // Extend HttpServlet class
 
-@WebServlet("/MARCOEX")
-public class ExampleMarcoRetrival extends HttpServlet {
+//@WebServlet("/USERSEX")
+public class ExampleUsersRetrival extends HttpServlet {
 
     private String message;
 
@@ -35,14 +33,10 @@ public class ExampleMarcoRetrival extends HttpServlet {
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
         UserDAO dao = new UserDAO();
-        User marco = dao.getUserCred("Marco","PassOne");
-
-        HttpSession session = request.getSession();
-        //session.setAttribute("marco", marco);
-        //response.sendRedirect("marco.jsp");
-        request.setAttribute("marco",marco);
-        RequestDispatcher rd = request.getRequestDispatcher("marco.jsp");
-        rd.forward(request,response);
+        List<User> users = dao.getUsers();
+        for (User u:users) {
+            out.println("<h1>Username:" + u.getUsername() + " Type:"+ u.getType()+ "</h1>");
+        }
     }
 
     public void destroy() {

@@ -1,19 +1,24 @@
-package unitn.progweb.cocchiara.servlet;// Import required java libraries
+package unitn.progweb.cocchiara.servlet.examples;// Import required java libraries
 
 import unitn.progweb.cocchiara.dao.BasicDAO;
+import unitn.progweb.cocchiara.dao.UserDAO;
+import unitn.progweb.cocchiara.model.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 // Extend HttpServlet class
 
-@WebServlet("/DATAEX")
-public class ExampleDataRetrival extends HttpServlet {
+//@WebServlet("/MARCOEX")
+public class ExampleMarcoRetrival extends HttpServlet {
 
     private String message;
 
@@ -29,10 +34,15 @@ public class ExampleDataRetrival extends HttpServlet {
 
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
-        BasicDAO bDao = new BasicDAO();
-        String sout = "";
-        sout = bDao.exampleUserQuery();
-        out.println("<h1>" + sout + "</h1>");
+        UserDAO dao = new UserDAO();
+        User marco = dao.getUserCred("Marco","PassOne");
+
+        HttpSession session = request.getSession();
+        //session.setAttribute("marco", marco);
+        //response.sendRedirect("marco.jsp");
+        request.setAttribute("marco",marco);
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/marco.jsp");
+        rd.forward(request,response);
     }
 
     public void destroy() {

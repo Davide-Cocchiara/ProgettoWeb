@@ -1,27 +1,28 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 // Extend HttpServlet class
-public class Servlet2 extends HttpServlet {
 
-    private String message;
+@WebServlet("/login")
+public class Login extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
-        message = "Yo boyss";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         // Set response content type
         response.setContentType("text/html");
-
-        // Actual logic goes here.
-        PrintWriter out = response.getWriter();
-        out.println("<h1>" + message + "</h1>");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/loginPage.jsp");
+        rd.forward(request,response);
     }
 
     public void destroy() {

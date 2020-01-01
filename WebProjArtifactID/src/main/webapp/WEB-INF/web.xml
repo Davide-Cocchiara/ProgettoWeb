@@ -1,29 +1,15 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
   <display-name>Archetype Created Web Application</display-name>
-    <servlet>
-        <servlet-name>Servlet2</servlet-name>
-        <servlet-class>unitn.progweb.cocchiara.servlet.Servlet2</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Servlet2</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>FormEx</servlet-name>
-        <jsp-file>/FormEx.html</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FormEx</servlet-name>
-        <url-pattern>/FormEx</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>FormEx_Post</servlet-name>
-        <servlet-class>unitn.progweb.cocchiara.servlet.FormEx_Post</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FormEx_Post</servlet-name>
-        <url-pattern>/FormEx_Post</url-pattern>
-    </servlet-mapping>
+
+    <error-page>
+        <location>/WEB-INF/error.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- Missing resource -->
+        <error-code>404</error-code>
+        <location>/WEB-INF/404.jsp</location>
+    </error-page>
+
     <env-entry>
         <env-entry-name>dbstring</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
