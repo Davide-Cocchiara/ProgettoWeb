@@ -9,5 +9,6 @@
     User user = (User)session.getAttribute("user");
     out.println(user.getUsername() + " " + user.getType());
 %>
+<a href="logout">Logout</a>
 </body>
 </html>

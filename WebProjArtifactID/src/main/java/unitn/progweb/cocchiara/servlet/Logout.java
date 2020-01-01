@@ -13,8 +13,8 @@ import java.io.IOException;
 
 // Extend HttpServlet class
 
-@WebServlet("/welcome")
-public class WelcomeLogged extends HttpServlet {
+@WebServlet("/logout")
+public class Logout extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
@@ -24,9 +24,8 @@ public class WelcomeLogged extends HttpServlet {
             throws ServletException, IOException {
         // Set response content type
         HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("user");
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/welcomeLogged.jsp");
-        rd.forward(request, response);
+        session.setAttribute("user", null);
+        response.sendRedirect("index");
     }
 
     public void destroy() {
