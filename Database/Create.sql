@@ -2,7 +2,10 @@
 
 CREATE TABLE "Medico"
 (
- "CodiceFiscale" varchar(16) NOT NULL,
+ "CodiceFiscale" 	varchar(16) NOT NULL,
+ "IndirizzoClinica" varchar(50) NOT NULL,
+ "TelefonoClinica"	varchar(50) NOT NULL,
+
  CONSTRAINT "FK_74" FOREIGN KEY ( "CodiceFiscale" ) REFERENCES "Persona" ( "CodiceFiscale" )
 );
 
@@ -53,6 +56,8 @@ CREATE TABLE "Persona"
  "Sesso"         char(1) NOT NULL,
  "MedicoDiBase"  varchar(16) NULL,
  "Password"      varchar(50) NOT NULL,
+ "Indirizzo"     varchar(50) NOT NULL,
+ "Telefono"      varchar(50) NOT NULL,
  CONSTRAINT "FK_67" FOREIGN KEY ( "LuogoNascita" ) REFERENCES "Provincia" ( "Sigla" ),
  CONSTRAINT "FK_70" FOREIGN KEY ( "Provincia" ) REFERENCES "Provincia" ( "Sigla" ),
  CONSTRAINT "FK_78" FOREIGN KEY ( "MedicoDiBase" ) REFERENCES "Medico" ( "CodiceFiscale" )
