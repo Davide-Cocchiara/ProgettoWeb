@@ -1,3 +1,58 @@
+-- ************************************** "Provincia"
+
+CREATE TABLE "Provincia"
+(
+ "Sigla" varchar(3) NOT NULL,
+ "Nome"  varchar(50) NOT NULL
+
+);
+
+CREATE UNIQUE INDEX "PK_Provincia" ON "Provincia"
+(
+ "Sigla"
+);
+
+-- ************************************** "Persona"
+
+CREATE TABLE "Persona"
+(
+ "CodiceFiscale" varchar(16) NOT NULL,
+ "Nome"          varchar(50) NOT NULL,
+ "Cognome"       varchar(50) NOT NULL,
+ "DataNascita"   date NOT NULL,
+ "Email"         varchar(50) NOT NULL,
+ "Foto"          bytea NOT NULL,
+ "LuogoNascita"  varchar(3) NOT NULL,
+ "Provincia"     varchar(3) NOT NULL,
+ "Sesso"         char(1) NOT NULL,
+ CONSTRAINT "FK_67" FOREIGN KEY ( "LuogoNascita" ) REFERENCES "Provincia" ( "Sigla" ),
+ CONSTRAINT "FK_70" FOREIGN KEY ( "Provincia" ) REFERENCES "Provincia" ( "Sigla" )
+);
+
+CREATE UNIQUE INDEX "PK_Persona" ON "Persona"
+(
+ "CodiceFiscale"
+);
+
+CREATE INDEX "fkIdx_67" ON "Persona"
+(
+ "LuogoNascita"
+);
+
+CREATE INDEX "fkIdx_70" ON "Persona"
+(
+ "Provincia"
+);
+
+
+
+
+
+
+
+
+
+
 -- ************************************** "Medico"
 
 CREATE TABLE "Medico"
@@ -19,12 +74,37 @@ CREATE INDEX "fkIdx_74" ON "Medico"
  "CodiceFiscale"
 );
 
+-- ************************************** "MedicoAssegnato"
+
+CREATE TABLE "MedicoAssegnato"
+(
+ "Paziente" varchar(16) NOT NULL,
+ "Medico"   varchar(16) NOT NULL,
+ CONSTRAINT "FK_244" FOREIGN KEY ( "Paziente" ) REFERENCES "Persona" ( "CodiceFiscale" ),
+ CONSTRAINT "FK_248" FOREIGN KEY ( "Medico" ) REFERENCES "Medico" ( "CodiceFiscale" )
+);
+
+CREATE UNIQUE INDEX "PK_MedicoAssegnato" ON "MedicoAssegnato"
+(
+ "Paziente"
+);
+
+CREATE INDEX "fkIdx_244" ON "MedicoAssegnato"
+(
+ "Paziente"
+);
+
+CREATE INDEX "fkIdx_248" ON "MedicoAssegnato"
+(
+ "Medico"
+);
+
 -- ************************************** "Notifiche"
 
 CREATE TABLE "Notifiche"
 (
  "Persona" varchar(16) NOT NULL,
- "ID"      int NOT NULL,
+ "ID"      serial,
  "Testo"   text NOT NULL,
  "Letto"   boolean NOT NULL,
  CONSTRAINT "FK_164" FOREIGN KEY ( "Persona" ) REFERENCES "Persona" ( "CodiceFiscale" )
@@ -41,53 +121,12 @@ CREATE INDEX "fkIdx_164" ON "Notifiche"
  "Persona"
 );
 
--- ************************************** "Persona"
-
-CREATE TABLE "Persona"
-(
- "CodiceFiscale" varchar(16) NOT NULL,
- "Nome"          varchar(50) NOT NULL,
- "Cognome"       varchar(50) NOT NULL,
- "DataNascita"   date NOT NULL,
- "Email"         varchar(50) NOT NULL,
- "Foto"          bytea NOT NULL,
- "LuogoNascita"  varchar(3) NOT NULL,
- "Provincia"     varchar(3) NOT NULL,
- "Sesso"         char(1) NOT NULL,
- "MedicoDiBase"  varchar(16) NULL,
- "Password"      varchar(50) NOT NULL,
- "Indirizzo"     varchar(50) NOT NULL,
- "Telefono"      varchar(50) NOT NULL,
- CONSTRAINT "FK_67" FOREIGN KEY ( "LuogoNascita" ) REFERENCES "Provincia" ( "Sigla" ),
- CONSTRAINT "FK_70" FOREIGN KEY ( "Provincia" ) REFERENCES "Provincia" ( "Sigla" ),
- CONSTRAINT "FK_78" FOREIGN KEY ( "MedicoDiBase" ) REFERENCES "Medico" ( "CodiceFiscale" )
-);
-
-CREATE UNIQUE INDEX "PK_Persona" ON "Persona"
-(
- "CodiceFiscale"
-);
-
-CREATE INDEX "fkIdx_67" ON "Persona"
-(
- "LuogoNascita"
-);
-
-CREATE INDEX "fkIdx_70" ON "Persona"
-(
- "Provincia"
-);
-
-CREATE INDEX "fkIdx_78" ON "Persona"
-(
- "MedicoDiBase"
-);
 
 -- ************************************** "Prestazioni"
 
 CREATE TABLE "Prestazioni"
 (
- "ID"           int NOT NULL,
+ "ID"      serial,
  "isMedicinale" boolean NOT NULL,
  "Descrizione"  varchar(50) NOT NULL
 
@@ -99,11 +138,30 @@ CREATE UNIQUE INDEX "PK_Prestazioni" ON "Prestazioni"
 );
 
 
+-- ************************************** "ServizioSanitarioProvinciale"
+
+CREATE TABLE "ServizioSanitarioProvinciale"
+(
+ "Provincia" varchar(3) NOT NULL,
+ CONSTRAINT "FK_86" FOREIGN KEY ( "Provincia" ) REFERENCES "Provincia" ( "Sigla" )
+);
+
+CREATE UNIQUE INDEX "PK_ServizioSanitarioProvinciale" ON "ServizioSanitarioProvinciale"
+(
+ "Provincia"
+);
+
+CREATE INDEX "fkIdx_86" ON "ServizioSanitarioProvinciale"
+(
+ "Provincia"
+);
+
+
 -- ************************************** "Prescrizioni"
 
 CREATE TABLE "Prescrizioni"
 (
- "ID"                int NOT NULL,
+ "ID"      serial,
  "Paziente"          varchar(16) NOT NULL,
  "Medico"            varchar(16) NOT NULL,
  "ProvinciaRilascio" varchar(3) NOT NULL,
@@ -142,38 +200,6 @@ CREATE INDEX "fkIdx_123" ON "Prescrizioni"
 );
 
 
--- ************************************** "Provincia"
-
-CREATE TABLE "Provincia"
-(
- "Sigla" varchar(3) NOT NULL,
- "Nome"  varchar(50) NOT NULL
-
-);
-
-CREATE UNIQUE INDEX "PK_Provincia" ON "Provincia"
-(
- "Sigla"
-);
-
--- ************************************** "ServizioSanitarioProvinciale"
-
-CREATE TABLE "ServizioSanitarioProvinciale"
-(
- "Provincia" varchar(3) NOT NULL,
- CONSTRAINT "FK_86" FOREIGN KEY ( "Provincia" ) REFERENCES "Provincia" ( "Sigla" )
-);
-
-CREATE UNIQUE INDEX "PK_ServizioSanitarioProvinciale" ON "ServizioSanitarioProvinciale"
-(
- "Provincia"
-);
-
-CREATE INDEX "fkIdx_86" ON "ServizioSanitarioProvinciale"
-(
- "Provincia"
-);
-
 -- ************************************** "SSP_PrestazioniDisponibili"
 
 CREATE TABLE "SSP_PrestazioniDisponibili"
@@ -205,7 +231,7 @@ CREATE INDEX "fkIdx_138" ON "SSP_PrestazioniDisponibili"
 
 CREATE TABLE "Ticket"
 (
- "ID"            int NOT NULL,
+ "ID"      serial,
  "Paziente"      varchar(16) NOT NULL,
  "IDProvincia"   varchar(3) NOT NULL,
  "IDPrestazione" int NOT NULL,
@@ -254,7 +280,7 @@ CREATE INDEX "fkIdx_208" ON "Admin"
 
 CREATE TABLE "Visite"
 (
- "ID"          int NOT NULL,
+ "ID"      serial,
  "Paziente"    varchar(16) NOT NULL,
  "Medico"      varchar(16) NOT NULL,
  "Data"        date NOT NULL,
@@ -283,4 +309,44 @@ CREATE INDEX "fkIdx_200" ON "Visite"
 CREATE INDEX "fkIdx_204" ON "Visite"
 (
  "Prestazione"
+);
+
+
+CREATE TABLE "Account"
+(
+ "CodiceFiscale" varchar(16) NOT NULL,
+ "HashPass"      text NOT NULL,
+ CONSTRAINT "FK_236" FOREIGN KEY ( "CodiceFiscale" ) REFERENCES "Persona" ( "CodiceFiscale" )
+);
+
+CREATE UNIQUE INDEX "PK_account" ON "Account"
+(
+ "CodiceFiscale"
+);
+
+CREATE INDEX "fkIdx_236" ON "Account"
+(
+ "CodiceFiscale"
+);
+
+
+-- ************************************** "AuthToken"
+
+CREATE TABLE "AuthToken"
+(
+ "ID"            serial NOT NULL,
+ "CodiceFiscale" varchar(16) NOT NULL,
+ "Token"         text NOT NULL,
+ "Expires"       date NOT NULL,
+ CONSTRAINT "FK_224" FOREIGN KEY ( "CodiceFiscale" ) REFERENCES "Persona" ( "CodiceFiscale" )
+);
+
+CREATE UNIQUE INDEX "PK_AuthToken" ON "AuthToken"
+(
+ "ID"
+);
+
+CREATE INDEX "fkIdx_224" ON "AuthToken"
+(
+ "CodiceFiscale"
 );
