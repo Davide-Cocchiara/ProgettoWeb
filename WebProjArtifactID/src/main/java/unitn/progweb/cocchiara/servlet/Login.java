@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         // Set response content type
         response.setContentType("text/html");
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/loginPage.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/login.jsp");
         rd.forward(request,response);
     }
 

@@ -1,9 +1,8 @@
 package unitn.progweb.cocchiara.filters;
 
-import unitn.progweb.cocchiara.model.User;
+import unitn.progweb.cocchiara.model.Persona;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -28,7 +27,7 @@ public class loginFilter implements Filter{
         response.setHeader("Expires","0");
 
         HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("user");
+        Persona u = (Persona) session.getAttribute("Persona");
         if (u == null) {
             response.sendRedirect("login");
         }

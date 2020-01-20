@@ -1,19 +1,16 @@
 package unitn.progweb.cocchiara.servlet.examples;// Import required java libraries
 
-import unitn.progweb.cocchiara.dao.BasicDAO;
 import unitn.progweb.cocchiara.dao.UserDAO;
-import unitn.progweb.cocchiara.model.User;
+import unitn.progweb.cocchiara.model.Persona;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 // Extend HttpServlet class
 
@@ -35,7 +32,7 @@ public class ExampleMarcoRetrival extends HttpServlet {
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
         UserDAO dao = new UserDAO();
-        User marco = dao.getUserCred("Marco","PassOne");
+        Persona marco = dao.getUserCred("Marco","PassOne");
 
         HttpSession session = request.getSession();
         //session.setAttribute("marco", marco);

@@ -1,6 +1,6 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
 
-import unitn.progweb.cocchiara.model.User;
+import unitn.progweb.cocchiara.model.Persona;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class WelcomeLogged extends HttpServlet {
             throws ServletException, IOException {
         // Set response content type
         HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("user");
+        Persona u = (Persona) session.getAttribute("Persona");
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/welcomeLogged.jsp");
         rd.forward(request, response);
     }

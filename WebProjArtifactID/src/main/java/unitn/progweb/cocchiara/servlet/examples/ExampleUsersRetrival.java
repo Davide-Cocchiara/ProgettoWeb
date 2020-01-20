@@ -1,7 +1,7 @@
 package unitn.progweb.cocchiara.servlet.examples;// Import required java libraries
 
 import unitn.progweb.cocchiara.dao.UserDAO;
-import unitn.progweb.cocchiara.model.User;
+import unitn.progweb.cocchiara.model.Persona;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,9 +33,9 @@ public class ExampleUsersRetrival extends HttpServlet {
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
         UserDAO dao = new UserDAO();
-        List<User> users = dao.getUsers();
-        for (User u:users) {
-            out.println("<h1>Username:" + u.getUsername() + " Type:"+ u.getType()+ "</h1>");
+        List<Persona> personas = dao.getUsers();
+        for (Persona u: personas) {
+            out.println("<h1>Username:" + u.getCodiceFiscale() + "</h1>");
         }
     }
 

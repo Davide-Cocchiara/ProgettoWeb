@@ -1,7 +1,8 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
 
 import unitn.progweb.cocchiara.dao.UserDAO;
-import unitn.progweb.cocchiara.model.User;
+import unitn.progweb.cocchiara.model.Persona;
+import unitn.progweb.cocchiara.model.Persona;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,15 +27,17 @@ public class DoLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        //String rememberme = request.getParameter("rememberme");
+        // TODO
         HttpSession session = request.getSession();
         UserDAO dao = new UserDAO();
-        User loggedUser = dao.getUserCred(username,password);
-        if (loggedUser.getUsername()!="") { // Login success!
-            session.setAttribute("user", loggedUser);
+        Persona loggedPersona = dao.getUserCred(username,password);
+        if (loggedPersona.getCodiceFiscale()!="") { // Login success!
+            session.setAttribute("Persona", loggedPersona);
             response.sendRedirect("welcome");
         }
         else {
-            response.sendRedirect("login");
+            response.sendRedirect("login?failedlogin=true");
         }
     }
 
