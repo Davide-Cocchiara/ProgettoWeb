@@ -9,20 +9,18 @@ public class Persona {
     String cognome ="";
     Date datanascita = null;
     String email ="";
-    byte[] foto = null;
     String luogonascita = "";
     String provincia ="";
     String sesso = "";
     boolean medico = false;
     boolean admin = false;
 
-    public Persona(String codicefiscale, String nome, String cognome, Date datanascita, String email, byte[] foto, String luogonascita, String provincia, String sesso, boolean medico, boolean admin) {
+    public Persona(String codicefiscale, String nome, String cognome, Date datanascita, String email,String luogonascita, String provincia, String sesso, boolean medico, boolean admin) {
         this.codicefiscale = codicefiscale;
         this.nome = nome;
         this.cognome = cognome;
         this.datanascita = datanascita;
         this.email = email;
-        this.foto = foto;
         this.luogonascita = luogonascita;
         this.provincia = provincia;
         this.sesso = sesso;
@@ -64,14 +62,6 @@ public class Persona {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
     }
 
     public String getLuogonascita() {

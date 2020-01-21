@@ -19,7 +19,7 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
      */
 
     public ArrayList<Persona> getUsers() {
-        String query = "SELECT codicefiscale,nome,cognome,datanascita,email,foto,luogonascita,provincia,sesso FROM persona";
+        String query = "SELECT codicefiscale,nome,cognome,datanascita,email,luogonascita,provincia,sesso FROM persona";
         Connection conn = startConnection();
         Statement stmt = readyBasicStatement(conn);
         ArrayList<Persona> out = new ArrayList<Persona>();
@@ -31,11 +31,10 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
                 String _cognome = results.getString(3);
                 Date _datanascita = results.getObject(4, Date.class);
                 String _mail = results.getString(5);
-                byte[] _foto = results.getBytes(6);
-                String _luogonascita = results.getString(7);
-                String _provincia = results.getString(8);
-                String _sesso = results.getString(9);
-                out.add(new Persona(_codice,_nome,_cognome,_datanascita,_mail,_foto,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn)));
+                String _luogonascita = results.getString(6);
+                String _provincia = results.getString(7);
+                String _sesso = results.getString(8);
+                out.add(new Persona(_codice,_nome,_cognome,_datanascita,_mail,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn)));
             }
             results.close();
             stmt.close();
@@ -81,7 +80,7 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
     }
 
     public Persona getUserCred(String username, String password) {
-        String query = "SELECT persona.codicefiscale,nome,cognome,datanascita,email,foto,luogonascita,provincia,sesso FROM persona JOIN account ON persona.codicefiscale=account.codicefiscale WHERE persona.codicefiscale=? AND hashpass=crypt(?, hashpass);";
+        String query = "SELECT persona.codicefiscale,nome,cognome,datanascita,email,luogonascita,provincia,sesso FROM persona JOIN account ON persona.codicefiscale=account.codicefiscale WHERE persona.codicefiscale=? AND hashpass=crypt(?, hashpass);";
         Connection conn = startConnection();
         Persona out = new Persona();
         try {
@@ -96,11 +95,10 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
                 String _cognome = results.getString(3);
                 Date _datanascita = results.getObject(4, Date.class);
                 String _mail = results.getString(5);
-                byte[] _foto = results.getBytes(6);
-                String _luogonascita = results.getString(7);
-                String _provincia = results.getString(8);
-                String _sesso = results.getString(9);
-                out = new Persona(_codice,_nome,_cognome,_datanascita,_mail,_foto,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn));
+                String _luogonascita = results.getString(6);
+                String _provincia = results.getString(7);
+                String _sesso = results.getString(8);
+                out = new Persona(_codice,_nome,_cognome,_datanascita,_mail,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn));
             }
             results.close();
             stmt.close();

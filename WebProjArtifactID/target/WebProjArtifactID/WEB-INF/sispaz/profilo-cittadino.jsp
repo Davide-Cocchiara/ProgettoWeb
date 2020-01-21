@@ -151,7 +151,16 @@
                     <div class="col-lg-4">
                         <div class="card mb-3">
                             <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="../assets/img/utente.jpg" width="160" height="160">
-                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Change Photo</button></div>
+                                <form action="uploadavatar" method="post" enctype="multipart/form-data">
+                                    <input class="btn btn-primary btn-sm" type="file" name="file" accept="image/x-png,image/gif,image/jpeg" />
+                                    <input class="btn btn-primary btn-sm" type="submit" />
+                                </form>
+                                <%
+                                    if (request.getParameter("failedupload") == null) {
+                                    } else { // Errore generico
+                                        out.println("<div style='color:red' class='text-center'>Upload fallito. Immagine non caricata.</div>");
+                                    }
+                                %>
                             </div>
                         </div>
                         <div class="card shadow mb-4">
