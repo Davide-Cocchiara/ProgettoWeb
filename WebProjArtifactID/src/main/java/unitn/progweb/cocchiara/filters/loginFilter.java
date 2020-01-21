@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(	urlPatterns = {"/welcome", "/servizi","/sispaz/*","/sissan/*","/sismed/*"})
+@WebFilter(	urlPatterns = {"/welcome","/avatar", "/servizi","/sispaz/*","/sissan/*","/sismed/*"})
 public class loginFilter implements Filter{
 
     public void init(FilterConfig arg0) throws ServletException {}
