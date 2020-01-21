@@ -35,7 +35,7 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
                 String _luogonascita = results.getString(7);
                 String _provincia = results.getString(8);
                 String _sesso = results.getString(9);
-                out.add(new Persona(_codice,_nome,_cognome,_datanascita,_mail,_foto,_luogonascita,_provincia,_sesso));
+                out.add(new Persona(_codice,_nome,_cognome,_datanascita,_mail,_foto,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn)));
             }
             results.close();
             stmt.close();
@@ -43,6 +43,39 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
         }
         catch (SQLException ex) {
             System.err.println("Impossible to get the users: " + ex.getMessage());
+        }
+        return out;
+    }
+    private Boolean isMedico(String codicefiscale, Connection conn) {
+        String query = "SELECT codicefiscale FROM medico WHERE codicefiscale=?";
+        boolean out = false;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codicefiscale);
+            ResultSet results = stmt.executeQuery();
+            out = results.next();
+            results.close();
+            stmt.close();
+        }
+        catch (SQLException ex) {
+            System.err.println("Impossible to check if user is medico: " + ex.getMessage());
+        }
+        return out;
+    }
+
+    private Boolean isAdmin(String codicefiscale,Connection conn) {
+        String query = "SELECT codicefiscale FROM admin WHERE codicefiscale=?";
+        boolean out = false;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codicefiscale);
+            ResultSet results = stmt.executeQuery();
+            out = results.next();
+            results.close();
+            stmt.close();
+        }
+        catch (SQLException ex) {
+            System.err.println("Impossible to check if user is admin: " + ex.getMessage());
         }
         return out;
     }
@@ -67,7 +100,7 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
                 String _luogonascita = results.getString(7);
                 String _provincia = results.getString(8);
                 String _sesso = results.getString(9);
-                out = new Persona(_codice,_nome,_cognome,_datanascita,_mail,_foto,_luogonascita,_provincia,_sesso);
+                out = new Persona(_codice,_nome,_cognome,_datanascita,_mail,_foto,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn));
             }
             results.close();
             stmt.close();

@@ -13,8 +13,10 @@ public class Persona {
     String luogonascita = "";
     String provincia ="";
     String sesso = "";
+    boolean medico = false;
+    boolean admin = false;
 
-    public Persona(String codicefiscale, String nome, String cognome, Date datanascita, String email, byte[] foto, String luogonascita, String provincia, String sesso) {
+    public Persona(String codicefiscale, String nome, String cognome, Date datanascita, String email, byte[] foto, String luogonascita, String provincia, String sesso, boolean medico, boolean admin) {
         this.codicefiscale = codicefiscale;
         this.nome = nome;
         this.cognome = cognome;
@@ -24,6 +26,8 @@ public class Persona {
         this.luogonascita = luogonascita;
         this.provincia = provincia;
         this.sesso = sesso;
+        this.medico = medico;
+        this.admin = admin;
     }
 
     public Persona() {
@@ -100,5 +104,21 @@ public class Persona {
 
     public void setCodicefiscale(String codicefiscale) {
         this.codicefiscale = codicefiscale;
+    }
+
+    public boolean isMedico() {
+        return medico;
+    }
+
+    public void setMedico(boolean medico) {
+        this.medico = medico;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }
