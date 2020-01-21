@@ -1,352 +1,352 @@
--- ************************************** "Provincia"
+-- ************************************** "provincia"
 
-CREATE TABLE "Provincia"
+create table "provincia"
 (
- "Sigla" varchar(3) NOT NULL,
- "Nome"  varchar(50) NOT NULL
+ "sigla" varchar(3) not null,
+ "nome"  varchar(50) not null
 
 );
 
-CREATE UNIQUE INDEX "PK_Provincia" ON "Provincia"
+create unique index "pk_provincia" on "provincia"
 (
- "Sigla"
+ "sigla"
 );
 
--- ************************************** "Persona"
+-- ************************************** "persona"
 
-CREATE TABLE "Persona"
+create table "persona"
 (
- "CodiceFiscale" varchar(16) NOT NULL,
- "Nome"          varchar(50) NOT NULL,
- "Cognome"       varchar(50) NOT NULL,
- "DataNascita"   date NOT NULL,
- "Email"         varchar(50) NOT NULL,
- "Foto"          bytea NOT NULL,
- "LuogoNascita"  varchar(3) NOT NULL,
- "Provincia"     varchar(3) NOT NULL,
- "Sesso"         char(1) NOT NULL,
- CONSTRAINT "FK_67" FOREIGN KEY ( "LuogoNascita" ) REFERENCES "Provincia" ( "Sigla" ),
- CONSTRAINT "FK_70" FOREIGN KEY ( "Provincia" ) REFERENCES "Provincia" ( "Sigla" )
+ "codicefiscale" varchar(16) not null,
+ "nome"          varchar(50) not null,
+ "cognome"       varchar(50) not null,
+ "datanascita"   date not null,
+ "email"         varchar(50) not null,
+ "foto"          bytea not null,
+ "luogonascita"  varchar(3) not null,
+ "provincia"     varchar(3) not null,
+ "sesso"         char(1) not null,
+ constraint "fk_67" foreign key ( "luogonascita" ) references "provincia" ( "sigla" ),
+ constraint "fk_70" foreign key ( "provincia" ) references "provincia" ( "sigla" )
 );
 
-CREATE UNIQUE INDEX "PK_Persona" ON "Persona"
+create unique index "pk_persona" on "persona"
 (
- "CodiceFiscale"
+ "codicefiscale"
 );
 
-CREATE INDEX "fkIdx_67" ON "Persona"
+create index "fkidx_67" on "persona"
 (
- "LuogoNascita"
+ "luogonascita"
 );
 
-CREATE INDEX "fkIdx_70" ON "Persona"
+create index "fkidx_70" on "persona"
 (
- "Provincia"
-);
-
-
-
-
-
-
-
-
-
-
--- ************************************** "Medico"
-
-CREATE TABLE "Medico"
-(
- "CodiceFiscale" 	varchar(16) NOT NULL,
- "IndirizzoClinica" varchar(50) NOT NULL,
- "TelefonoClinica"	varchar(50) NOT NULL,
-
- CONSTRAINT "FK_74" FOREIGN KEY ( "CodiceFiscale" ) REFERENCES "Persona" ( "CodiceFiscale" )
-);
-
-CREATE UNIQUE INDEX "PK_Medico" ON "Medico"
-(
- "CodiceFiscale"
-);
-
-CREATE INDEX "fkIdx_74" ON "Medico"
-(
- "CodiceFiscale"
-);
-
--- ************************************** "MedicoAssegnato"
-
-CREATE TABLE "MedicoAssegnato"
-(
- "Paziente" varchar(16) NOT NULL,
- "Medico"   varchar(16) NOT NULL,
- CONSTRAINT "FK_244" FOREIGN KEY ( "Paziente" ) REFERENCES "Persona" ( "CodiceFiscale" ),
- CONSTRAINT "FK_248" FOREIGN KEY ( "Medico" ) REFERENCES "Medico" ( "CodiceFiscale" )
-);
-
-CREATE UNIQUE INDEX "PK_MedicoAssegnato" ON "MedicoAssegnato"
-(
- "Paziente"
-);
-
-CREATE INDEX "fkIdx_244" ON "MedicoAssegnato"
-(
- "Paziente"
-);
-
-CREATE INDEX "fkIdx_248" ON "MedicoAssegnato"
-(
- "Medico"
-);
-
--- ************************************** "Notifiche"
-
-CREATE TABLE "Notifiche"
-(
- "Persona" varchar(16) NOT NULL,
- "ID"      serial,
- "Testo"   text NOT NULL,
- "Letto"   boolean NOT NULL,
- CONSTRAINT "FK_164" FOREIGN KEY ( "Persona" ) REFERENCES "Persona" ( "CodiceFiscale" )
-);
-
-CREATE UNIQUE INDEX "PK_Notifiche" ON "Notifiche"
-(
- "Persona",
- "ID"
-);
-
-CREATE INDEX "fkIdx_164" ON "Notifiche"
-(
- "Persona"
+ "provincia"
 );
 
 
--- ************************************** "Prestazioni"
 
-CREATE TABLE "Prestazioni"
+
+
+
+
+
+
+
+-- ************************************** "medico"
+
+create table "medico"
 (
- "ID"      serial,
- "isMedicinale" boolean NOT NULL,
- "Descrizione"  varchar(50) NOT NULL
+ "codicefiscale" 	varchar(16) not null,
+ "indirizzoclinica" varchar(50) not null,
+ "telefonoclinica"	varchar(50) not null,
 
+ constraint "fk_74" foreign key ( "codicefiscale" ) references "persona" ( "codicefiscale" )
 );
 
-CREATE UNIQUE INDEX "PK_Prestazioni" ON "Prestazioni"
+create unique index "pk_medico" on "medico"
 (
- "ID"
+ "codicefiscale"
 );
 
-
--- ************************************** "ServizioSanitarioProvinciale"
-
-CREATE TABLE "ServizioSanitarioProvinciale"
+create index "fkidx_74" on "medico"
 (
- "Provincia" varchar(3) NOT NULL,
- CONSTRAINT "FK_86" FOREIGN KEY ( "Provincia" ) REFERENCES "Provincia" ( "Sigla" )
+ "codicefiscale"
 );
 
-CREATE UNIQUE INDEX "PK_ServizioSanitarioProvinciale" ON "ServizioSanitarioProvinciale"
+-- ************************************** "medicoassegnato"
+
+create table "medicoassegnato"
 (
- "Provincia"
+ "paziente" varchar(16) not null,
+ "medico"   varchar(16) not null,
+ constraint "fk_244" foreign key ( "paziente" ) references "persona" ( "codicefiscale" ),
+ constraint "fk_248" foreign key ( "medico" ) references "medico" ( "codicefiscale" )
 );
 
-CREATE INDEX "fkIdx_86" ON "ServizioSanitarioProvinciale"
+create unique index "pk_medicoassegnato" on "medicoassegnato"
 (
- "Provincia"
+ "paziente"
 );
 
-
--- ************************************** "Prescrizioni"
-
-CREATE TABLE "Prescrizioni"
+create index "fkidx_244" on "medicoassegnato"
 (
- "ID"      serial,
- "Paziente"          varchar(16) NOT NULL,
- "Medico"            varchar(16) NOT NULL,
- "ProvinciaRilascio" varchar(3) NOT NULL,
- "Prestazione"       int NOT NULL,
- "DataRilascio"      date NOT NULL,
- "DataEvasione"      date NULL,
- CONSTRAINT "FK_101" FOREIGN KEY ( "Medico" ) REFERENCES "Medico" ( "CodiceFiscale" ),
- CONSTRAINT "FK_104" FOREIGN KEY ( "Paziente" ) REFERENCES "Persona" ( "CodiceFiscale" ),
- CONSTRAINT "FK_115" FOREIGN KEY ( "ProvinciaRilascio" ) REFERENCES "ServizioSanitarioProvinciale" ( "Provincia" ),
- CONSTRAINT "FK_123" FOREIGN KEY ( "Prestazione" ) REFERENCES "Prestazioni" ( "ID" )
+ "paziente"
 );
 
-CREATE UNIQUE INDEX "PK_Prescrizioni" ON "Prescrizioni"
+create index "fkidx_248" on "medicoassegnato"
 (
- "ID"
+ "medico"
 );
 
-CREATE INDEX "fkIdx_101" ON "Prescrizioni"
+-- ************************************** "notifiche"
+
+create table "notifiche"
 (
- "Medico"
+ "persona" varchar(16) not null,
+ "id"      serial,
+ "testo"   text not null,
+ "letto"   boolean not null,
+ constraint "fk_164" foreign key ( "persona" ) references "persona" ( "codicefiscale" )
 );
 
-CREATE INDEX "fkIdx_104" ON "Prescrizioni"
+create unique index "pk_notifiche" on "notifiche"
 (
- "Paziente"
+ "persona",
+ "id"
 );
 
-CREATE INDEX "fkIdx_115" ON "Prescrizioni"
+create index "fkidx_164" on "notifiche"
 (
- "ProvinciaRilascio"
-);
-
-CREATE INDEX "fkIdx_123" ON "Prescrizioni"
-(
- "Prestazione"
-);
-
-
--- ************************************** "SSP_PrestazioniDisponibili"
-
-CREATE TABLE "SSP_PrestazioniDisponibili"
-(
- "IDProvincia"   varchar(3) NOT NULL,
- "Costo"         double precision NOT NULL,
- "IDPrestazione" int NOT NULL,
- CONSTRAINT "FK_134" FOREIGN KEY ( "IDProvincia" ) REFERENCES "ServizioSanitarioProvinciale" ( "Provincia" ),
- CONSTRAINT "FK_138" FOREIGN KEY ( "IDPrestazione" ) REFERENCES "Prestazioni" ( "ID" )
-);
-
-CREATE UNIQUE INDEX "PK_SSP_PrestazioniDisponibili" ON "SSP_PrestazioniDisponibili"
-(
- "IDProvincia",
- "IDPrestazione"
-);
-
-CREATE INDEX "fkIdx_134" ON "SSP_PrestazioniDisponibili"
-(
- "IDProvincia"
-);
-
-CREATE INDEX "fkIdx_138" ON "SSP_PrestazioniDisponibili"
-(
- "IDPrestazione"
-);
-
--- ************************************** "Ticket"
-
-CREATE TABLE "Ticket"
-(
- "ID"      serial,
- "Paziente"      varchar(16) NOT NULL,
- "IDProvincia"   varchar(3) NOT NULL,
- "IDPrestazione" int NOT NULL,
- "Emesso"        date NOT NULL,
- "Pagato"        date NULL DEFAULT NULL,
- CONSTRAINT "FK_172" FOREIGN KEY ( "Paziente" ) REFERENCES "Persona" ( "CodiceFiscale" ),
- CONSTRAINT "FK_175" FOREIGN KEY ( "IDProvincia", "IDPrestazione" ) REFERENCES "SSP_PrestazioniDisponibili" ( "IDProvincia", "IDPrestazione" )
-);
-
-CREATE UNIQUE INDEX "PK_Ticket" ON "Ticket"
-(
- "ID"
-);
-
-CREATE INDEX "fkIdx_172" ON "Ticket"
-(
- "Paziente"
-);
-
-CREATE INDEX "fkIdx_175" ON "Ticket"
-(
- "IDProvincia",
- "IDPrestazione"
+ "persona"
 );
 
 
--- ************************************** "Admin"
+-- ************************************** "prestazioni"
 
-CREATE TABLE "Admin"
+create table "prestazioni"
 (
- "CodiceFiscale" varchar(16) NOT NULL,
- CONSTRAINT "FK_208" FOREIGN KEY ( "CodiceFiscale" ) REFERENCES "Persona" ( "CodiceFiscale" )
+ "id"      serial,
+ "ismedicinale" boolean not null,
+ "descrizione"  varchar(50) not null
+
 );
 
-CREATE UNIQUE INDEX "PK_Admin" ON "Admin"
+create unique index "pk_prestazioni" on "prestazioni"
 (
- "CodiceFiscale"
-);
-
-CREATE INDEX "fkIdx_208" ON "Admin"
-(
- "CodiceFiscale"
-);
-
--- ************************************** "Visite"
-
-CREATE TABLE "Visite"
-(
- "ID"      serial,
- "Paziente"    varchar(16) NOT NULL,
- "Medico"      varchar(16) NOT NULL,
- "Data"        date NOT NULL,
- "Relazione"   text NOT NULL,
- "Prestazione" int NULL,
- CONSTRAINT "FK_157" FOREIGN KEY ( "Paziente" ) REFERENCES "Persona" ( "CodiceFiscale" ),
- CONSTRAINT "FK_200" FOREIGN KEY ( "Medico" ) REFERENCES "Medico" ( "CodiceFiscale" ),
- CONSTRAINT "FK_204" FOREIGN KEY ( "Prestazione" ) REFERENCES "Prestazioni" ( "ID" )
-);
-
-CREATE UNIQUE INDEX "PK_Visite" ON "Visite"
-(
- "ID"
-);
-
-CREATE INDEX "fkIdx_157" ON "Visite"
-(
- "Paziente"
-);
-
-CREATE INDEX "fkIdx_200" ON "Visite"
-(
- "Medico"
-);
-
-CREATE INDEX "fkIdx_204" ON "Visite"
-(
- "Prestazione"
+ "id"
 );
 
 
-CREATE TABLE "Account"
+-- ************************************** "serviziosanitarioprovinciale"
+
+create table "serviziosanitarioprovinciale"
 (
- "CodiceFiscale" varchar(16) NOT NULL,
- "HashPass"      text NOT NULL,
- CONSTRAINT "FK_236" FOREIGN KEY ( "CodiceFiscale" ) REFERENCES "Persona" ( "CodiceFiscale" )
+ "provincia" varchar(3) not null,
+ constraint "fk_86" foreign key ( "provincia" ) references "provincia" ( "sigla" )
 );
 
-CREATE UNIQUE INDEX "PK_account" ON "Account"
+create unique index "pk_serviziosanitarioprovinciale" on "serviziosanitarioprovinciale"
 (
- "CodiceFiscale"
+ "provincia"
 );
 
-CREATE INDEX "fkIdx_236" ON "Account"
+create index "fkidx_86" on "serviziosanitarioprovinciale"
 (
- "CodiceFiscale"
+ "provincia"
 );
 
 
--- ************************************** "AuthToken"
+-- ************************************** "prescrizioni"
 
-CREATE TABLE "AuthToken"
+create table "prescrizioni"
 (
- "ID"            serial NOT NULL,
- "CodiceFiscale" varchar(16) NOT NULL,
- "Token"         text NOT NULL,
- "Expires"       date NOT NULL,
- CONSTRAINT "FK_224" FOREIGN KEY ( "CodiceFiscale" ) REFERENCES "Persona" ( "CodiceFiscale" )
+ "id"      serial,
+ "paziente"          varchar(16) not null,
+ "medico"            varchar(16) not null,
+ "provinciarilascio" varchar(3) not null,
+ "prestazione"       int not null,
+ "datarilascio"      date not null,
+ "dataevasione"      date null,
+ constraint "fk_101" foreign key ( "medico" ) references "medico" ( "codicefiscale" ),
+ constraint "fk_104" foreign key ( "paziente" ) references "persona" ( "codicefiscale" ),
+ constraint "fk_115" foreign key ( "provinciarilascio" ) references "serviziosanitarioprovinciale" ( "provincia" ),
+ constraint "fk_123" foreign key ( "prestazione" ) references "prestazioni" ( "id" )
 );
 
-CREATE UNIQUE INDEX "PK_AuthToken" ON "AuthToken"
+create unique index "pk_prescrizioni" on "prescrizioni"
 (
- "ID"
+ "id"
 );
 
-CREATE INDEX "fkIdx_224" ON "AuthToken"
+create index "fkidx_101" on "prescrizioni"
 (
- "CodiceFiscale"
+ "medico"
+);
+
+create index "fkidx_104" on "prescrizioni"
+(
+ "paziente"
+);
+
+create index "fkidx_115" on "prescrizioni"
+(
+ "provinciarilascio"
+);
+
+create index "fkidx_123" on "prescrizioni"
+(
+ "prestazione"
+);
+
+
+-- ************************************** "ssp_prestazionidisponibili"
+
+create table "ssp_prestazionidisponibili"
+(
+ "idprovincia"   varchar(3) not null,
+ "costo"         double precision not null,
+ "idprestazione" int not null,
+ constraint "fk_134" foreign key ( "idprovincia" ) references "serviziosanitarioprovinciale" ( "provincia" ),
+ constraint "fk_138" foreign key ( "idprestazione" ) references "prestazioni" ( "id" )
+);
+
+create unique index "pk_ssp_prestazionidisponibili" on "ssp_prestazionidisponibili"
+(
+ "idprovincia",
+ "idprestazione"
+);
+
+create index "fkidx_134" on "ssp_prestazionidisponibili"
+(
+ "idprovincia"
+);
+
+create index "fkidx_138" on "ssp_prestazionidisponibili"
+(
+ "idprestazione"
+);
+
+-- ************************************** "ticket"
+
+create table "ticket"
+(
+ "id"      serial,
+ "paziente"      varchar(16) not null,
+ "idprovincia"   varchar(3) not null,
+ "idprestazione" int not null,
+ "emesso"        date not null,
+ "pagato"        date null default null,
+ constraint "fk_172" foreign key ( "paziente" ) references "persona" ( "codicefiscale" ),
+ constraint "fk_175" foreign key ( "idprovincia", "idprestazione" ) references "ssp_prestazionidisponibili" ( "idprovincia", "idprestazione" )
+);
+
+create unique index "pk_ticket" on "ticket"
+(
+ "id"
+);
+
+create index "fkidx_172" on "ticket"
+(
+ "paziente"
+);
+
+create index "fkidx_175" on "ticket"
+(
+ "idprovincia",
+ "idprestazione"
+);
+
+
+-- ************************************** "admin"
+
+create table "admin"
+(
+ "codicefiscale" varchar(16) not null,
+ constraint "fk_208" foreign key ( "codicefiscale" ) references "persona" ( "codicefiscale" )
+);
+
+create unique index "pk_admin" on "admin"
+(
+ "codicefiscale"
+);
+
+create index "fkidx_208" on "admin"
+(
+ "codicefiscale"
+);
+
+-- ************************************** "visite"
+
+create table "visite"
+(
+ "id"      serial,
+ "paziente"    varchar(16) not null,
+ "medico"      varchar(16) not null,
+ "data"        date not null,
+ "relazione"   text not null,
+ "prestazione" int null,
+ constraint "fk_157" foreign key ( "paziente" ) references "persona" ( "codicefiscale" ),
+ constraint "fk_200" foreign key ( "medico" ) references "medico" ( "codicefiscale" ),
+ constraint "fk_204" foreign key ( "prestazione" ) references "prestazioni" ( "id" )
+);
+
+create unique index "pk_visite" on "visite"
+(
+ "id"
+);
+
+create index "fkidx_157" on "visite"
+(
+ "paziente"
+);
+
+create index "fkidx_200" on "visite"
+(
+ "medico"
+);
+
+create index "fkidx_204" on "visite"
+(
+ "prestazione"
+);
+
+
+create table "account"
+(
+ "codicefiscale" varchar(16) not null,
+ "hashpass"      text not null,
+ constraint "fk_236" foreign key ( "codicefiscale" ) references "persona" ( "codicefiscale" )
+);
+
+create unique index "pk_account" on "account"
+(
+ "codicefiscale"
+);
+
+create index "fkidx_236" on "account"
+(
+ "codicefiscale"
+);
+
+
+-- ************************************** "authtoken"
+
+create table "authtoken"
+(
+ "id"            serial not null,
+ "codicefiscale" varchar(16) not null,
+ "token"         text not null,
+ "expires"       date not null,
+ constraint "fk_224" foreign key ( "codicefiscale" ) references "persona" ( "codicefiscale" )
+);
+
+create unique index "pk_authtoken" on "authtoken"
+(
+ "id"
+);
+
+create index "fkidx_224" on "authtoken"
+(
+ "codicefiscale"
 );
