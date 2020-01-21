@@ -42,7 +42,7 @@
                                         <h4 class="text-dark mb-4">Bentornato!</h4>
                                     </div>
                                     <form class="persona"  action = "doLogin" method="post">
-                                        <div class="form-group"><input class="form-control form-control-persona" type="username" id="username" aria-describedby="emailHelp" placeholder="Codice Fiscale" name="codicefiscale"></div>
+                                        <div class="form-group"><input class="form-control form-control-persona" type="username" id="username" aria-describedby="emailHelp" placeholder="Codice Fiscale" name="username"></div>
                                         <div class="form-group"><input class="form-control form-control-persona" type="password" id="password" placeholder="Password" name="password"></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

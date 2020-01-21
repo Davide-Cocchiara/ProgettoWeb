@@ -1,4 +1,4 @@
-<%@ page import="unitn.progweb.cocchiara.model.User" %>
+<%@ page import="unitn.progweb.cocchiara.model.Persona" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,8 +6,8 @@
 </head>
 <body>
 <%
-    User user = (User)session.getAttribute("user");
-    out.println(user.getUsername() + " " + user.getType());
+    Persona persona = (Persona)session.getAttribute("Persona");
+    out.println(persona.getCodicefiscale()+ " " + persona.getDatanascita().toString());
 %>
 <a href="logout">Logout</a>
 </body>

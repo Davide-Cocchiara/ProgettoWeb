@@ -1,3 +1,5 @@
+CREATE EXTENSION pgcrypto;
+
 -- ************************************** "provincia"
 
 create table "provincia"

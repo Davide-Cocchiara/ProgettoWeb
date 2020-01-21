@@ -4,97 +4,101 @@ package unitn.progweb.cocchiara.model;
 import java.util.Date;
 
 public class Persona {
-    String CodiceFiscale = "";
-    String Nome = "";
-    String Cognome ="";
-    Date DataNascita = null;
-    String Email ="";
-    Byte[] Foto = null;
-    String LuogoNascita = "";
-    String Provincia ="";
-    String Sesso = "";
+    String codicefiscale = "";
+    String nome = "";
+    String cognome ="";
+    Date datanascita = null;
+    String email ="";
+    byte[] foto = null;
+    String luogonascita = "";
+    String provincia ="";
+    String sesso = "";
 
-    public Persona(String codiceFiscale, String nome, String cognome, Date dataNascita, String email, Byte[] foto, String luogoNascita, String provincia, String sesso) {
-        CodiceFiscale = codiceFiscale;
-        Nome = nome;
-        Cognome = cognome;
-        DataNascita = dataNascita;
-        Email = email;
-        Foto = foto;
-        LuogoNascita = luogoNascita;
-        Provincia = provincia;
-        Sesso = sesso;
+    public Persona(String codicefiscale, String nome, String cognome, Date datanascita, String email, byte[] foto, String luogonascita, String provincia, String sesso) {
+        this.codicefiscale = codicefiscale;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.datanascita = datanascita;
+        this.email = email;
+        this.foto = foto;
+        this.luogonascita = luogonascita;
+        this.provincia = provincia;
+        this.sesso = sesso;
+    }
+
+    public Persona() {
+
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public String getCognome() {
-        return Cognome;
+        return cognome;
     }
 
     public void setCognome(String cognome) {
-        Cognome = cognome;
+        this.cognome = cognome;
     }
 
-    public Date getDataNascita() {
-        return DataNascita;
+    public Date getDatanascita() {
+        return datanascita;
     }
 
-    public void setDataNascita(Date dataNascita) {
-        DataNascita = dataNascita;
+    public void setDatanascita(Date datanascita) {
+        this.datanascita = datanascita;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
-    public Byte[] getFoto() {
-        return Foto;
+    public byte[] getFoto() {
+        return foto;
     }
 
-    public void setFoto(Byte[] foto) {
-        Foto = foto;
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 
-    public String getLuogoNascita() {
-        return LuogoNascita;
+    public String getLuogonascita() {
+        return luogonascita;
     }
 
-    public void setLuogoNascita(String luogoNascita) {
-        LuogoNascita = luogoNascita;
+    public void setLuogonascita(String luogonascita) {
+        this.luogonascita = luogonascita;
     }
 
     public String getProvincia() {
-        return Provincia;
+        return provincia;
     }
 
     public void setProvincia(String provincia) {
-        Provincia = provincia;
+        this.provincia = provincia;
     }
 
     public String getSesso() {
-        return Sesso;
+        return sesso;
     }
 
     public void setSesso(String sesso) {
-        Sesso = sesso;
+        this.sesso = sesso;
     }
 
-    public String getCodiceFiscale() {
-        return CodiceFiscale;
+    public String getCodicefiscale() {
+        return codicefiscale;
     }
 
-    public void setCodiceFiscale(String codiceFiscale) {
-        CodiceFiscale = codiceFiscale;
+    public void setCodicefiscale(String codicefiscale) {
+        this.codicefiscale = codicefiscale;
     }
 }

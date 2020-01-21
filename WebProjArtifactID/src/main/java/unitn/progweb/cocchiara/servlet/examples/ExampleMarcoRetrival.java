@@ -1,6 +1,6 @@
 package unitn.progweb.cocchiara.servlet.examples;// Import required java libraries
 
-import unitn.progweb.cocchiara.dao.UserDAO;
+import unitn.progweb.cocchiara.dao.PersonaDAO;
 import unitn.progweb.cocchiara.model.Persona;
 
 import javax.servlet.RequestDispatcher;
@@ -31,7 +31,7 @@ public class ExampleMarcoRetrival extends HttpServlet {
 
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
-        UserDAO dao = new UserDAO();
+        PersonaDAO dao = new PersonaDAO();
         Persona marco = dao.getUserCred("Marco","PassOne");
 
         HttpSession session = request.getSession();

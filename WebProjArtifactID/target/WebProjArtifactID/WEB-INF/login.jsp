@@ -41,14 +41,14 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Bentornato!</h4>
                                     </div>
-                                    <form class="user"  action = "doLogin" method="post">
-                                        <div class="form-group"><input class="form-control form-control-user" type="username" id="username" aria-describedby="emailHelp" placeholder="Codice Fiscale" name="codicefiscale"></div>
-                                        <div class="form-group"><input class="form-control form-control-user" type="password" id="password" placeholder="Password" name="password"></div>
+                                    <form class="persona"  action = "doLogin" method="post">
+                                        <div class="form-group"><input class="form-control form-control-persona" type="username" id="username" aria-describedby="emailHelp" placeholder="Codice Fiscale" name="username"></div>
+                                        <div class="form-group"><input class="form-control form-control-persona" type="password" id="password" placeholder="Password" name="password"></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="rememberme"><label class="form-check-label custom-control-label" for="formCheck-1">Ricordami</label></div>
                                             </div>
-                                        </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Accedi</button>
+                                        </div><button class="btn btn-primary btn-block text-white btn-persona" type="submit">Accedi</button>
                                         <hr>
                                     </form>
                                     <%
