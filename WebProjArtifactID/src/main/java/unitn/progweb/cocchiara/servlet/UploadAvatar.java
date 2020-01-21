@@ -43,6 +43,7 @@ public class UploadAvatar extends HttpServlet {
                 File outputfile = new File(imgPazienti + persona.getCodicefiscale()+".jpg");
                 //outputfile.createNewFile();
                 ImageIO.write(img,"jpg",outputfile);
+                response.sendRedirect(request.getContextPath() + "/sispaz/profilocittadino");
             } catch (Exception e) {
                 System.err.println(e.getMessage());
                 response.sendRedirect(request.getContextPath() + "/sispaz/profilocittadino?failedupload=true");
