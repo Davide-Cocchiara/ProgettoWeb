@@ -25,8 +25,13 @@ public class WelcomeLogged extends HttpServlet {
         // Set response content type
         HttpSession session = request.getSession();
         Persona u = (Persona) session.getAttribute("Persona");
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/welcomeLogged.jsp");
-        rd.forward(request, response);
+
+        if (u.isMedico() || u.isAdmin()) {
+            response.sendRedirect("servizi");
+        }
+        else {
+            response.sendRedirect("sispaz/profilocittadino");
+        }
     }
 
     public void destroy() {

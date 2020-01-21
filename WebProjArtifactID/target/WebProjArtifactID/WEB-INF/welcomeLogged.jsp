@@ -7,7 +7,7 @@
 <body>
 <%
     Persona persona = (Persona)session.getAttribute("Persona");
-    out.println(persona.getCodicefiscale()+ " " + persona.getDatanascita().toString());
+    out.println(persona.getCodicefiscale()+ " " + persona.getDatanascita().toString() + " " + persona.isAdmin() + " " + persona.isMedico());
 %>
 <a href="logout">Logout</a>
 </body>

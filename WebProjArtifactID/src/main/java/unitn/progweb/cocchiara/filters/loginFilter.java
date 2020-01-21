@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/welcome")
+@WebFilter(	urlPatterns = {"/welcome", "/servizi","/sispaz/*","/sissan/*","/sismed/*"})
 public class loginFilter implements Filter{
 
     public void init(FilterConfig arg0) throws ServletException {}
@@ -29,7 +29,7 @@ public class loginFilter implements Filter{
         HttpSession session = request.getSession();
         Persona u = (Persona) session.getAttribute("Persona");
         if (u == null) {
-            response.sendRedirect("login");
+            response.sendRedirect(request.getContextPath() +"/login");
         }
         else {
             chain.doFilter(request, response);
