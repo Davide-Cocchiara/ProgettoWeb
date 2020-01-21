@@ -23,7 +23,6 @@ create table "persona"
  "cognome"       varchar(50) not null,
  "datanascita"   date not null,
  "email"         varchar(50) not null,
- "foto"          bytea,
  "luogonascita"  varchar(3) not null,
  "provincia"     varchar(3) not null,
  "sesso"         char(1) not null,
@@ -130,7 +129,7 @@ create table "prestazioni"
 (
  "id"      serial,
  "ismedicinale" boolean not null,
- "descrizione"  varchar(50) not null
+ "descrizione"  varchar not null
 
 );
 
