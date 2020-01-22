@@ -31,5 +31,13 @@
         <env-entry-type>java.lang.String</env-entry-type>
         <env-entry-value>C:\Users\burge\Desktop\Universita\Web\ProgettoWeb2019\Database\imgpazienti\</env-entry-value>
     </env-entry>
-
+    <servlet>
+        <servlet-name>StartSetup</servlet-name>
+        <servlet-class>unitn.progweb.cocchiara.servlet.StartSetup</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StartSetup</servlet-name>
+        <url-pattern>/WEB-INF/startSetup</url-pattern>
+    </servlet-mapping>
 </web-app>
