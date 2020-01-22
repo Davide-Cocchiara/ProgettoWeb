@@ -1,3 +1,7 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="unitn.progweb.cocchiara.model.SistemaProvinciale" %>
+<%@ page import="java.util.LinkedHashMap" %>
+<%@ page import="unitn.progweb.cocchiara.model.Persona" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -55,9 +59,9 @@
                                 <h6 class="text-primary font-weight-bold m-0">Password</h6>
                             </div>
                             <div class="card-body">
-                                <form action = "<%=request.getContextPath()%>/changePassword" method="post" oninput='pa1.setCustomValidity(pa1.value != pa2.value  ? "Le nuove password non corrispondono" : "")'>
+                                <form action = "<%=request.getContextPath()%>/sispaz/changepassword" method="post" oninput='newpassword.setCustomValidity(newpassword.value != pa2.value  ? "Le nuove password non corrispondono" : "")'>
                                 <div class="form-group d-flex flex-column"><label for="address"><strong>Password&nbsp;Corrente</strong></label><input id="password" name="password" class="flex-column" type="password" required ></div>
-                                <div class="form-group d-flex flex-column"><label for="address"><strong>Nuova Password</strong></label><input id="newpassword" name= "newpassword" type="password" required name=pa1></div>
+                                <div class="form-group d-flex flex-column"><label for="address"><strong>Nuova Password</strong></label><input id="newpassword" name= "newpassword" type="password" required></div>
                                 <div class="form-group d-flex flex-column"><label for="address"><strong>Ripeti Nuova Password</strong></label><input type="password" required name=pa2></div>
                                 <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Aggiorna Password</button></div>
                                 </form>
@@ -108,7 +112,7 @@
                             <div class="col">
                                 <div class="card shadow mb-3">
                                     <div class="card-header py-3">
-                                        <p class="text-primary m-0 font-weight-bold">Dati</p>
+                                        <p class="text-primary m-0 font-weight-bold">Dati Anagrafici</p>
                                     </div>
                                     <div class="card-body">
                                         <form>
@@ -141,18 +145,50 @@
                                 </div>
                                 <div class="card shadow">
                                     <div class="card-header py-3">
-                                        <p class="text-primary m-0 font-weight-bold">Contatti</p>
+                                        <p class="text-primary m-0 font-weight-bold">Informazioni</p>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                        <form action="<%=request.getContextPath()%>/sispaz/changeinformazioni" method="post">
                                             <div class="form-group"><label for="address"><strong>Email</strong></label><input class="form-control" type="email" placeholder="example@address.com" value="${sessionScope.Persona.getEmail()}" name="email"></div>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="country"><strong>Provincia - TODO : ${sessionScope.Persona.getProvincia()} </strong></label><select class="form-control"><optgroup label="Provincia"><option value="12">Gubbio</option><option value="13" selected>Gabetto</option><option value="14">Carpigno</option></optgroup></select></div>
+                                                    <div class="form-group"><label for="country"><strong>Provincia</strong></label><select class="form-control" name="provincia">
+
+                                                        <optgroup label="Provincia">
+                                                            <%
+                                                                SistemaProvinciale sis  = (SistemaProvinciale) getServletContext().getAttribute("SistemaProvinciale");
+                                                                LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
+                                                                Persona persona = (Persona)session.getAttribute("Persona");
+                                                                for (Map.Entry<String,String> entry :listaProvince.entrySet()) {
+                                                                    if (entry.getKey().equals(persona.getProvincia())) {
+                                                                        out.print("<option selected value=\"");
+                                                                    }
+                                                                    else {
+                                                                        out.print("<option value=\"");
+                                                                    }
+                                                                    out.print(entry.getKey());
+                                                                    out.print("\">");
+                                                                    out.print(entry.getValue());
+                                                                    out.println("</option>");
+                                                                }
+                                                            %>
+
+
+                                                        </optgroup>
+
+                                                    </select></div>
                                                 </div>
                                             </div>
                                             <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Salva Informazioni</button></div>
                                         </form>
+                                        <%
+                                            if (request.getParameter("changedinfo") != null && request.getParameter("changedinfo").equals("true")) {
+                                                out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Informazioni cambiate con successo!<br></label>\n");
+                                            }
+                                            if (request.getParameter("changedinfo") != null && request.getParameter("changedinfo").equals("false")) {
+                                                out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Informazioni non cambiate. Verificare che l'email inserita sia valida.<br></label>\n");
+                                            }
+                                        %>
                                     </div>
                                 </div>
                             </div>

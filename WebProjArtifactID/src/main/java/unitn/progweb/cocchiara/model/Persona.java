@@ -89,4 +89,14 @@ public class Persona {
         PersonaDAO pd = new PersonaDAO();
         return pd.changePassword(codicefiscale,password,newpassword);
     }
+
+    public Boolean setEmail(String email) {
+        // TODO
+        return  false;
+    }
+
+    public Boolean setProvincia(String provincia) {
+        // TODO
+        return false;
+    }
 }

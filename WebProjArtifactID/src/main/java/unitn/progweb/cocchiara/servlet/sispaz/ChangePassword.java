@@ -1,4 +1,4 @@
-package unitn.progweb.cocchiara.servlet;// Import required java libraries
+package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
 
 import unitn.progweb.cocchiara.dao.PersonaDAO;
 import unitn.progweb.cocchiara.model.Persona;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 // Extend HttpServlet class
 
-@WebServlet("/changePassword")
+@WebServlet("/sispaz/changepassword")
 public class ChangePassword extends HttpServlet {
 
     public void init() throws ServletException {

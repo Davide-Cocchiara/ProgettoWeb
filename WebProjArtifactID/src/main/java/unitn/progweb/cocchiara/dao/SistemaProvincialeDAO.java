@@ -4,14 +4,15 @@ import unitn.progweb.cocchiara.model.Persona;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class SistemaProvincialeDAO extends BasicDAO {
     // Mappa di province Sigla -> Nome Es: CT -> Catania
-   public Map<String,String>  getListProvince() {
-        Map<String,String>  out = new HashMap<String,String>();
-        String query = "SELECT sigla, nome FROM provincia";
+   public LinkedHashMap<String,String>  getListProvince() {
+       LinkedHashMap<String,String>  out = new LinkedHashMap<String,String>();
+        String query = "SELECT sigla, nome FROM provincia ORDER BY sigla ASC";
         Connection conn = startConnection();
         Statement stmt = readyBasicStatement(conn);
         try {

@@ -38,6 +38,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>StartSetup</servlet-name>
-        <url-pattern>/WEB-INF/startSetup</url-pattern>
+        <url-pattern>/WEB-INF/startsetup</url-pattern>
     </servlet-mapping>
 </web-app>

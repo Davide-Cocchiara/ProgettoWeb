@@ -2,10 +2,14 @@ package unitn.progweb.cocchiara.model;
 
 import unitn.progweb.cocchiara.dao.SistemaProvincialeDAO;
 
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class SistemaProvinciale {
-    Map<String,String> listaProvince = null;
+    public LinkedHashMap<String, String> getListaProvince() {
+        return listaProvince;
+    }
+
+    LinkedHashMap<String,String> listaProvince = null;
 
     public SistemaProvinciale() {
         this.listaProvince = new SistemaProvincialeDAO().getListProvince();
