@@ -55,10 +55,22 @@
                                 <h6 class="text-primary font-weight-bold m-0">Password</h6>
                             </div>
                             <div class="card-body">
-                                <div class="form-group d-flex flex-column"><label for="address"><strong>Password&nbsp;Corrente</strong></label><input class="flex-column" type="password"></div>
-                                <div class="form-group d-flex flex-column"><label for="address"><strong>Nuova Password</strong></label><input type="password"></div>
-                                <div class="form-group d-flex flex-column"><label for="address"><strong>Ripeti Nuova Password</strong></label><input type="password"></div>
-                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Aggiorna Password</button></div><label for="signature" style="color: rgb(255,0,0);"><strong>Errore: </strong>Nuova password deve contenere 3 nomi di santi non sposati<br></label></div>
+                                <form action = "<%=request.getContextPath()%>/changePassword" method="post" oninput='pa1.setCustomValidity(pa1.value != pa2.value  ? "Le nuove password non corrispondono" : "")'>
+                                <div class="form-group d-flex flex-column"><label for="address"><strong>Password&nbsp;Corrente</strong></label><input id="password" class="flex-column" type="password" required ></div>
+                                <div class="form-group d-flex flex-column"><label for="address"><strong>Nuova Password</strong></label><input id="newpassword" type="password" required name=pa1></div>
+                                <div class="form-group d-flex flex-column"><label for="address"><strong>Ripeti Nuova Password</strong></label><input type="password" required name=pa2></div>
+                                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Aggiorna Password</button></div>
+                                </form>
+                                <%
+                                    if (request.getParameter("newpassword") != null && request.getParameter("newpassword").equals("true")) {
+                                    out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>La password è stata cambiata!<br></label>\n");
+                                    }
+                                    if (request.getParameter("newpassword") != null && request.getParameter("newpassword").equals("false")) {
+                                        out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Verificare di aver inserito la password corrente correttamente.\nLa nuova password deve essere lunga almeno 8 caratteri<br></label>\n");
+                                    }
+                                %>
+
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-8">
@@ -133,7 +145,7 @@
                                     </div>
                                     <div class="card-body">
                                         <form>
-                                            <div class="form-group"><label for="address"><strong>Email</strong></label><input class="form-control" type="text" placeholder="example@address.com" value="${sessionScope.Persona.getEmail()}" name="email"></div>
+                                            <div class="form-group"><label for="address"><strong>Email</strong></label><input class="form-control" type="email" placeholder="example@address.com" value="${sessionScope.Persona.getEmail()}" name="email"></div>
                                             <div class="form-row">
                                                 <div class="col">
                                                     <div class="form-group"><label for="country"><strong>Provincia - TODO : ${sessionScope.Persona.getProvincia()} </strong></label><select class="form-control"><optgroup label="Provincia"><option value="12">Gubbio</option><option value="13" selected>Gabetto</option><option value="14">Carpigno</option></optgroup></select></div>

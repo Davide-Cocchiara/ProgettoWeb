@@ -34,7 +34,7 @@
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 offset-xl-0 d-none d-lg-flex">
-                                <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;assets/img/storia-servizio-sanitazio-nazionale.jpg&quot;);"></div>
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url('assets/img/storia-servizio-sanitazio-nazionale.jpg');"></div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
@@ -42,8 +42,8 @@
                                         <h4 class="text-dark mb-4">Bentornato!</h4>
                                     </div>
                                     <form class="persona"  action = "doLogin" method="post">
-                                        <div class="form-group"><input class="form-control form-control-persona" type="username" id="username" aria-describedby="emailHelp" placeholder="Codice Fiscale" name="username"></div>
-                                        <div class="form-group"><input class="form-control form-control-persona" type="password" id="password" placeholder="Password" name="password"></div>
+                                        <div class="form-group"><input class="form-control form-control-persona" type="username" id="username" aria-describedby="emailHelp" placeholder="Codice Fiscale" name="username" required></div>
+                                        <div class="form-group"><input class="form-control form-control-persona" type="password" id="password" placeholder="Password" name="password" required></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="rememberme"/><label class="form-check-label custom-control-label" for="rememberme">Ricordami</label></div>
