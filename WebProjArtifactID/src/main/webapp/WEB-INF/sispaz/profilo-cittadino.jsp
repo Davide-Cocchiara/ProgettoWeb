@@ -56,8 +56,8 @@
                             </div>
                             <div class="card-body">
                                 <form action = "<%=request.getContextPath()%>/changePassword" method="post" oninput='pa1.setCustomValidity(pa1.value != pa2.value  ? "Le nuove password non corrispondono" : "")'>
-                                <div class="form-group d-flex flex-column"><label for="address"><strong>Password&nbsp;Corrente</strong></label><input id="password" class="flex-column" type="password" required ></div>
-                                <div class="form-group d-flex flex-column"><label for="address"><strong>Nuova Password</strong></label><input id="newpassword" type="password" required name=pa1></div>
+                                <div class="form-group d-flex flex-column"><label for="address"><strong>Password&nbsp;Corrente</strong></label><input id="password" name="password" class="flex-column" type="password" required ></div>
+                                <div class="form-group d-flex flex-column"><label for="address"><strong>Nuova Password</strong></label><input id="newpassword" name= "newpassword" type="password" required name=pa1></div>
                                 <div class="form-group d-flex flex-column"><label for="address"><strong>Ripeti Nuova Password</strong></label><input type="password" required name=pa2></div>
                                 <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Aggiorna Password</button></div>
                                 </form>

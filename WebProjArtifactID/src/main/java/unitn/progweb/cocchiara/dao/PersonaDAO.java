@@ -18,8 +18,8 @@ VALUES ('Marco',crypt('PassOne', gen_salt('bf', 8)),'PT'),
 SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('PassOne', hashpass)
      */
 
-    public ArrayList<Persona> getUsers() {
-        String query = "SELECT codicefiscale,nome,cognome,datanascita,email,luogonascita,provincia,sesso FROM persona";
+    /*public ArrayList<Persona> getUsers() {
+        String query = "SELECT persona.codicefiscale,nome,cognome,datanascita,email,luogonascita,provincia,sesso, medicoassegnato.medico FROM persona LEFT JOIN medicoassegnato ON persona.codicefiscale=medicoassegnato.persona";
         Connection conn = startConnection();
         Statement stmt = readyBasicStatement(conn);
         ArrayList<Persona> out = new ArrayList<Persona>();
@@ -34,17 +34,20 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
                 String _luogonascita = results.getString(6);
                 String _provincia = results.getString(7);
                 String _sesso = results.getString(8);
-                out.add(new Persona(_codice,_nome,_cognome,_datanascita,_mail,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn)));
+                String _dottore = results.getString(9);
+                out.add(new Persona(_codice,_nome,_cognome,_datanascita,_mail,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn), _dottore));
             }
             results.close();
             stmt.close();
             conn.close();
         }
         catch (SQLException ex) {
-            System.err.println("Impossible to get the users: " + ex.getMessage());
+            System.err.println("Unable to get the users: " + ex.getMessage());
         }
         return out;
     }
+     */
+
     private Boolean isMedico(String codicefiscale, Connection conn) {
         String query = "SELECT codicefiscale FROM medico WHERE codicefiscale=?";
         boolean out = false;
@@ -57,7 +60,7 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
             stmt.close();
         }
         catch (SQLException ex) {
-            System.err.println("Impossible to check if user is medico: " + ex.getMessage());
+            System.err.println("Unable to check if user is medico: " + ex.getMessage());
         }
         return out;
     }
@@ -74,13 +77,13 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
             stmt.close();
         }
         catch (SQLException ex) {
-            System.err.println("Impossible to check if user is admin: " + ex.getMessage());
+            System.err.println("Unable to check if user is admin: " + ex.getMessage());
         }
         return out;
     }
 
     public Persona getUserCred(String username, String password) {
-        String query = "SELECT persona.codicefiscale,nome,cognome,datanascita,email,luogonascita,provincia,sesso FROM persona JOIN account ON persona.codicefiscale=account.codicefiscale WHERE persona.codicefiscale=? AND hashpass=crypt(?, hashpass);";
+        String query = "SELECT persona.codicefiscale,nome,cognome,datanascita,email,luogonascita,provincia,sesso, medicoassegnato.medico FROM persona JOIN account ON persona.codicefiscale=account.codicefiscale LEFT JOIN medicoassegnato ON persona.codicefiscale=medicoassegnato.paziente WHERE persona.codicefiscale=? AND hashpass=crypt(?, hashpass);";
         Connection conn = startConnection();
         Persona out = new Persona();
         try {
@@ -98,15 +101,59 @@ SELECT username,type FROM account WHERE username='Marco' AND hashpass=crypt('Pas
                 String _luogonascita = results.getString(6);
                 String _provincia = results.getString(7);
                 String _sesso = results.getString(8);
-                out = new Persona(_codice,_nome,_cognome,_datanascita,_mail,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn));
+                String _dottore = results.getString(9);
+                out = new Persona(_codice,_nome,_cognome,_datanascita,_mail,_luogonascita,_provincia,_sesso,isMedico(_codice,conn),isAdmin(_codice,conn),_dottore);
             }
             results.close();
             stmt.close();
             conn.close();
         }
         catch (SQLException ex) {
-            System.err.println("Impossible to search for the user: " + ex.getMessage());
+            System.err.println("Unable to search for the user: " + ex.getMessage());
         }
         return out;
+    }
+
+    public Boolean changePassword(String username, String oldpass, String newpass)
+    {
+        String query = "SELECT codicefiscale from account WHERE codicefiscale=? AND hashpass=crypt(?, hashpass);";
+        Connection conn = startConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);
+            stmt.setString(2, oldpass);
+            ResultSet results = stmt.executeQuery();
+            if (!results.next()) // Wrong password
+            {
+                results.close();
+                stmt.close();
+                conn.close();
+                return false;
+            }
+
+            results.close();
+            stmt.close();
+
+            query = "UPDATE account SET hashpass=crypt(?, hashpass) WHERE codicefiscale=?";
+
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, newpass);
+            stmt.setString(2, username);
+
+            int result = stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+
+            if(result != 1) {
+                System.err.println("Unable to change password for user, records changed were: " + result);
+                return false;
+            }
+            return true;
+        }
+        catch (SQLException ex) {
+            System.err.println("Unable to check password for user: " + ex.getMessage());
+            return false;
+        }
+
     }
 }

@@ -1,6 +1,9 @@
 package unitn.progweb.cocchiara.model;
 
 
+import org.jetbrains.annotations.NotNull;
+import unitn.progweb.cocchiara.dao.PersonaDAO;
+
 import java.util.Date;
 
 public class Persona {
@@ -12,10 +15,11 @@ public class Persona {
     String luogonascita = "";
     String provincia ="";
     String sesso = "";
-    boolean medico = false;
+    String medicoAssegnato = "";
+    boolean bIsMedico = false;
     boolean admin = false;
 
-    public Persona(String codicefiscale, String nome, String cognome, Date datanascita, String email,String luogonascita, String provincia, String sesso, boolean medico, boolean admin) {
+    public Persona(String codicefiscale, String nome, String cognome, Date datanascita, String email, String luogonascita, String provincia, String sesso, boolean bIsMedico, boolean admin, String medicoAssegnato) {
         this.codicefiscale = codicefiscale;
         this.nome = nome;
         this.cognome = cognome;
@@ -24,8 +28,9 @@ public class Persona {
         this.luogonascita = luogonascita;
         this.provincia = provincia;
         this.sesso = sesso;
-        this.medico = medico;
+        this.bIsMedico = bIsMedico;
         this.admin = admin;
+        this.medicoAssegnato = medicoAssegnato;
     }
 
     public Persona() {
@@ -65,14 +70,23 @@ public class Persona {
     }
 
     public boolean isMedico() {
-        return medico;
+        return bIsMedico;
     }
 
     public boolean isAdmin() {
         return admin;
     }
 
-    public boolean changePassword(String password, String newpassword) {
-        return false;
+    public String getMedicoAssegnato() {
+        return medicoAssegnato;
+    }
+
+
+    public boolean changePassword(@NotNull String password, @NotNull String newpassword) {
+        if(newpassword.length() < 8)
+            return false;
+
+        PersonaDAO pd = new PersonaDAO();
+        return pd.changePassword(codicefiscale,password,newpassword);
     }
 }

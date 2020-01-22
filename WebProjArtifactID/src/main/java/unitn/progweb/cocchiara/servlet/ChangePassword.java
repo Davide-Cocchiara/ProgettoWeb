@@ -28,7 +28,7 @@ public class ChangePassword extends HttpServlet {
 
         HttpSession session = request.getSession();
         Persona persona = (Persona) session.getAttribute("Persona");
-        if (persona.changePassword(password,newpassword)) {
+        if (password != null && newpassword != null && persona.changePassword(password,newpassword)) {
             response.sendRedirect(request.getContextPath() + "/sispaz/profilocittadino?newpassword=true");
         }
         else {
