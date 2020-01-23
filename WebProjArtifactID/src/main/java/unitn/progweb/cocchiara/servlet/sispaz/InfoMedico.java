@@ -26,7 +26,7 @@ public class InfoMedico extends HttpServlet {
             throws ServletException, IOException {
         Utente utente = (Utente) request.getSession().getAttribute("utente");
         if (utente.getPaziente().getMedicoAssegnato() != null && !utente.getPaziente().getMedicoAssegnato().equals("")) { // If user has medico assegnato
-            Utente medicoassegnato = new UtenteDAO().getUserCodice(utente.getPaziente().getMedicoAssegnato()); // Get medico assegnato info
+            Utente medicoassegnato = new UtenteDAO().getUserFromCodice(utente.getPaziente().getMedicoAssegnato()); // Get medico assegnato info
             request.setAttribute("medicoassegnato",medicoassegnato); // Set medic info to request
         } else {
             request.setAttribute("medicoassegnato", null); // Set medic info to none

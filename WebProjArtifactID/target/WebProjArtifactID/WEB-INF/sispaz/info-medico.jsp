@@ -83,15 +83,18 @@
                                         <form>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="username"><strong>Nome</strong></label><input value="${requestScope.MedicoAssegnato.getPaziente().getNome()}" class="form-control" type="text" name="name" placeholder="nome" readonly=""></div>
+                                                    <div class="form-group"><label for="username"><strong>Nome</strong></label><input value="${requestScope.medicoassegnato.getPaziente().getNome()}" class="form-control" type="text" name="name" placeholder="NESSUN MEDICO ASSEGNATO" readonly=""></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="email"><strong>Cognome</strong></label><input value="${requestScope.MedicoAssegnato.getPaziente().getCognome()}"class="form-control" type="email" placeholder="cognome" name="surname" readonly=""></div>
+                                                    <div class="form-group"><label for="email"><strong>Cognome</strong></label><input value="${requestScope.medicoassegnato.getPaziente().getCognome()}"class="form-control" type="email" placeholder="NESSUN MEDICO ASSEGNATO" name="surname" readonly=""></div>
                                                 </div>
                                             </div>
-                                            <div class="form-group"><label for="address"><strong>Indirizzo Clinica</strong></label><input value="${requestScope.MedicoAssegnato.getMedico().getClinica()}" class="form-control" type="text" placeholder="Via Lello 33a, CN " name="indirizzoClinica" readonly=""></div>
-                                            <div class="form-group"><label for="address"><strong>Telefono Clinica</strong></label><input value="${requestScope.MedicoAssegnato.getMedico().getTelefonoclinica()}" class="form-control" type="text" placeholder="092799923312" name="telefonoclinica" readonly=""></div>
+                                            <div class="form-group"><label for="address"><strong>Indirizzo Clinica</strong></label><input value="${requestScope.medicoassegnato.getMedico().getClinica()}" class="form-control" type="text" placeholder="NESSUN MEDICO ASSEGNATO" name="indirizzoClinica" readonly=""></div>
+                                            <div class="form-group"><label for="address"><strong>Telefono Clinica</strong></label><input value="${requestScope.medicoassegnato.getMedico().getTelefonoclinica()}" class="form-control" type="text" placeholder="NESSUN MEDICO ASSEGNATO" name="telefonoclinica" readonly=""></div>
                                         </form>
+                                        <% if(request.getAttribute("medicoassegnato")==null) {
+                                            out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Attenzione: </strong>Nessun medico assegnato!<br></label>\n");
+                                        } %>
                                     </div>
                                 </div>
                                 <div class="card shadow">
