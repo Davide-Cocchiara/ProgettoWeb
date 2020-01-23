@@ -2,7 +2,7 @@ package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
 
 
 import unitn.progweb.cocchiara.model.Utente;
-import unitn.progweb.cocchiara.model.SistemaProvinciale;
+import unitn.progweb.cocchiara.model.SistemaNazionale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,7 +60,7 @@ public class ChangeInformazioni extends HttpServlet {
 
             // Provincia change
             if (!(utente.getPaziente().getProvincia().equals(provincia))) { // If the province has changed, change it
-                SistemaProvinciale sis  = (SistemaProvinciale) getServletContext().getAttribute("sistemaprovinciale");
+                SistemaNazionale sis  = (SistemaNazionale) getServletContext().getAttribute("sistemanazionale");
                 LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
                 if (listaProvince.containsKey(provincia)) { // If the provided provincia is in the provincia list
                     if(!utente.getPaziente().setProvincia(provincia)) { // if provincia change is unsuccessful

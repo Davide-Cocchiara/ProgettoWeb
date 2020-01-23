@@ -5,25 +5,19 @@ import unitn.progweb.cocchiara.dao.SistemaProvincialeDAO;
 import java.util.LinkedHashMap;
 
 public class SistemaProvinciale {
-    public LinkedHashMap<String, String> getListaProvince() {
-        return listaProvince;
+    String Provincia;
+    public SistemaProvinciale(String provincia) {
+        Provincia = provincia;
     }
 
-    LinkedHashMap<String,String> listaProvince = null;
-
-    public SistemaProvinciale() {
-        this.listaProvince = new SistemaProvincialeDAO().getListProvince();
-        // To print every provincia in standard error.
-      /*  for (Map.Entry<String,String> entry :listaProvince.entrySet()) {
-            System.err.println(entry.getKey() +" "+ entry.getValue());
-        }
-
-       */
+    public String getProvincia() {
+        return Provincia;
     }
+
+
 
     // Codice fiscale - Nome Cognome
-    public LinkedHashMap<String, String> getListaMediciFromPronvincia(String provincia) {
-        return new SistemaProvincialeDAO().getListaMediciFromPronvincia(provincia);
-
+    public LinkedHashMap<String, String> getListaMedici() {
+        return new SistemaProvincialeDAO().getListaMediciFromPronvincia(Provincia);
     }
 }

@@ -3,6 +3,7 @@ package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
 import unitn.progweb.cocchiara.dao.MedicoDAO;
 import unitn.progweb.cocchiara.dao.UtenteDAO;
 
+import unitn.progweb.cocchiara.model.SistemaProvinciale;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.RequestDispatcher;
@@ -31,6 +32,8 @@ public class InfoMedico extends HttpServlet {
         } else {
             request.setAttribute("medicoassegnato", null); // Set medic info to none
         }
+        SistemaProvinciale prov = new SistemaProvinciale(utente.getPaziente().getProvincia());
+        request.setAttribute("listamedici",prov.getListaMedici());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sispaz/info-medico.jsp");
         rd.forward(request, response);
