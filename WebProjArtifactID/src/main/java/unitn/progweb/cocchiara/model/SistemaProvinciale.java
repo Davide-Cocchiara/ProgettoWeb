@@ -20,4 +20,10 @@ public class SistemaProvinciale {
 
        */
     }
+
+    // Codice fiscale - Nome Cognome
+    public LinkedHashMap<String, String> getListaMediciFromPronvincia(String provincia) {
+        return new SistemaProvincialeDAO().getListaMediciFromPronvincia(provincia);
+
+    }
 }
