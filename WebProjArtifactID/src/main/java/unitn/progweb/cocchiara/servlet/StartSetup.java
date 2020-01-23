@@ -19,7 +19,7 @@ public class StartSetup extends HttpServlet {
 // Performs initialization operations.
     public void init() throws ServletException {
         ServletContext ctx = getServletContext();
-        ctx.setAttribute("SistemaProvinciale",new SistemaProvinciale());
+        ctx.setAttribute("sistemaprovinciale",new SistemaProvinciale());
     }
 
     public void destroy() {

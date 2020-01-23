@@ -1,6 +1,5 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
-
-import unitn.progweb.cocchiara.model.Persona;
+import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +23,7 @@ public class WelcomeLogged extends HttpServlet {
             throws ServletException, IOException {
         // Set response content type
         HttpSession session = request.getSession();
-        Persona u = (Persona) session.getAttribute("Persona");
+        Utente u = (Utente) session.getAttribute("utente");
 
         if (u.isMedico() || u.isAdmin()) {
             response.sendRedirect("servizi");

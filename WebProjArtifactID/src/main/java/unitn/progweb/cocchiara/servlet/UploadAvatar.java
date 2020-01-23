@@ -1,6 +1,7 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
 
-import unitn.progweb.cocchiara.model.Persona;
+
+import unitn.progweb.cocchiara.model.Utente;
 
 import javax.imageio.ImageIO;
 import javax.naming.Context;
@@ -29,7 +30,7 @@ public class UploadAvatar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Persona persona = (Persona) session.getAttribute("Persona");
+        Utente utente = (Utente) session.getAttribute("utente");
         Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 
@@ -40,7 +41,7 @@ public class UploadAvatar extends HttpServlet {
                 String imgPazienti = (String) env.lookup("pathimgpazienti");
                 BufferedImage img = ImageIO.read(input);
                 // It's an image (only BMP, GIF, JPG and PNG are recognized).
-                File outputfile = new File(imgPazienti + persona.getCodicefiscale()+".jpg");
+                File outputfile = new File(imgPazienti + utente.getPaziente().getCodicefiscale()+".jpg");
                 //outputfile.createNewFile();
                 ImageIO.write(img,"jpg",outputfile);
                 response.sendRedirect(request.getContextPath() + "/sispaz/profilocittadino");

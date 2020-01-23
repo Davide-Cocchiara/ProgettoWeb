@@ -1,6 +1,6 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
 
-import unitn.progweb.cocchiara.model.Persona;
+import unitn.progweb.cocchiara.model.Utente;
 
 import javax.imageio.ImageIO;
 import javax.naming.Context;
@@ -29,14 +29,14 @@ public class Avatar extends HttpServlet {
             throws ServletException, IOException {
         // Set response content type
         HttpSession session = request.getSession();
-        Persona persona = (Persona) session.getAttribute("Persona");
+        Utente utente = (Utente) session.getAttribute("utente");
         response.setContentType("image/gif");
         try {
             Context ctx = new InitialContext();
             Context env = (Context) ctx.lookup("java:comp/env");
             String imgPazienti = (String) env.lookup("pathimgpazienti");
 
-            File inputFile = new File(imgPazienti + persona.getCodicefiscale()+".jpg");
+            File inputFile = new File(imgPazienti + utente.getPaziente().getCodicefiscale()+".jpg");
             if (inputFile.exists()) {
                 BufferedImage img = ImageIO.read(inputFile);
                 OutputStream out = response.getOutputStream();

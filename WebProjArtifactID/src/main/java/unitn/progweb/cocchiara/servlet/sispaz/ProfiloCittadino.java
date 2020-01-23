@@ -18,10 +18,7 @@ public class ProfiloCittadino extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Set response content type
-       // HttpSession session = request.getSession();
-      //  Persona u = (Persona) session.getAttribute("Persona");
+            throws ServletException, IOException { ;
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sispaz/profilo-cittadino.jsp");
         rd.forward(request, response);
     }

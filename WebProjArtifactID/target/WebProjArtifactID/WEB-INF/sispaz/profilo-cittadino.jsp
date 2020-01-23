@@ -1,14 +1,14 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="unitn.progweb.cocchiara.model.SistemaProvinciale" %>
 <%@ page import="java.util.LinkedHashMap" %>
-<%@ page import="unitn.progweb.cocchiara.model.Persona" %>
+<%@ page import="unitn.progweb.cocchiara.model.Utente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profile - Servizi Sanitari per il cittadino</title>
+    <title>Profilo Cittadino - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -118,26 +118,26 @@
                                         <form>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly="" value="${sessionScope.Persona.getNome()}"></div>
+                                                    <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly="" value="${sessionScope.utente.getPaziente().getNome()}"></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly="" value="${sessionScope.Persona.getCognome()}"></div>
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="col">
-                                                    <div class="form-group"><label for="first_name"><strong>Data di nascita</strong></label><input class="form-control" type="text" placeholder="0/0/0000" name="nascita" value="${sessionScope.Persona.getDatanascita().toString()}"readonly=""></div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="form-group"><label for="last_name"><strong>Luogo di nascita</strong></label><input class="form-control" type="text" placeholder="Gubbio, PG" name="luogonascita" readonly="" value="${sessionScope.Persona.getLuogonascita()}"></div>
+                                                    <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly="" value="${sessionScope.utente.getPaziente().getCognome()}"></div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="first_name"><strong>Sesso</strong></label><input class="form-control" type="text" placeholder="Mischio" name="sesso" readonly="" value="${sessionScope.Persona.getSesso()}"></div>
+                                                    <div class="form-group"><label for="first_name"><strong>Data di nascita</strong></label><input class="form-control" type="text" placeholder="0/0/0000" name="nascita" value="${sessionScope.utente.getPaziente().getDatanascita().toString()}"readonly=""></div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="form-group"><label for="first_name"><strong>Codice Fiscale</strong></label><input class="form-control" type="text" placeholder="CGNNMO00A01E256D" name="codicefiscale" readonly="" value="${sessionScope.Persona.getCodicefiscale()}"></div>
+                                                    <div class="form-group"><label for="last_name"><strong>Luogo di nascita</strong></label><input class="form-control" type="text" placeholder="Gubbio, PG" name="luogonascita" readonly="" value="${sessionScope.utente.getPaziente().getLuogonascita()}"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="first_name"><strong>Sesso</strong></label><input class="form-control" type="text" placeholder="Mischio" name="sesso" readonly="" value="${sessionScope.utente.getPaziente().getSesso()}"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="first_name"><strong>Codice Fiscale</strong></label><input class="form-control" type="text" placeholder="CGNNMO00A01E256D" name="codicefiscale" readonly="" value="${sessionScope.utente.getPaziente().getCodicefiscale()}"></div>
                                                 </div>
                                             </div>
                                         </form>
@@ -149,18 +149,18 @@
                                     </div>
                                     <div class="card-body">
                                         <form action="<%=request.getContextPath()%>/sispaz/changeinformazioni" method="post">
-                                            <div class="form-group"><label for="address"><strong>Email</strong></label><input class="form-control" type="email" placeholder="example@address.com" value="${sessionScope.Persona.getEmail()}" name="email"></div>
+                                            <div class="form-group"><label for="address"><strong>Email</strong></label><input class="form-control" type="email" placeholder="example@address.com" value="${sessionScope.utente.getPaziente().getEmail()}" name="email"></div>
                                             <div class="form-row">
                                                 <div class="col">
                                                     <div class="form-group"><label for="country"><strong>Provincia</strong></label><select class="form-control" name="provincia">
 
                                                         <optgroup label="Provincia">
                                                             <%
-                                                                SistemaProvinciale sis  = (SistemaProvinciale) getServletContext().getAttribute("SistemaProvinciale");
+                                                                SistemaProvinciale sis  = (SistemaProvinciale) getServletContext().getAttribute("sistemaprovinciale");
                                                                 LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
-                                                                Persona persona = (Persona)session.getAttribute("Persona");
+                                                                Utente utente = (Utente)session.getAttribute("utente");
                                                                 for (Map.Entry<String,String> entry :listaProvince.entrySet()) {
-                                                                    if (entry.getKey().equals(persona.getProvincia())) {
+                                                                    if (entry.getKey().equals(utente.getPaziente().getProvincia())) {
                                                                         out.print("<option selected value=\"");
                                                                     }
                                                                     else {

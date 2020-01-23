@@ -1,7 +1,7 @@
-<%@ page import="unitn.progweb.cocchiara.model.Persona" %>
+<%@ page import="unitn.progweb.cocchiara.model.Utente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    Persona persona = (Persona)session.getAttribute("Persona");
+    Utente utente = (Utente)session.getAttribute("utente");
 
 %>
 <html>
@@ -70,14 +70,14 @@
                     <h3 class="name">Cittadino</h3>
                     <p class="description">Servizi per il cittadino</p><a href="sispaz/profilocittadino" class="btn btn-primary">Entra</a></div>
             </div>
- <% if (persona.isMedico()){
+ <% if (utente.isMedico()){
      out.println("<div class=\"col-md-6 col-lg-4 item\">\n" +
              "                <div class=\"box\" style=\"background-color: rgb(255,214,214);\"><img class=\"rounded-circle\" src=\"assets/img/medico.jpg\">\n" +
              "                    <h3 class=\"name\">Medico</h3>\n" +
              "                    <p class=\"description\">Servizi per il medico di base</p><a href=\"sismed/profilomedico\" style=\"background-color: rgb(223,104,78);\" class=\"btn btn-primary\">Entra</a></div>\n"+
              "            </div>");
  }%>
-<% if (persona.isAdmin()) {
+<% if (utente.isAdmin()) {
 out.println("            <div class=\"col-md-6 col-lg-4 item\">\n" +
         "                <div class=\"box\" style=\"background-color: rgb(224,255,205);\"><img class=\"rounded-circle\" src=\"assets/img/admin.jpg\">\n" +
         "                    <h3 class=\"name\">Amministratore</h3>\n" +

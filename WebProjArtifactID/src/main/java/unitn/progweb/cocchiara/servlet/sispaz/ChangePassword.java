@@ -1,7 +1,6 @@
 package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
 
-import unitn.progweb.cocchiara.dao.PersonaDAO;
-import unitn.progweb.cocchiara.model.Persona;
+import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +26,8 @@ public class ChangePassword extends HttpServlet {
         String newpassword = request.getParameter("newpassword");
 
         HttpSession session = request.getSession();
-        Persona persona = (Persona) session.getAttribute("Persona");
-        if (password != null && newpassword != null && persona.changePassword(password,newpassword)) {
+        Utente utente = (Utente) session.getAttribute("utente");
+        if (password != null && newpassword != null && utente.changePassword(password,newpassword)) {
             response.sendRedirect(request.getContextPath() + "/sispaz/profilocittadino?newpassword=true");
         }
         else {

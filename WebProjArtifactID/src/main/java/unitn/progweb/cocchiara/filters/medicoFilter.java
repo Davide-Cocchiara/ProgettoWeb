@@ -1,6 +1,6 @@
 package unitn.progweb.cocchiara.filters;
 
-import unitn.progweb.cocchiara.model.Persona;
+import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -21,7 +21,7 @@ public class medicoFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) resp;
 
         HttpSession session = request.getSession();
-        Persona u = (Persona) session.getAttribute("Persona");
+        Utente u = (Utente) session.getAttribute("utente");
 
         if (!u.isMedico()) {
             response.sendRedirect(request.getContextPath() +"/servizi");

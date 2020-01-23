@@ -1,6 +1,5 @@
 package unitn.progweb.cocchiara.dao;
 
-import unitn.progweb.cocchiara.model.Persona;
 
 import java.sql.*;
 import java.util.ArrayList;

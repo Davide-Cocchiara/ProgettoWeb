@@ -21,7 +21,7 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
         // Set response content type
         HttpSession session = request.getSession();
-        session.setAttribute("Persona", null);
+        session.setAttribute("utente", null);
         session.invalidate();
         response.sendRedirect("login");
     }

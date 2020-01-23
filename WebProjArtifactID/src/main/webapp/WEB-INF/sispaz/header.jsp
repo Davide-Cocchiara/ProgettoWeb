@@ -1,4 +1,4 @@
-<%@ page import="unitn.progweb.cocchiara.model.Persona" %><%--
+<%@ page import="unitn.progweb.cocchiara.model.Utente" %><%--
   Created by IntelliJ IDEA.
   User: burge
   Date: 22/01/2020
@@ -99,12 +99,12 @@
             </li>
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow" role="presentation">
-                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">${sessionScope.Persona.getNome()} ${sessionScope.Persona.getCognome()}</span><img class="border rounded-circle img-profile" src="<%=request.getContextPath()%>/avatar"></a>
+                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">${sessionScope.utente.getPaziente().getNome()} ${sessionScope.utente.getPaziente().getCognome()}</span><img class="border rounded-circle img-profile" src="<%=request.getContextPath()%>/avatar"></a>
                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="<%=request.getContextPath()%>/sispaz/profilocittadino"><i class="fas fa-persona fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
                         <div class="dropdown-divider"></div>
                         <%
-                        Persona persona = (Persona)session.getAttribute("Persona");
-                        if (persona.isMedico() || persona.isAdmin()) {
+                            Utente utente = (Utente)session.getAttribute("utente");
+                        if (utente.isMedico() || utente.isAdmin()) {
                             out.println("<a class=\"dropdown-item\" role=\"presentation\" href=\"");
                             out.println(request.getContextPath());
                             out.println("/servizi");

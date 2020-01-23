@@ -1,7 +1,7 @@
 package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
 
 
-import unitn.progweb.cocchiara.model.Persona;
+import unitn.progweb.cocchiara.model.Utente;
 import unitn.progweb.cocchiara.model.SistemaProvinciale;
 
 import javax.servlet.ServletException;
@@ -31,12 +31,12 @@ public class ChangeInformazioni extends HttpServlet {
         Boolean error = false;
         Boolean changed = false;
         HttpSession session = request.getSession();
-        Persona persona = (Persona) session.getAttribute("Persona");
+        Utente utente = (Utente) session.getAttribute("utente");
 
         if (email != null && provincia != null) { // validate input
 
             // Mail change
-            if (!persona.getEmail().equals(email)) { // If the email has changed, change it
+            if (!utente.getPaziente().getEmail().equals(email)) { // If the email has changed, change it
 
                 // Check mail validity
                 String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
@@ -46,7 +46,7 @@ public class ChangeInformazioni extends HttpServlet {
                 Pattern pat = Pattern.compile(emailRegex);
 
                 if (pat.matcher(email).matches()) { // If new mail is valid
-                    if (!persona.setEmail(email)) { // if mail change is unsuccessful
+                    if (!utente.getPaziente().setEmail(email)) { // if mail change is unsuccessful
                         System.err.println("Error in changing Email");
                         error = true;
                     } else {
@@ -59,11 +59,11 @@ public class ChangeInformazioni extends HttpServlet {
             }
 
             // Provincia change
-            if (!(persona.getProvincia().equals(provincia))) { // If the province has changed, change it
-                SistemaProvinciale sis  = (SistemaProvinciale) getServletContext().getAttribute("SistemaProvinciale");
+            if (!(utente.getPaziente().getProvincia().equals(provincia))) { // If the province has changed, change it
+                SistemaProvinciale sis  = (SistemaProvinciale) getServletContext().getAttribute("sistemaprovinciale");
                 LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
                 if (listaProvince.containsKey(provincia)) { // If the provided provincia is in the provincia list
-                    if(!persona.setProvincia(provincia)) { // if provincia change is unsuccessful
+                    if(!utente.getPaziente().setProvincia(provincia)) { // if provincia change is unsuccessful
                         System.err.println("Error in changing Provincia");
                         error = true;
                     } else { changed=true;} //  For redirecting correctly

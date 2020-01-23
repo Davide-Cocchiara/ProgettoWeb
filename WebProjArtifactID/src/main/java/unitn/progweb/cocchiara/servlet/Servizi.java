@@ -1,6 +1,8 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
 
-import unitn.progweb.cocchiara.model.Persona;
+
+
+import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +27,7 @@ public class Servizi extends HttpServlet {
         // Set response content type
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
-        Persona persona = (Persona) session.getAttribute("Persona");
+        Utente utente = (Utente) session.getAttribute("utente");
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/servizi.jsp");
         rd.forward(request, response);
 
