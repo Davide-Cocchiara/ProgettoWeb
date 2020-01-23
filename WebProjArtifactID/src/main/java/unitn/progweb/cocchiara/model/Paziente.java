@@ -1,6 +1,10 @@
 package unitn.progweb.cocchiara.model;
 
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import unitn.progweb.cocchiara.dao.PazienteDAO;
+
 import java.util.Date;
 
 public class Paziente {
@@ -66,14 +70,34 @@ public class Paziente {
         return medicoAssegnato;
     }
 
-
-    public Boolean setEmail(String email) {
-        // TODO
-        return  false;
+    public Boolean setMedicoAssegnato(@Nullable String codiceMedico) {
+        PazienteDAO pd = new PazienteDAO();
+        if(pd.setMedicoAssegnato(codicefiscale,codiceMedico)) {
+            this.medicoAssegnato = codiceMedico;
+            return true;
+        }
+        else
+            return false;
     }
 
-    public Boolean setProvincia(String provincia) {
-        // TODO
-        return false;
+    public Boolean setEmail(@NotNull String email) {
+        PazienteDAO pd = new PazienteDAO();
+        if(pd.setEmail(codicefiscale,email)) {
+            this.email = email;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public Boolean setProvincia(@NotNull String provincia) {
+        PazienteDAO pd = new PazienteDAO();
+        if(pd.setProvincia(codicefiscale,provincia)){
+            this.provincia = provincia;
+            setMedicoAssegnato(null);
+            return true;
+        }
+        else
+            return false;
     }
 }

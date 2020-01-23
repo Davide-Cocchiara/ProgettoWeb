@@ -26,7 +26,7 @@ public class SistemaProvincialeDAO extends BasicDAO {
            conn.close();
         }
         catch (SQLException ex) {
-           System.err.println("Unable to retrive provincia information" + ex.getMessage());
+           System.err.println("Unable to retrieve provincia information" + ex.getMessage());
         }
         return out;
     }

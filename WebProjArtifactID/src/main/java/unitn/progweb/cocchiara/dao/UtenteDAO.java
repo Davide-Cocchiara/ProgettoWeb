@@ -1,12 +1,10 @@
 package unitn.progweb.cocchiara.dao;
 
-import unitn.progweb.cocchiara.model.Admin;
 import unitn.progweb.cocchiara.model.Medico;
 import unitn.progweb.cocchiara.model.Paziente;
 import unitn.progweb.cocchiara.model.Utente;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class UtenteDAO extends BasicDAO {
 
@@ -26,10 +24,10 @@ public class UtenteDAO extends BasicDAO {
             ResultSet results = stmt.executeQuery();
             if (results.next())
             {
-                Paziente paziente = new PazienteDAO().getUserCodice(results.getString(1));
-                Medico medico = new MedicoDAO().getUserCodice(results.getString(1));
-                Admin admin = new AdminDAO().getUserCodice(results.getString(1));
-                out = new Utente(paziente,medico,admin);
+                Paziente paziente = new PazienteDAO().getUserFromCodice(results.getString(1));
+                Medico medico = new MedicoDAO().getMedicoFromCodice(results.getString(1));
+                Boolean isAdmin = new AdminDAO().isAdmin(results.getString(1),conn);
+                out = new Utente(paziente,medico,isAdmin);
             }
             results.close();
             stmt.close();
@@ -41,11 +39,11 @@ public class UtenteDAO extends BasicDAO {
         return out;
     }
 
-    public Utente getUserCodice(String codiceFiscale) {
-        Paziente paziente = new PazienteDAO().getUserCodice(codiceFiscale);
-        Medico medico = new MedicoDAO().getUserCodice(codiceFiscale);
-        Admin admin = new AdminDAO().getUserCodice(codiceFiscale);
-        return new Utente(paziente,medico,admin);
+    public Utente getUserFromCodice(String codiceFiscale) {
+        Paziente paziente = new PazienteDAO().getUserFromCodice(codiceFiscale);
+        Medico medico = new MedicoDAO().getMedicoFromCodice(codiceFiscale);
+        Boolean isAdmin = new AdminDAO().isAdmin(codiceFiscale, null);
+        return new Utente(paziente,medico,isAdmin);
     }
 
     public Boolean changePassword(String username, String oldpass, String newpass)
