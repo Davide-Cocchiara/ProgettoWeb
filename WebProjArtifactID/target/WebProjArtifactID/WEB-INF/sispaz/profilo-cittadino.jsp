@@ -1,5 +1,5 @@
 <%@ page import="java.util.Map" %>
-<%@ page import="unitn.progweb.cocchiara.model.SistemaProvinciale" %>
+<%@ page import="unitn.progweb.cocchiara.model.SistemaNazionale" %>
 <%@ page import="java.util.LinkedHashMap" %>
 <%@ page import="unitn.progweb.cocchiara.model.Utente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -156,7 +156,7 @@
 
                                                         <optgroup label="Provincia">
                                                             <%
-                                                                SistemaProvinciale sis  = (SistemaProvinciale) getServletContext().getAttribute("sistemaprovinciale");
+                                                                SistemaNazionale sis  = (SistemaNazionale) getServletContext().getAttribute("sistemanazionale");
                                                                 LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
                                                                 Utente utente = (Utente)session.getAttribute("utente");
                                                                 for (Map.Entry<String,String> entry :listaProvince.entrySet()) {

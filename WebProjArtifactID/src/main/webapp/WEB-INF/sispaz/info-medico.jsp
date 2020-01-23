@@ -1,3 +1,5 @@
+<%@ page import="unitn.progweb.cocchiara.model.Utente" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -102,11 +104,41 @@
                                         <p class="text-primary m-0 font-weight-bold">Cambio Medico di Base</p>
                                     </div>
                                     <div class="card-body">
-                                        <form method="post" action="sispaz/changemedico">
-                                            <div class="form-group"><label for="address"><strong>Medici Disponibili nella provincia di residenza</strong></label><select class="form-control"><optgroup label="Medici"><option value="12" selected="">Dr. Bob Bobo</option><option value="13">Dr. Lella Lul</option><option value="14">Dr. Kaka Keke</option></optgroup></select></div>
-                                            <div
-                                                class="form-group"><button class="btn btn-primary btn-sm" type="submit">Cambia Medico di Base</button></div>
+                                        <form method="post" action="<%=request.getContextPath()%>/sispaz/changemedico">
+                                            <div class="form-group"><label for="address"><strong>Medici Disponibili nella provincia di residenza</strong></label>
+                                                <select class="form-control" name="nuovomedico" >
+                                                <optgroup label="Medici">
+                                                    <%
+
+                                                        Utente utente = (Utente)session.getAttribute("utente");
+                                                        ArrayList<String> listamedici = (ArrayList<String>)request.getAttribute("listamedici");
+                                                        Integer selectedmedico = (Integer) request.getAttribute("selectedmedico");
+                                                        for(Integer i=0; i<listamedici.size(); i++){
+                                                            if (i==selectedmedico) {
+                                                                out.print("<option selected value=\"");
+                                                            }
+                                                            else {
+                                                                out.print("<option value=\"");
+                                                            }
+                                                            out.print(i.toString());
+                                                            out.print("\">");
+                                                            out.print(listamedici.get(i));
+                                                            out.println("</option>");
+                                                        }
+                                                    %>
+                                                </optgroup>
+                                            </select>
+                                            </div>
+                                            <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Cambia Medico di Base</button></div>
                                     </form>
+                                        <%
+                                            if (request.getParameter("changedmedico") != null && request.getParameter("changedmedico").equals("true")) {
+                                                out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Il medico è stato cambiato con successo!<br></label>\n");
+                                            }
+                                            if (request.getParameter("changedmedico") != null && request.getParameter("changedmedico").equals("false")) {
+                                                out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Impossibile cambiare medico.<br></label>\n");
+                                            }
+                                        %>
                                 </div>
                             </div>
                         </div>
