@@ -1,6 +1,6 @@
 package unitn.progweb.cocchiara.dao;
 
-import unitn.progweb.cocchiara.model.Admin;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,11 @@ import java.sql.SQLException;
 
 public class AdminDAO extends BasicDAO {
 
-    // TODO modify
-    private Boolean isAdmin(String codicefiscale, Connection conn) {
+
+    public Boolean isAdmin(@NotNull String codicefiscale, Connection conn) {
+        if(conn == null)
+            conn = startConnection();
+
         String query = "SELECT codicefiscale FROM admin WHERE codicefiscale=?";
         boolean out = false;
         try {
@@ -27,14 +30,7 @@ public class AdminDAO extends BasicDAO {
         return out;
     }
 
-    public Admin getUserCodice(String string) {
-        return null;
-    }
-
-   /* public Medico getInfoMedico(String codiceFiscale) {
 
 
-    }
-    */
 
 }

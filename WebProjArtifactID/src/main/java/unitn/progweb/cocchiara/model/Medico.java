@@ -7,7 +7,9 @@ public class Medico  {
     String telefonoclinica = "";
 
 
-    public Medico() {
+    public Medico(String clinica, String telefonoclinica) {
+        this.clinica = clinica;
+        this.telefonoclinica = telefonoclinica;
     }
 
     public String getClinica() {

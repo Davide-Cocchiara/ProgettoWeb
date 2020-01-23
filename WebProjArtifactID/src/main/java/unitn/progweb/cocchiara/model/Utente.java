@@ -6,7 +6,7 @@ import unitn.progweb.cocchiara.dao.UtenteDAO;
 public class Utente {
     Paziente paziente = null;
     Medico medico = null;
-    Admin admin = null;
+    Boolean isAdmin = false;
 
     public Paziente getPaziente() {
         return paziente;
@@ -16,19 +16,19 @@ public class Utente {
         return medico;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public Boolean getIsAdmin() {
+        return isAdmin;
     }
     public Boolean isMedico() {
         return medico!=null;
     }
     public Boolean isAdmin() {
-        return  admin!=null;
+        return isAdmin;
     }
-    public Utente(@NotNull Paziente paziente, Medico medico, Admin admin) {
+    public Utente(@NotNull Paziente paziente, Medico medico, Boolean admin) {
         this.paziente = paziente;
         this.medico = medico;
-        this.admin = admin;
+        this.isAdmin = admin;
     }
     public Utente() {
 

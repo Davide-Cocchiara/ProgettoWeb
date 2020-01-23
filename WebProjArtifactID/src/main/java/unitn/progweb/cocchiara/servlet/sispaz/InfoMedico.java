@@ -2,7 +2,6 @@ package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
 
 import unitn.progweb.cocchiara.dao.MedicoDAO;
 import unitn.progweb.cocchiara.dao.UtenteDAO;
-import unitn.progweb.cocchiara.model.Medico;
 
 import unitn.progweb.cocchiara.model.Utente;
 
