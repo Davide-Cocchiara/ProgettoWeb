@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 public class SistemaProvincialeDAO extends BasicDAO {
     public LinkedHashMap<String, String> getListaMediciFromPronvincia(String provincia) {
         LinkedHashMap<String,String>  out = new LinkedHashMap<String,String>();
-        String query = "SELECT medico.codicefiscale,persona.nome,persona.cognome FROM medico JOIN persona on medico.codicefiscale=persona.codicefiscale WHERE provincia=?";
+        String query = "SELECT medico.codicefiscale,persona.nome,persona.cognome FROM medico JOIN persona on medico.codicefiscale=persona.codicefiscale WHERE provincia=? ORDER BY persona.cognome,persona.nome ASC";
         Connection conn = startConnection();
 
         try {
@@ -18,7 +18,7 @@ public class SistemaProvincialeDAO extends BasicDAO {
                 String nome = results.getString(2);
                 String cognome = results.getString(3);
 
-                out.put(codicefiscale,nome+ " " + cognome);
+                out.put(codicefiscale,cognome+ " " + nome);
             }
             results.close();
             stmt.close();
