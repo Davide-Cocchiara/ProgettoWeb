@@ -114,5 +114,22 @@ public class Paziente {
         PazienteDAO pd = new PazienteDAO();
         return pd.getReferto(idreferto, codicefiscale);
     }
-    
+
+    public ArrayList<Pagamento> getListPagamentiMinimale() {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.getListaPagamentiMinimale(codicefiscale);
+    }
+    public Pagamento getPagamento(int idPagamento, String codicefiscale) {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.getPagamento(idPagamento, codicefiscale);
+    }
+
+    public ArrayList<Prescrizione> getListaPrescrizioniMinimale() {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.getListaPrescrizioniMinimale(codicefiscale);
+    }
+    public Prescrizione getPrescrizione(int idPrescrizione, String codicefiscale) {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.getPrescrizione(idPrescrizione, codicefiscale);
+    }
 }
