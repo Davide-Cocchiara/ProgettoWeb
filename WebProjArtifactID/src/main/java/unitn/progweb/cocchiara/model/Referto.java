@@ -8,14 +8,14 @@ public class Referto
     String prestazione;
     String medico;
     String relazione;
-    int id;
+    int idreferto;
 
     public Referto(Date data, String prestazione, String medico, String relazione, int ID) {
         this.data = data;
         this.prestazione = prestazione;
         this.medico = medico;
         this.relazione = relazione;
-        this.id = ID;
+        this.idreferto = ID;
     }
 
     public Date getData() {
@@ -34,7 +34,7 @@ public class Referto
         return relazione;
     }
 
-    public int getId() {
-        return id;
+    public int getIdreferto() {
+        return idreferto;
     }
 }

@@ -14,7 +14,7 @@ function tables_listareferti( id,path_richiesta,path_dettaglio) {
                 {
                     "name": "Dettagli", data: null,
                     "createdCell": function (td, cellData, rowData, row, col) {
-                        $(td).html("<a href=\""+path_dettaglio+cellData.id+"\"><i class=\"far fa-list-alt\" style=\"font-size: 20px;line-height: 18px;color: rgb(0,178,255);font-weight: bold;font-style: normal;\"></i>");
+                        $(td).html("<a href=\""+path_dettaglio+cellData.idreferto+"\"><i class=\"far fa-list-alt\" style=\"font-size: 20px;line-height: 18px;color: rgb(0,178,255);font-weight: bold;font-style: normal;\"></i>");
                     }
                 }
             ]

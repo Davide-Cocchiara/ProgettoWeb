@@ -13,7 +13,7 @@ import java.io.IOException;
 // Extend HttpServlet class
 
 @WebServlet("/welcome")
-public class WelcomeLogged extends HttpServlet {
+public class Welcome extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization

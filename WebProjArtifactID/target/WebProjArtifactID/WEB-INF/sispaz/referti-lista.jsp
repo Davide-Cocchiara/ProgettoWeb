@@ -64,7 +64,7 @@
     <script src="<%=request.getContextPath()%>/js/tables.js"></script>
     <script>
         $( document ).ready(function() {
-        tables_listareferti("#referti","<%=request.getContextPath()%>/sispaz/getreferti","<%=request.getContextPath()%>/sispaz/refertosingolo?referto=");
+        tables_listareferti("#referti","<%=request.getContextPath()%>/sispaz/getreferti","<%=request.getContextPath()%>/sispaz/refertosingolo?idreferto=");
         });
     </script>
 </body>

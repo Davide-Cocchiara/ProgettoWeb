@@ -110,4 +110,13 @@ public class Paziente {
         PazienteDAO pd = new PazienteDAO();
         return pd.getListaRefertiMinimale(codicefiscale);
     }
+    public Referto getReferto(int idreferto) {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.getReferto(idreferto);
+    }
+
+    public boolean isMyReferto(int idreferto) {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.isMyReferto(codicefiscale,idreferto);
+    }
 }

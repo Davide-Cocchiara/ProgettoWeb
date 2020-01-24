@@ -266,4 +266,8 @@ public class PazienteDAO extends BasicDAO {
         }
         return retVal;
     }
+
+    public boolean isMyReferto(String codicefiscale, int idreferto) {
+
+    }
 }
