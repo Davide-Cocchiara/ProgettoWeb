@@ -104,10 +104,10 @@ public class PazienteDAO extends BasicDAO {
                 stmt.setString(1, codiceFiscale);
             }
             else {
-                query = "UPDATE medicoassegnato SET medico=? WHERE paziente=?;";
+                query = "REPLACE INTO medicoassegnato VALUES(?,?);";
                 stmt = conn.prepareStatement(query);
-                stmt.setString(1, codiceMedico);
-                stmt.setString(2, codiceFiscale);
+                stmt.setString(1, codiceFiscale);
+                stmt.setString(2, codiceMedico);
             }
 
             stmt.execute();
