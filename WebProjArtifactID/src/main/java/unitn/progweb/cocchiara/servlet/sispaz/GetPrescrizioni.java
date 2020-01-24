@@ -31,10 +31,11 @@ public class GetPrescrizioni extends HttpServlet {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
-        ArrayList<Prescrizione> listaPagamenti = utente.getPaziente().getListaPrescrizioniMinimale();
+        ArrayList<Prescrizione> listaPrescrizioni = utente.getPaziente().getListaPrescrizioniMinimale();
+
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = "{ \"content\": " + gson.toJson(listaPagamenti) + "}";
+        String json = "{ \"content\": " + gson.toJson(listaPrescrizioni) + "}";
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

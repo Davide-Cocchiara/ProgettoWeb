@@ -8,11 +8,11 @@ function tables_listareferti( selector,path_richiesta,path_dettaglio) {
                 "dataSrc": "content"
             },
             "columns": [
-                {"data": "data", "name": "Data"},
-                {"data": "prestazione", "name": "Prestazione"},
-                {"data": "medico", "name": "Medico"},
+                {"data": "data", "title": "Data"},
+                {"data": "prestazione", "title": "Prestazione"},
+                {"data": "medico", "title": "Medico"},
                 {
-                    "name": "Dettagli", data: null,
+                    "title": "Dettagli", data: null,
                     "createdCell": function (td, cellData, rowData, row, col) {
                         $(td).html("<a href=\""+path_dettaglio+cellData.idreferto+"\"><i class=\"far fa-list-alt\" style=\"font-size: 20px;line-height: 18px;color: rgb(0,178,255);font-weight: bold;font-style: normal;\"></i>");
                     }
@@ -30,11 +30,11 @@ function tables_listaprescrizioni( selector,path_richiesta,path_dettaglio) {
             "dataSrc": "content"
         },
         "columns": [
-            {"data": "datarilascio", "name": "Data Rilascio"},
-            {"data": "prestazione", "name": "Prestazione"},
-            {"data": "medico", "name": "Medico"},
-            {"data": "dataevasione", "name": "Data Evasione"},
-            {"data": "provincia", "name": "Provincia"},
+            {"data": "datarilascio", "title": "Data Rilascio"},
+            {"data": "prestazione", "title": "Prestazione"},
+            {"data": "medico", "title": "Medico"},
+            {"data": "dataevasione", "title": "Data Evasione"},
+            {"data": "provincia", "title": "Provincia"},
             {
                 "name": "Dettagli", data: null,
                 "createdCell": function (td, cellData, rowData, row, col) {
@@ -54,13 +54,13 @@ function tables_listapagamenti( selector,path_richiesta,path_dettaglio) {
             "dataSrc": "content"
         },
         "columns": [
-            {"data": "dataemissione", "name": "Data Emissione"},
-            {"data": "prestazione", "name": "Prestazione"},
-            {"data": "costo", "name": "Costo"},
-            {"data": "datapagamento", "name": "Data Pagamento"},
-            {"data": "provinciarilascio", "name": "Provincia Rilascio"},
+            {"data": "dataemissione", "title": "Data Emissione"},
+            {"data": "prestazione", "title": "Prestazione"},
+            {"data": "costo", "title": "Costo"},
+            {"data": "datapagamento", "title": "Data Pagamento" ,"sDefaultContent": "<div style=\"color:red\">Non pagato!</div>"},
+            {"data": "provinciarilascio", "title": "Provincia Rilascio"},
             {
-                "name": "Dettagli", data: null,
+                "title": "Dettagli", data: null,
                 "createdCell": function (td, cellData, rowData, row, col) {
                     $(td).html("<a href=\""+path_dettaglio+cellData.idpagamento+"\"><i class=\"far fa-list-alt\" style=\"font-size: 20px;line-height: 18px;color: rgb(0,178,255);font-weight: bold;font-style: normal;\"></i>");
                 }
