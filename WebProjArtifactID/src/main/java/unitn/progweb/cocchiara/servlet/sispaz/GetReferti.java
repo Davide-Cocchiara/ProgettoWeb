@@ -38,22 +38,7 @@ public class GetReferti extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        String outstr = "{\n" +
-                "  \"content\": [\n" +
-                "  {\n" +
-                "\t  \"data\": \"3 Gennaio\",\n" +
-                "\t  \"prestazione\" : \"Controllo generico\",\n" +
-                "\t  \"medico\" : \"Paolo limiti\",\n" +
-                "\t  \"id\" : 1\n" +
-                "  },\n" +
-                "   {\n" +
-                "\t  \"data\": \"4 Gennaio\",\n" +
-                "\t  \"prestazione\" : \"Controllo preciso\",\n" +
-                "\t  \"medico\" : \"Areulio Sardi\",\n" +
-                "\t  \"id\" : 2\n" +
-                "  }\n" +
-                " ]\n" +
-                " }";
+
         PrintWriter out = response.getWriter();
         out.print(json);
         out.flush();
