@@ -122,7 +122,7 @@ public class PazienteDAO extends BasicDAO {
         }
     }
 
-    public ArrayList<Referto> getListaRefertiMinimale(String codicefiscale) {
+    public ArrayList<Referto> getListaRefertiMinimale(@NotNull String codicefiscale) {
 
         String query = "SELECT data,  descrizione, CONCAT(cognome,' ', nome), visite.id FROM visite INNER JOIN prestazioni ON prestazione=prestazioni.id " +
                 "INNER JOIN persona ON visite.medico = persona.codicefiscale WHERE visite.paziente=?;";
@@ -154,7 +154,7 @@ public class PazienteDAO extends BasicDAO {
         return retVal;
     }
 
-    public Referto getReferto(int idReferto, String codicefiscale) {
+    public Referto getReferto(@NotNull int idReferto, @Nullable String codicefiscale) {
 
         String query;
         Connection conn = startConnection();
@@ -211,7 +211,7 @@ public class PazienteDAO extends BasicDAO {
 
 
 
-    public ArrayList<Prescrizione> getListaPrescrizioniMinimale(String codicefiscale) {
+    public ArrayList<Prescrizione> getListaPrescrizioniMinimale(@NotNull String codicefiscale) {
 
         String query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', nome) AS medico, dataevasione, prescrizioni.provinciarilascio, prescrizioni.id " +
                 "FROM prescrizioni " +
@@ -249,21 +249,44 @@ public class PazienteDAO extends BasicDAO {
     }
 
 
-    public Prescrizione getPrescrizione(int idPrescrizione) {
+    public Prescrizione getPrescrizione(@NotNull int idPrescrizione, @Nullable String codicefiscale) {
 
-        String query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
-                "FROM prescrizioni " +
-                "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
-                "INNER JOIN medico ON medico.codicefiscale=medico " +
-                "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                "INNER JOIN provincia ON provincia.sigla=provinciarilascio" +
-                "WHERE prescrizioni.id=?;";
-
+        String query;
         Connection conn = startConnection();
+        PreparedStatement stmt;
+
+
+
         Prescrizione retVal = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, idPrescrizione);
+
+            if(codicefiscale == null) {
+                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                        "FROM prescrizioni " +
+                        "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                        "INNER JOIN medico ON medico.codicefiscale=medico " +
+                        "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio" +
+                        "WHERE prescrizioni.id=?;";
+                stmt = conn.prepareStatement(query);
+                stmt.setInt(1, idPrescrizione);
+            }
+            else
+            {
+                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                        "FROM prescrizioni " +
+                        "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                        "INNER JOIN medico ON medico.codicefiscale=medico " +
+                        "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio" +
+                        "WHERE prescrizioni.id=? AND prescrizioni.paziente=?;";
+                stmt = conn.prepareStatement(query);
+                stmt.setInt(1, idPrescrizione);
+                stmt.setString(2, codicefiscale);
+
+            }
+
+
             ResultSet results = stmt.executeQuery();
 
             if (results.next()) {
@@ -285,7 +308,7 @@ public class PazienteDAO extends BasicDAO {
         return retVal;
     }
 
-    public ArrayList<Pagamento> getListaPagamentiMinimale(String codicefiscale) {
+    public ArrayList<Pagamento> getListaPagamentiMinimale(@NotNull String codicefiscale) {
 
         String query = "SELECT emesso, prestazioni.descrizione, ssp_prestazionidisponibili.costo, pagato, nome, ticket.id " +
                 "FROM ticket INNER JOIN ssp_prestazionidisponibili ON ssp_prestazionidisponibili.idprovincia=ticket.idprovincia " +
@@ -323,21 +346,43 @@ public class PazienteDAO extends BasicDAO {
     }
 
 
-    public Pagamento getPagamento(int idPagamento) {
-
-        String query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
-                "FROM prescrizioni " +
-                "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
-                "INNER JOIN medico ON medico.codicefiscale=medico " +
-                "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
-                "WHERE prescrizioni.id=?";
+    public Pagamento getPagamento(@NotNull int idPagamento, @Nullable String codicefiscale) {
 
         Connection conn = startConnection();
+        PreparedStatement stmt;
+        String query;
+
+
         Pagamento retVal = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, idPagamento);
+
+            if(codicefiscale == null)
+            {
+                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                        "FROM prescrizioni " +
+                        "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                        "INNER JOIN medico ON medico.codicefiscale=medico " +
+                        "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
+                        "WHERE prescrizioni.id=?";
+                stmt = conn.prepareStatement(query);
+
+                stmt.setInt(1, idPagamento);
+            }
+            else
+            {
+                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                        "FROM prescrizioni " +
+                        "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                        "INNER JOIN medico ON medico.codicefiscale=medico " +
+                        "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
+                        "WHERE prescrizioni.id=? AND prescrizioni.paziente=?";
+                stmt = conn.prepareStatement(query);
+                stmt.setInt(1, idPagamento);
+                stmt.setString(2, codicefiscale);
+            }
+
             ResultSet results = stmt.executeQuery();
 
             if (results.next()) {

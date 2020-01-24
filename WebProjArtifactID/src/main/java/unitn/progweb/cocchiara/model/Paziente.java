@@ -114,9 +114,5 @@ public class Paziente {
         PazienteDAO pd = new PazienteDAO();
         return pd.getReferto(idreferto, codicefiscale);
     }
-
-    public boolean isMyReferto(int idreferto) {
-        PazienteDAO pd = new PazienteDAO();
-        return pd.isMyReferto(codicefiscale,idreferto);
-    }
+    
 }
