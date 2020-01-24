@@ -2,10 +2,7 @@ package unitn.progweb.cocchiara.dao;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import unitn.progweb.cocchiara.model.Paziente;
-import unitn.progweb.cocchiara.model.Prescrizione;
-import unitn.progweb.cocchiara.model.Referto;
-import unitn.progweb.cocchiara.model.Utente;
+import unitn.progweb.cocchiara.model.*;
 
 import javax.swing.*;
 import java.sql.*;
@@ -127,7 +124,7 @@ public class PazienteDAO extends BasicDAO {
     public ArrayList<Referto> getListaRefertiMinimale(String codicefiscale) {
 
         String query = "SELECT data,  descrizione, CONCAT(cognome,' ', nome), visite.id FROM visite INNER JOIN prestazioni ON prestazione=prestazioni.id " +
-                "INNER JOIN persona ON visite.medico = persona.codicefiscale WHERE visite.paziente=?";
+                "INNER JOIN persona ON visite.medico = persona.codicefiscale WHERE visite.paziente=?;";
 
         Connection conn = startConnection();
         ArrayList<Referto> retVal = new ArrayList<Referto>();
@@ -200,7 +197,7 @@ public class PazienteDAO extends BasicDAO {
                 "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
                 "INNER JOIN medico ON medico.codicefiscale=medico " +
                 "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                "WHERE prescrizioni.paziente=? ";
+                "WHERE prescrizioni.paziente=?;";
 
         Connection conn = startConnection();
         ArrayList<Prescrizione> retVal = new ArrayList<Prescrizione>();
@@ -239,7 +236,7 @@ public class PazienteDAO extends BasicDAO {
                 "INNER JOIN medico ON medico.codicefiscale=medico " +
                 "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
                 "INNER JOIN provincia ON provincia.sigla=provinciarilascio" +
-                "WHERE prescrizioni.id=?";
+                "WHERE prescrizioni.id=?;";
 
         Connection conn = startConnection();
         Prescrizione retVal = null;
@@ -263,6 +260,80 @@ public class PazienteDAO extends BasicDAO {
             conn.close();
         } catch (SQLException ex) {
             System.err.println("Unable to get prescrizione singola " + ex.getMessage());
+        }
+        return retVal;
+    }
+
+    public ArrayList<Pagamento> getListaPagamentiMinimale(String codicefiscale) {
+
+        String query = "SELECT emesso, prestazioni.descrizione, ssp_prestazionidisponibili.costo, pagato, nome, ticket.id " +
+                "FROM ticket INNER JOIN ssp_prestazionidisponibili ON ssp_prestazionidisponibili.idprovincia=ticket.idprovincia " +
+                "AND ssp_prestazionidisponibili.idprestazione=ticket.idprestazione " +
+                "INNER JOIN prestazioni ON prestazioni.id=ticket.idprestazione " +
+                "INNER JOIN provincia ON provincia.sigla=ticket.idprovincia " +
+                "WHERE ticket.id=?;";
+
+        Connection conn = startConnection();
+        ArrayList<Pagamento> retVal = new ArrayList<Pagamento>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codicefiscale);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                Pagamento r = new Pagamento(
+                        results.getDate(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getDate(4),
+                        results.getString(5),
+                        results.getInt(6));
+
+                retVal.add(r);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get lista pagamenti minimale " + ex.getMessage());
+        }
+        return retVal;
+    }
+
+
+    public Pagamento getPagamento(int idPagamento) {
+
+        String query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                "FROM prescrizioni " +
+                "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                "INNER JOIN medico ON medico.codicefiscale=medico " +
+                "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
+                "WHERE prescrizioni.id=?";
+
+        Connection conn = startConnection();
+        Pagamento retVal = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, idPagamento);
+            ResultSet results = stmt.executeQuery();
+
+            if (results.next()) {
+                retVal = new Pagamento(
+                        results.getDate(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getDate(4),
+                        results.getString(5),
+                        results.getInt(6));
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get pagamento singolo " + ex.getMessage());
         }
         return retVal;
     }
