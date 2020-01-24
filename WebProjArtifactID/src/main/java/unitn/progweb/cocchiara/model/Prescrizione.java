@@ -8,15 +8,15 @@ public class Prescrizione {
     String medico;
     Date dataevasione;
     String provincia;
-    int id;
+    int idprescrizione;
 
-    public Prescrizione(Date datarilascio, String prestazione, String medico, Date dataevasione, String provincia, int id) {
+    public Prescrizione(Date datarilascio, String prestazione, String medico, Date dataevasione, String provincia, int idprescrizione) {
         this.datarilascio = datarilascio;
         this.prestazione = prestazione;
         this.medico = medico;
         this.dataevasione = dataevasione;
         this.provincia = provincia;
-        this.id = id;
+        this.idprescrizione = idprescrizione;
     }
 
     public Date getDatarilascio() {
@@ -35,8 +35,8 @@ public class Prescrizione {
         return dataevasione;
     }
 
-    public int getId() {
-        return id;
+    public int getIdprescrizione() {
+        return idprescrizione;
     }
 
 }
