@@ -40,7 +40,6 @@
                     <div class="card-body">
                         <table class="table dataTable my-0" id="pagamenti"></table>
                     </div>
-                    --
                 </div>
             </div>
         </div>
@@ -57,10 +56,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="../assets/js/theme.js"></script>
 
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+
     <script src="<%=request.getContextPath()%>/js/tables.js"></script>
     <script>
         $( document ).ready(function() {
-            tables_listapagamenti("#pagamenti","<%=request.getContextPath()%>/sispaz/pagamenti","<%=request.getContextPath()%>/sispaz/pagamentosingola?idprescrizione=");
+            tables_listapagamenti("#pagamenti","<%=request.getContextPath()%>/sispaz/getpagamenti","<%=request.getContextPath()%>/sispaz/pagamentosingola?idprescrizione=");
         });
     </script>
 </body>

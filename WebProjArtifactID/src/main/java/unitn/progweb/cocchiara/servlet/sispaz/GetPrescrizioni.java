@@ -3,6 +3,7 @@ package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import unitn.progweb.cocchiara.model.Pagamento;
+import unitn.progweb.cocchiara.model.Prescrizione;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.ServletException;
@@ -17,8 +18,8 @@ import java.util.ArrayList;
 
 // Extend HttpServlet class
 
-@WebServlet("/sispaz/getpagamenti")
-public class GetPagamenti extends HttpServlet {
+@WebServlet("/sispaz/getprescrizioni")
+public class GetPrescrizioni extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
@@ -30,7 +31,7 @@ public class GetPagamenti extends HttpServlet {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
-        ArrayList<Pagamento> listaPagamenti = utente.getPaziente().getListPagamentiMinimale();
+        ArrayList<Prescrizione> listaPagamenti = utente.getPaziente().getListaPrescrizioniMinimale();
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = "{ \"content\": " + gson.toJson(listaPagamenti) + "}";
