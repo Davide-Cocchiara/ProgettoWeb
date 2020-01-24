@@ -7,9 +7,6 @@
     <title>Table - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-
-
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
@@ -28,6 +25,7 @@
     <link rel="stylesheet" href="../assets/css/Highlight-Phone.css">
     <link rel="stylesheet" href="../assets/css/Team-Boxed.css">
 </head>
+
 <body id="page-top">
     <div id="wrapper">
         <jsp:include page="sidebar.jsp" />
@@ -37,19 +35,27 @@
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header d-inline-flex" style="height: 55px;">
-                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referti</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Pagamento</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
                             href="#" style="width: 40;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a></div>
-                    <div class="card-body">
-                        <table class="table dataTable my-0" id="referti"></table>
-                    </div>
-                </div>
-            </div>
+                    <div class="card-body"
+                        style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">00/00/0000</span></div>
+                    <div
+                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Controllo Piedi</span></div>
+                <div
+                    class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Costo</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">123,3€&nbsp;</span></div>
+            <div
+                class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data&nbsp;Pagamento</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+        <div
+            class="card-body" style="padding: 1;height: 50px;"><a class="card-link text-center border rounded border-primary d-inline-flex float-right align-items-lg-center" href="#">Paga Ora&nbsp;<i class="far fa-credit-card" style="font-size: 50px;"></i></a></div>
+    <div class="card-body"></div>
+    </div>
+    </div>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
         </div>
-        <footer class="bg-white sticky-footer">
-            <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
-            </div>
-        </footer>
+    </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -57,16 +63,6 @@
     <script src="../assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="../assets/js/theme.js"></script>
-
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
-    <script src="<%=request.getContextPath()%>/js/tables.js"></script>
-    <script>
-        $( document ).ready(function() {
-        tables_listareferti("#referti","<%=request.getContextPath()%>/sispaz/getreferti","<%=request.getContextPath()%>/sispaz/refertosingolo?referto=");
-        });
-    </script>
 </body>
 
 </html>
