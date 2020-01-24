@@ -41,8 +41,12 @@ public class ChangeMedico extends HttpServlet {
         // Get list of medici
         ArrayList<String> listaCodiciMedici = (ArrayList<String>) session.getAttribute("codicefiscalemedici");
         session.setAttribute("codicefiscalemedici",null); // No longer needed.
-        if (nuovomedico!= null && nuovomedico>=0 && nuovomedico<listaCodiciMedici.size() && !error) { // If range is valid
-            utente.getPaziente().setMedicoAssegnato(listaCodiciMedici.get(nuovomedico)); // Set medico with index as codice fiscale
+        if (nuovomedico!= null
+                && nuovomedico>=0
+                && nuovomedico<listaCodiciMedici.size()
+                && !error
+                && utente.getPaziente().setMedicoAssegnato(listaCodiciMedici.get(nuovomedico))) { // If range is valid
+            ; // Set medico with index as codice fiscale
             response.sendRedirect(request.getContextPath() + "/sispaz/infomedico?changedmedico=true");
         } else {
             response.sendRedirect(request.getContextPath() + "/sispaz/infomedico?changedmedico=false");

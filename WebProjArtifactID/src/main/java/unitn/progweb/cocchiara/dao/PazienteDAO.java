@@ -104,7 +104,7 @@ public class PazienteDAO extends BasicDAO {
                 stmt.setString(1, codiceFiscale);
             }
             else {
-                query = "INSERT INTO medicoassegnato VALUES(?,?) ON CONFLICT DO UPDATE SET medico=?;";
+                query = "INSERT INTO medicoassegnato(paziente,medico) VALUES(?,?) ON CONFLICT (paziente) DO UPDATE SET medico=?;";
                 stmt = conn.prepareStatement(query);
                 stmt.setString(1, codiceFiscale);
                 stmt.setString(2, codiceMedico);
