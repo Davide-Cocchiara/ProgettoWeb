@@ -4,8 +4,13 @@ package unitn.progweb.cocchiara.model;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.dao.PazienteDAO;
+import unitn.progweb.cocchiara.servlet.sispaz.RefertoSingolo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+
 
 public class Paziente {
     String codicefiscale = "";
@@ -99,5 +104,10 @@ public class Paziente {
         }
         else
             return false;
+    }
+
+    public ArrayList<Referto> getListaRefertiMinimale() {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.getListaRefertiMinimale(codicefiscale);
     }
 }

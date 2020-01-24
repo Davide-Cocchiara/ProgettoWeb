@@ -3,10 +3,13 @@ package unitn.progweb.cocchiara.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.model.Paziente;
+import unitn.progweb.cocchiara.model.Referto;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.swing.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PazienteDAO extends BasicDAO {
 
@@ -118,5 +121,72 @@ public class PazienteDAO extends BasicDAO {
             System.err.println("Unable to change medico for user: " + ex.getMessage());
             return false;
         }
+    }
+
+    public ArrayList<Referto> getListaRefertiMinimale(String codicefiscale) {
+
+        String query = "SELECT data,  descrizione, CONCAT(cognome,' ', nome), visite.id FROM visite INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                "INNER JOIN persona ON visite.medico = persona.codicefiscale WHERE visite.paziente=?";
+
+        Connection conn = startConnection();
+        ArrayList<Referto> retVal = new ArrayList<Referto>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codicefiscale);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                Referto r = new Referto(
+                        results.getDate(1),
+                        results.getString(2),
+                        results.getString(3),
+                        "",
+                results.getInt(4));
+
+                retVal.add(r);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get lista referti minimale " + ex.getMessage());
+        }
+        return retVal;
+    }
+
+    public Referto getReferto(int idReferto) {
+
+        String query = "SELECT DATA,descrizione,CONCAT(cognome,' ', nome) AS medico,relazione,visite.id" +
+                " FROM visite " +
+                " INNER JOIN medico ON medico.codicefiscale=medico " +
+                " INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                " INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                " where visite.id=?;";
+
+        Connection conn = startConnection();
+        Referto retVal = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, idReferto);
+            ResultSet results = stmt.executeQuery();
+
+            if (results.next()) {
+                retVal = new Referto(
+                        results.getDate(1),
+                        results.getString(2),
+                        results.getString(3),
+                        "",
+                        results.getInt(4));
+
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get referto singolo " + ex.getMessage());
+        }
+        return retVal;
     }
 }
