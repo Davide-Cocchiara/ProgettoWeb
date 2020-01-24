@@ -315,7 +315,7 @@ public class PazienteDAO extends BasicDAO {
                 "AND ssp_prestazionidisponibili.idprestazione=ticket.idprestazione " +
                 "INNER JOIN prestazioni ON prestazioni.id=ticket.idprestazione " +
                 "INNER JOIN provincia ON provincia.sigla=ticket.idprovincia " +
-                "WHERE ticket.id=?;";
+                "WHERE ticket.paziente=?;";
 
         Connection conn = startConnection();
         ArrayList<Pagamento> retVal = new ArrayList<Pagamento>();
