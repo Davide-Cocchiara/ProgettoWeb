@@ -3,6 +3,7 @@ package unitn.progweb.cocchiara.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.model.Paziente;
+import unitn.progweb.cocchiara.model.Prescrizione;
 import unitn.progweb.cocchiara.model.Referto;
 import unitn.progweb.cocchiara.model.Utente;
 
@@ -176,8 +177,8 @@ public class PazienteDAO extends BasicDAO {
                         results.getDate(1),
                         results.getString(2),
                         results.getString(3),
-                        "",
-                        results.getInt(4));
+                        results.getString(4),
+                        results.getInt(5));
 
             }
 
@@ -186,6 +187,82 @@ public class PazienteDAO extends BasicDAO {
             conn.close();
         } catch (SQLException ex) {
             System.err.println("Unable to get referto singolo " + ex.getMessage());
+        }
+        return retVal;
+    }
+
+
+
+    public ArrayList<Prescrizione> getListaPrescrizioniMinimale(String codicefiscale) {
+
+        String query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', nome) AS medico, dataevasione, prescrizioni.provinciarilascio, prescrizioni.id " +
+                "FROM prescrizioni " +
+                "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                "INNER JOIN medico ON medico.codicefiscale=medico " +
+                "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                "WHERE prescrizioni.paziente=? ";
+
+        Connection conn = startConnection();
+        ArrayList<Prescrizione> retVal = new ArrayList<Prescrizione>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codicefiscale);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                Prescrizione r = new Prescrizione(
+                        results.getDate(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getDate(4),
+                        results.getString(5),
+                        results.getInt(6));
+
+                retVal.add(r);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get lista referti minimale " + ex.getMessage());
+        }
+        return retVal;
+    }
+
+
+    public Prescrizione getPrescrizione(int idPrescrizione) {
+
+        String query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                "FROM prescrizioni " +
+                "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                "INNER JOIN medico ON medico.codicefiscale=medico " +
+                "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                "INNER JOIN provincia ON provincia.sigla=provinciarilascio" +
+                "WHERE prescrizioni.id=?";
+
+        Connection conn = startConnection();
+        Prescrizione retVal = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, idPrescrizione);
+            ResultSet results = stmt.executeQuery();
+
+            if (results.next()) {
+                retVal = new Prescrizione(
+                        results.getDate(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getDate(4),
+                        results.getString(5),
+                        results.getInt(6));
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get prescrizione singola " + ex.getMessage());
         }
         return retVal;
     }
