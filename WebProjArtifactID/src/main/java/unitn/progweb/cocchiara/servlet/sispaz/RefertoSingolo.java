@@ -43,8 +43,9 @@ public class RefertoSingolo extends HttpServlet {
             rd.forward(request,response);
         }
         else {
-            if (utente.getPaziente().isMyReferto(idreferto)) {
-                Referto referto = utente.getPaziente().getReferto(idreferto);
+            Referto referto = utente.getPaziente().getReferto(idreferto,utente.getPaziente().getCodicefiscale());
+            if (referto != null) {
+
                 request.setAttribute("referto",referto);
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sispaz/referto-singolo.jsp");
                 rd.forward(request,response);

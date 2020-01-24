@@ -104,10 +104,11 @@ public class PazienteDAO extends BasicDAO {
                 stmt.setString(1, codiceFiscale);
             }
             else {
-                query = "REPLACE INTO medicoassegnato VALUES(?,?);";
+                query = "INSERT INTO medicoassegnato VALUES(?,?) ON CONFLICT DO UPDATE SET medico=?;";
                 stmt = conn.prepareStatement(query);
                 stmt.setString(1, codiceFiscale);
                 stmt.setString(2, codiceMedico);
+                stmt.setString(3, codiceMedico);
             }
 
             stmt.execute();
@@ -153,20 +154,40 @@ public class PazienteDAO extends BasicDAO {
         return retVal;
     }
 
-    public Referto getReferto(int idReferto) {
+    public Referto getReferto(int idReferto, String codicefiscale) {
 
-        String query = "SELECT DATA,descrizione,CONCAT(cognome,' ', nome) AS medico,relazione,visite.id" +
-                " FROM visite " +
-                " INNER JOIN medico ON medico.codicefiscale=medico " +
-                " INNER JOIN prestazioni ON prestazione=prestazioni.id " +
-                " INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                " where visite.id=?;";
-
+        String query;
         Connection conn = startConnection();
+        PreparedStatement stmt;
+
+
+
         Referto retVal = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, idReferto);
+
+            if(codicefiscale == null) {
+                query = "SELECT DATA,descrizione,CONCAT(cognome,' ', nome) AS medico,relazione,visite.id" +
+                        " FROM visite " +
+                        " INNER JOIN medico ON medico.codicefiscale=medico " +
+                        " INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                        " INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                        " where visite.id=?;";
+                stmt = conn.prepareStatement(query);
+                stmt.setInt(1, idReferto);
+            }
+            else
+            {
+                query = "SELECT DATA,descrizione,CONCAT(cognome,' ', nome) AS medico,relazione,visite.id" +
+                        " FROM visite " +
+                        " INNER JOIN medico ON medico.codicefiscale=medico " +
+                        " INNER JOIN prestazioni ON prestazione=prestazioni.id " +
+                        " INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
+                        " where visite.id=? AND visite.paziente=?;";
+                stmt = conn.prepareStatement(query);
+                stmt.setInt(1, idReferto);
+                stmt.setString(2, codicefiscale);
+            }
+
             ResultSet results = stmt.executeQuery();
 
             if (results.next()) {
