@@ -1,29 +1,29 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profile - Servizi Sanitari per il cittadino</title>
+    <title>Table - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="../../assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="../../assets/css/Article-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Features-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="../../assets/css/Footer-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="../../assets/css/Highlight-Phone.css">
-    <link rel="stylesheet" href="../../assets/css/Team-Boxed.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Team-Boxed.css">
 </head>
 
 <body id="page-top">
@@ -36,8 +36,8 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisMed/paziente/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-referti.html"><i class="fas fa-book-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Referti</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisMed/paziente/storico-referti.html"><i class="fas fa-book-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Referti</span></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-prescrizioni.html"><i class="fas fa-notes-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Prescrizioni</span></a></li>
                     <li class="nav-item"
                         role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/nuova-ricetta.html"><i class="fas fa-file-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Ricetta</span></a></li>
@@ -98,7 +98,7 @@
                                         role="menu">
                                         <h6 class="dropdown-header">alerts center</h6>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar4.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar4.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -107,7 +107,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar2.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar2.jpeg">
                                                 <div class="status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -116,7 +116,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar3.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar3.jpeg">
                                                 <div class="bg-warning status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -125,7 +125,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar5.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar5.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -138,7 +138,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow" role="presentation">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="filter: brightness(200%) saturate(200%);">Nome Cognome</span><img class="border rounded-circle img-profile" src="../../assets/img/utente.jpg"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="filter: brightness(200%) saturate(200%);">Nome Cognome</span><img class="border rounded-circle img-profile" src="<%=request.getContextPath()%>/assets/img/utente.jpg"></a>
                                     <div
                                         class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="/SisMed/profilo-medico.html"><i class="fas fa-persona fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
@@ -148,95 +148,62 @@
             </div>
             </nav>
             <div class="container-fluid">
-                <h3 class="text-dark mb-4">Info Paziente</h3>
-                <div class="row mb-3">
-                    <div class="col-lg-4">
-                        <div class="card mb-3">
-                            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="../../assets/img/3.jpg" width="160" height="160">
-                                <div class="mb-3"></div>
-                            </div>
-                        </div>
+                <div class="card shadow">
+                    <div class="card-header d-inline-flex" style="height: 55px;">
+                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Storico Referti</strong></p>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="row mb-3 d-none">
-                            <div class="col">
-                                <div class="card text-white bg-primary shadow">
-                                    <div class="card-body">
-                                        <div class="row mb-2">
-                                            <div class="col">
-                                                <p class="m-0">Peformance</p>
-                                                <p class="m-0"><strong>65.2%</strong></p>
-                                            </div>
-                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                                        </div>
-                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                    </div>
-                                </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 text-nowrap">
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
                             </div>
-                            <div class="col">
-                                <div class="card text-white bg-success shadow">
-                                    <div class="card-body">
-                                        <div class="row mb-2">
-                                            <div class="col">
-                                                <p class="m-0">Peformance</p>
-                                                <p class="m-0"><strong>65.2%</strong></p>
-                                            </div>
-                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                                        </div>
-                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+                                <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
                             </div>
                         </div>
-                        <div class="card shadow mb-3">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 font-weight-bold">Dati</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly=""></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>Data di nascita</strong></label><input class="form-control" type="text" placeholder="0/0/0000" name="nascita" readonly=""></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group"><label for="last_name"><strong>Luogo di nascita</strong></label><input class="form-control" type="text" placeholder="Gubbio, PG" name="luogonascita" readonly=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>Sesso</strong></label><input class="form-control" type="text" placeholder="Mischio" name="sesso" readonly=""></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>Codice Fiscale</strong></label><input class="form-control" type="text" placeholder="CGNNMO00A01E256D" name="codicefiscale" readonly=""></div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table dataTable my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 144px;">Data</th>
+                                        <th>Prestazione</th>
+                                        <th>Medico</th>
+                                        <th>Dettagli</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>00/00/0000</td>
+                                        <td>Controllo Piedi</td>
+                                        <td>Dr Do Little</td>
+                                        <td><a class="d-inline-flex float-left justify-content-xl-center align-items-xl-center" href="#"><i class="far fa-list-alt d-inline-flex d-xl-flex justify-content-xl-center" style="font-size: 20px;line-height: 18px;color: rgb(51,0,255);font-weight: bold;font-style: normal;"></i>&nbsp;Info</a></td>
+                                    </tr>
+                                    <tr></tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><strong>Data</strong><br></td>
+                                        <td><strong>Prestazione</strong></td>
+                                        <td><strong>Medico</strong></td>
+                                        <td><strong>Dettagli</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <p class="text-primary m-0 font-weight-bold">Contatti</p>
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
                             </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="form-group"><label for="address"><strong>Mail</strong></label><input class="form-control" type="text" placeholder="example@address.com" name="email" readonly=""></div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="form-group"><label for="city"><strong>Indirizzo</strong></label><input class="form-control" type="text" placeholder="Via Gnocchi, 00" name="indirizzo" readonly=""></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group"><label for="country"><strong>Provincia</strong></label><input class="form-control" type="text" placeholder="Gubbio, GB" name="indirizzo" readonly=""></div>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div class="col-md-6">
+                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
@@ -249,12 +216,12 @@
             </div>
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
-    <script src="../../assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="../../assets/js/theme.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </body>
 
 </html>

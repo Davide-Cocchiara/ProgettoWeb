@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Table - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="../../assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="../../assets/css/Article-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Features-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="../../assets/css/Footer-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="../../assets/css/Highlight-Phone.css">
-    <link rel="stylesheet" href="../../assets/css/Team-Boxed.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Team-Boxed.css">
 </head>
 
 <body id="page-top">
@@ -98,7 +98,7 @@
                                         role="menu">
                                         <h6 class="dropdown-header">alerts center</h6>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar4.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar4.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -107,7 +107,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar2.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar2.jpeg">
                                                 <div class="status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -116,7 +116,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar3.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar3.jpeg">
                                                 <div class="bg-warning status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -125,7 +125,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar5.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar5.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -138,7 +138,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow" role="presentation">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="filter: brightness(200%) saturate(200%);">Nome Cognome</span><img class="border rounded-circle img-profile" src="../../assets/img/utente.jpg"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="filter: brightness(200%) saturate(200%);">Nome Cognome</span><img class="border rounded-circle img-profile" src="<%=request.getContextPath()%>/assets/img/utente.jpg"></a>
                                     <div
                                         class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="/SisMed/profilo-medico.html"><i class="fas fa-persona fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
@@ -150,35 +150,40 @@
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header d-inline-flex" style="height: 55px;">
-                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Prescrizione</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
                             href="#" style="width: 40;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a></div>
                     <div class="card-body"
-                        style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Rilascio</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">00/00/0000</span></div>
+                        style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">00/00/0000</span></div>
                     <div
-                        class="card-body" style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Evasione</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Controllo Piedi</span></div>
                 <div
-                    class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Controllo Piedi</span></div>
+                    class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Medico</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Dr. Dotto Dotto</span></div>
             <div
-                class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Medico</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Dr. Dotto Dotto</span></div>
-        <div
-            class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Provincia</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Marzapaneto</span></div>
-    <div
-        class="card-body"></div>
+                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 18px;margin-top: 8px;"><strong>Relazione</strong></span>
+                <p class="border rounded border-light shadow-sm" style="background-color: #f9f9f9;margin-top: 6px;font-family: Lora, serif;">Fromage paneer brie. Camembert de normandie cheddar lancashire fromage babybel cheddar goat brie. Cheesy feet monterey jack airedale cottage cheese swiss gouda fromage frais fondue. Cream cheese macaroni cheese.Melted cheese gouda goat.
+                    Croque monsieur chalk and cheese cheese strings stinking bishop cream cheese camembert de normandie caerphilly cheese and wine. Jarlsberg hard cheese pecorino airedale dolcelatte feta monterey jack pecorino. Cheeseburger cheese strings
+                    lancashire when the cheese comes out everybody's happy.Cheesy feet manchego the big cheese. Feta ricotta boursin cream cheese jarlsberg camembert de normandie cheese on toast the big cheese. Airedale bavarian bergkase cream cheese
+                    manchego cheesy grin mozzarella manchego smelly cheese. When the cheese comes out everybody's happy brie cheese strings cheesy grin cheese strings.Cheesecake paneer cheesy feet. Bavarian bergkase brie cheddar airedale ricotta parmesan
+                    queso ricotta. Cheese and wine the big cheese babybel cheesy feet say cheese cheesy grin fromage frais jarlsberg. Cheesy feet cheese strings cow babybel fromage frais chalk and cheese.Caerphilly ricotta babybel. The big cheese when
+                    the cheese comes out everybody's happy goat emmental edam the big cheese cheese strings cheese strings. Rubber cheese cauliflower cheese lancashire cauliflower cheese babybel cheese strings caerphilly macaroni cheese. Rubber cheese
+                    mozzarella stilton cottage cheese rubber cheese stinking bishop caerphilly say cheese. Edam cheese strings.<br></p>
         </div>
+        <div class="card-body"></div>
+    </div>
+    </div>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
         </div>
-        </div>
-        <footer class="bg-white sticky-footer">
-            <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
-            </div>
-        </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-        <script src="../../assets/js/jquery.min.js"></script>
-        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../../assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
-        <script src="../../assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-        <script src="../../assets/js/theme.js"></script>
+    </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </body>
 
 </html>

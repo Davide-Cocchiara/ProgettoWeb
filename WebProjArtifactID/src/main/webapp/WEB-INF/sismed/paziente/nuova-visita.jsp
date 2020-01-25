@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Table - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="../../assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="../../assets/css/Article-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Features-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="../../assets/css/Footer-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="../../assets/css/Highlight-Phone.css">
-    <link rel="stylesheet" href="../../assets/css/Team-Boxed.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Features-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Blue--Sticky-Header--Smooth-Scroll.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Team-Boxed.css">
 </head>
 
 <body id="page-top">
@@ -38,10 +38,10 @@
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-referti.html"><i class="fas fa-book-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Referti</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisMed/paziente/storico-prescrizioni.html"><i class="fas fa-notes-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Prescrizioni</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-prescrizioni.html"><i class="fas fa-notes-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Prescrizioni</span></a></li>
                     <li class="nav-item"
                         role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/nuova-ricetta.html"><i class="fas fa-file-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Ricetta</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/nuova-visita.html"><i class="fas fa-diagnoses" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Visita</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisMed/paziente/nuova-visita.html"><i class="fas fa-diagnoses" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Visita</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -98,7 +98,7 @@
                                         role="menu">
                                         <h6 class="dropdown-header">alerts center</h6>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar4.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar4.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -107,7 +107,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar2.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar2.jpeg">
                                                 <div class="status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -116,7 +116,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar3.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar3.jpeg">
                                                 <div class="bg-warning status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -125,7 +125,7 @@
                                             </div>
                                         </a>
                                         <a class="d-flex align-items-center dropdown-item" href="#">
-                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="../../assets/img/avatars/avatar5.jpeg">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar5.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="font-weight-bold">
@@ -138,7 +138,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow" role="presentation">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="filter: brightness(200%) saturate(200%);">Nome Cognome</span><img class="border rounded-circle img-profile" src="../../assets/img/utente.jpg"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="filter: brightness(200%) saturate(200%);">Nome Cognome</span><img class="border rounded-circle img-profile" src="<%=request.getContextPath()%>/assets/img/utente.jpg"></a>
                                     <div
                                         class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="/SisMed/profilo-medico.html"><i class="fas fa-persona fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
@@ -150,81 +150,34 @@
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header d-inline-flex" style="height: 55px;">
-                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Prescrizioni</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
-                            href="#" style="width: 40;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a></div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                            </div>
-                        </div>
-                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                            <table class="table dataTable my-0" id="dataTable">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 144px;">Data</th>
-                                        <th>Prestazione</th>
-                                        <th>Medico</th>
-                                        <th>Evaso</th>
-                                        <th>Dettagli</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>00/00/0000</td>
-                                        <td>NomePrestazione</td>
-                                        <td>Dr. Babba Boo</td>
-                                        <td><strong>No</strong></td>
-                                        <td><a href="#"><i class="far fa-list-alt" style="font-size: 20px;line-height: 18px;color: rgb(0,178,255);font-weight: bold;font-style: normal;"></i></a></td>
-                                    </tr>
-                                    <tr></tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td><strong>Data</strong></td>
-                                        <td><strong>Prestazione</strong></td>
-                                        <td><strong>Medico</strong></td>
-                                        <td><strong>Evaso</strong></td>
-                                        <td><strong>Dettagli</strong></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 align-self-center">
-                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                            </div>
-                            <div class="col-md-6">
-                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto</strong></p>
                     </div>
-                </div>
-            </div>
+                    <div class="card-body" style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">0/0/2020 (Today)</span></div>
+                    <div
+                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><select class="border rounded float-right" style="font-size: 20px;"><optgroup label="Prestazioni Disponibili"><option value="12" selected="">Visita Base</option><option value="13">Visita Piedi</option><option value="14">Visita Boo</option></optgroup></select></div>
+                <div
+                    class="card-body" style="height: 25px;padding: 0px;padding-left: 20px;padding-top: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
+            <div class="card-body d-inline-flex flex-grow-1 flex-shrink-1" style="height: auto;padding-top: 10px;"><textarea class="border rounded flex-grow-1" style="width: 100%;height: 200px;" wrap="hard"></textarea></div>
+            <div class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">123,03€</span></div>
+            <div
+                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-top: 8px;"><strong>Pagamento Effettuato</strong></span><select class="border rounded float-right" style="font-size: 20px;"><option value="0" selected="">--</option><option value="13">Sì</option><option value="14">No</option></select></div>
+        <div
+            class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Completa referto</button></div>
+    </div>
+    </div>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
         </div>
-        <footer class="bg-white sticky-footer">
-            <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
-            </div>
-        </footer>
+    </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
-    <script src="../../assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="../../assets/js/theme.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </body>
 
 </html>

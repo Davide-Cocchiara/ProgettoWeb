@@ -39,7 +39,7 @@
                 <div class="row mb-3">
                     <div class="col-lg-4">
                         <div class="card mb-3">
-                            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="<%=request.getContextPath()%>/assets/img/medico.jpg" width="160" height="160">
+                            <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="<%=request.getContextPath()%>/sispaz/fotomedico" width="160" height="160">
                                 <div class="mb-3"></div>
                             </div>
                         </div>
