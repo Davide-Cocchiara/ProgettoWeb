@@ -83,11 +83,10 @@ function tables_listapazienti( selector,path_richiesta,path_dettaglio) {
         },
         // TODO bro
         "columns": [
-            {"data": "dataemissione", "title": "Data Emissione"},
-            {"data": "prestazione", "title": "Prestazione"},
-            {"data": "costo", "title": "Costo"},
-            {"data": "datapagamento", "title": "Data Pagamento" ,"sDefaultContent": "<div style=\"color:red\">Non pagato!</div>"},
-            {"data": "provinciarilascio", "title": "Provincia Rilascio"},
+            {"data": "codicefiscale", "title": "Codice Fiscale"},
+            {"data": "nome", "title": "Nome"},
+            {"data": "cognome", "title": "Cognome"},
+            {"data": "datanascita", "title": "Data Nascita" },
             {
                 "title": "Dettagli", data: null,
                 "createdCell": function (td, cellData, rowData, row, col) {

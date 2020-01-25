@@ -2,6 +2,7 @@ package unitn.progweb.cocchiara.model;
 
 import org.jetbrains.annotations.NotNull;
 import unitn.progweb.cocchiara.dao.MedicoDAO;
+import unitn.progweb.cocchiara.dao.PazienteDAO;
 
 import java.util.ArrayList;
 
@@ -41,8 +42,12 @@ public class Medico  {
         return md.getListaPazientiMinimale(codiceMedico);
     }
 
-    public Paziente getOwnpaziente(String s_selectedpaziente) {
-        // TODO bro
-        return null;
+    public Paziente getOwnPaziente(@NotNull String codiceMedico, @NotNull String s_selectedpaziente) {
+        PazienteDAO pd = new PazienteDAO();
+        Paziente p = pd.getUserFromCodice(s_selectedpaziente);
+        if(p != null && p.medicoAssegnato.equals(codiceMedico))
+            return p;
+        else
+            return null;
     }
 }

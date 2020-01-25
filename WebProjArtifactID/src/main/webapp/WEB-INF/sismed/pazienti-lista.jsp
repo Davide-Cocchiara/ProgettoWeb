@@ -75,7 +75,7 @@
     <script src="<%=request.getContextPath()%>/js/tables.js"></script>
     <script>
         $( document ).ready(function() {
-            tables_listapazienti("#pazienti","<%=request.getContextPath()%>/sismed/getpazienti","<%=request.getContextPath()%>/sismed/selectpaziente?paziente=");
+            tables_listapazienti("#pazienti","<%=request.getContextPath()%>/sismed/getpazienti","<%=request.getContextPath()%>/sismed/selectpaziente?selectedpaziente=");
         });
     </script>
     <script src="<%=request.getContextPath()%>/js/printThis.js"></script>

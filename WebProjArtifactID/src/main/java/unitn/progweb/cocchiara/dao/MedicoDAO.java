@@ -102,4 +102,5 @@ public class MedicoDAO extends BasicDAO {
         }
         return retVal;
     }
+
 }
