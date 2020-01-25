@@ -35,4 +35,9 @@ public class Medico  {
         // TODO bro
         return null;
     }
+
+    public Paziente getOwnpaziente(String s_selectedpaziente) {
+        // TODO bro
+        return null;
+    }
 }
