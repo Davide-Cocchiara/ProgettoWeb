@@ -1,5 +1,6 @@
 package unitn.progweb.cocchiara.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Medico  {
@@ -28,5 +29,10 @@ public class Medico  {
     public boolean setTelefonoclinica(String telefono) {
         // TODO bro
         return false;
+    }
+
+    public ArrayList<Paziente> getListPazienti() {
+        // TODO bro
+        return null;
     }
 }
