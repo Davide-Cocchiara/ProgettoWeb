@@ -64,7 +64,7 @@ public class GetQRPrescrizione extends HttpServlet {
                         "\nCodice univoco prescrizione: "+prescrizione.getIdprescrizione()+
                         "\nDescrizione prestazione: "+prescrizione.getPrestazione();
                 try {
-                    BitMatrix bitMatrix = qrCodeWriter.encode(QRtext, BarcodeFormat.QR_CODE, 500, 500);
+                    BitMatrix bitMatrix = qrCodeWriter.encode(QRtext, BarcodeFormat.QR_CODE, 125, 125);
 
                     ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
                     MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream);
