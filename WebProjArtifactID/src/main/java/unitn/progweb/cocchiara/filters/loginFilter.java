@@ -46,34 +46,38 @@ public class loginFilter implements Filter{
             cookies = request.getCookies();
 
             if( cookies != null ){
-                for (int i = 0; i < cookies.length; i++){
-                    cookie = cookies[i];
-                    if(cookie.getName().equals("login"))
-                    {
-                        UtenteDAO ud = new UtenteDAO();
+                try {
+                    for (int i = 0; i < cookies.length; i++) {
+                        cookie = cookies[i];
+                        if (cookie.getName().equals("login")) {
+                            UtenteDAO ud = new UtenteDAO();
 
-                        Gson g = new Gson();
-                        Map.Entry<String,String> entr = new AbstractMap.SimpleEntry<>("","");
+                            Gson g = new Gson();
+                            Map.Entry<String, String> entr = new AbstractMap.SimpleEntry<>("", "");
 
-                        String cookieJsonVal = new String(Base64.getDecoder().decode(cookie.getValue()));
-                        entr = g.fromJson(cookieJsonVal, entr.getClass() );
+                            String cookieJsonVal = new String(Base64.getDecoder().decode(cookie.getValue()));
+                            entr = g.fromJson(cookieJsonVal, entr.getClass());
 
-                        String resultVal = ud.tryLoginWithCookie(entr.getKey(),entr.getValue());
-                        if(resultVal != null) // Cookie login success!
-                        {
-                            session.setAttribute("utente",ud.getUserFromCodice(resultVal));
+                            String resultVal = ud.tryLoginWithCookie(entr.getKey(), entr.getValue());
+                            if (resultVal != null) // Cookie login success!
+                            {
+                                session.setAttribute("utente", ud.getUserFromCodice(resultVal));
 
 
-                            if(!curPlace.equals("/login"))
-                                chain.doFilter(request, response);
-                            else
-                                response.sendRedirect(request.getContextPath() + "/welcome");
-                            return;
+                                if (!curPlace.equals("/login"))
+                                    chain.doFilter(request, response);
+                                else
+                                    response.sendRedirect(request.getContextPath() + "/welcome");
+                                return;
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
-
+                catch(Exception e)
+                {
+                    
+                }
             }
 
             // I'm not logged, go to login
