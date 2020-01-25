@@ -31,7 +31,7 @@ public class loginFilter implements Filter{
 
 
 
-        response.setContentType("text/html");
+        response.setContentType("text/html; charset=utf-8");
         response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
         response.setHeader("Pragma","no-cache");
         response.setHeader("Expires","0");
