@@ -19,12 +19,12 @@
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="nav navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisMed/paziente/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
-            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-referti.html"><i class="fas fa-book-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Referti</span></a></li>
-            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-prescrizioni.html"><i class="fas fa-notes-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Prescrizioni</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="<%=request.getContextPath()%>/sismed/paziente/infopaziente"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>${sessionScope.selectedpaziente.getCodicefiscale()}</strong><br><strong>${sessionScope.selectedpaziente.getNome()} ${sessionScope.selectedpaziente.getCognome()}</strong></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="<%=request.getContextPath()%>/sismed/paziente/storicoreferti"><i class="fas fa-book-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Referti</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="<%=request.getContextPath()%>/sismed/paziente/storicoprestazioni"><i class="fas fa-notes-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Storico Prescrizioni</span></a></li>
             <li class="nav-item"
-                role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/nuova-ricetta.html"><i class="fas fa-file-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Ricetta</span></a></li>
-            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/nuova-visita.html"><i class="fas fa-diagnoses" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Visita</span></a></li>
+                role="presentation"><a class="nav-link text-center" href="<%=request.getContextPath()%>/sismed/paziente/nuovaricetta"><i class="fas fa-file-medical" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Ricetta</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="<%=request.getContextPath()%>/sismed/paziente/nuovavisita"><i class="fas fa-diagnoses" style="font-size: 20px;"></i><span style="font-size: 20px;">Nuova Visita</span></a></li>
         </ul>
         <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>

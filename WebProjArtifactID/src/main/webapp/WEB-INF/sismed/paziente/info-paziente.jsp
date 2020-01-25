@@ -81,26 +81,26 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="col">
-                                            <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly=""></div>
+                                            <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly="" value="${sessionScope.selectedpaziente.getNome()}"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>Data di nascita</strong></label><input class="form-control" type="text" placeholder="0/0/0000" name="nascita" readonly=""></div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group"><label for="last_name"><strong>Luogo di nascita</strong></label><input class="form-control" type="text" placeholder="Gubbio, PG" name="luogonascita" readonly=""></div>
+                                            <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly="" value="${sessionScope.selectedpaziente.getCognome()}"></div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>Sesso</strong></label><input class="form-control" type="text" placeholder="Mischio" name="sesso" readonly=""></div>
+                                            <div class="form-group"><label for="first_name"><strong>Data di nascita</strong></label><input class="form-control" type="text" placeholder="0/0/0000" name="nascita" value="${sessionScope.selectedpaziente.etDatanascita()}" readonly=""></div>
                                         </div>
                                         <div class="col">
-                                            <div class="form-group"><label for="first_name"><strong>Codice Fiscale</strong></label><input class="form-control" type="text" placeholder="CGNNMO00A01E256D" name="codicefiscale" readonly=""></div>
+                                            <div class="form-group"><label for="last_name"><strong>Luogo di nascita</strong></label><input class="form-control" type="text" placeholder="Gubbio, PG" name="luogonascita" readonly="" value="${sessionScope.selectedpaziente.getLuogonascita()}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group"><label for="first_name"><strong>Sesso</strong></label><input class="form-control" type="text" placeholder="Mischio" name="sesso" readonly="" value="${sessionScope.selectedpaziente.getSesso()}"></div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group"><label for="first_name"><strong>Codice Fiscale</strong></label><input class="form-control" type="text" placeholder="CGNNMO00A01E256D" name="codicefiscale" readonly="" value="${sessionScope.selectedpaziente.getCodicefiscale()}"></div>
                                         </div>
                                     </div>
                                 </form>
@@ -112,13 +112,13 @@
                             </div>
                             <div class="card-body">
                                 <form>
-                                    <div class="form-group"><label for="address"><strong>Mail</strong></label><input class="form-control" type="text" placeholder="example@address.com" name="email" readonly=""></div>
+                                    <div class="form-group"><label for="address"><strong>Mail</strong></label><input class="form-control" type="text" placeholder="example@address.com" name="email" readonly=""  value="${sessionScope.selectedpaziente.getEmail()}"></div>
                                     <div class="form-row">
                                         <div class="col">
-                                            <div class="form-group"><label for="city"><strong>Indirizzo</strong></label><input class="form-control" type="text" placeholder="Via Gnocchi, 00" name="indirizzo" readonly=""></div>
+                                            <div class="form-group"><label for="city"><strong>Indirizzo</strong></label><input class="form-control" type="text" placeholder="Via Gnocchi, 00" name="indirizzo" readonly="" value="${sessionScope.selectedpaziente.getIndirizzo()}"></div>
                                         </div>
                                         <div class="col">
-                                            <div class="form-group"><label for="country"><strong>Provincia</strong></label><input class="form-control" type="text" placeholder="Gubbio, GB" name="indirizzo" readonly=""></div>
+                                            <div class="form-group"><label for="country"><strong>Provincia</strong></label><input class="form-control" type="text" placeholder="Gubbio, GB" name="indirizzo" readonly="" value="${sessionScope.selectedpaziente.getProvincia()}"></div>
                                         </div>
                                     </div>
                                 </form>
