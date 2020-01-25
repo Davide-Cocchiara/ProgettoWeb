@@ -132,4 +132,9 @@ public class Paziente {
         PazienteDAO pd = new PazienteDAO();
         return pd.getPrescrizione(idPrescrizione, codicefiscale);
     }
+    public Boolean pagaPagamento(int idPagamento,Date data) {
+        java.sql.Date sqlDate = new java.sql.Date(data.getTime());
+        PazienteDAO pd = new PazienteDAO();
+        return pd.pagaPagamento(idPagamento,sqlDate,codicefiscale);
+    }
 }
