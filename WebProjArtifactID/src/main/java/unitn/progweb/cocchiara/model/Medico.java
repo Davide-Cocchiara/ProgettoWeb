@@ -40,4 +40,9 @@ public class Medico  {
         MedicoDAO md = new MedicoDAO();
         return md.getListaPazientiMinimale(codiceMedico);
     }
+
+    public Paziente getOwnpaziente(String s_selectedpaziente) {
+        // TODO bro
+        return null;
+    }
 }
