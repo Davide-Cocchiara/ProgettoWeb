@@ -2,11 +2,13 @@ package unitn.progweb.cocchiara.dao;
 
 import org.jetbrains.annotations.NotNull;
 import unitn.progweb.cocchiara.model.Medico;
+import unitn.progweb.cocchiara.model.Paziente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class MedicoDAO extends BasicDAO {
 
@@ -37,5 +39,67 @@ public class MedicoDAO extends BasicDAO {
     }
 
 
+    public boolean setInfoClinica(@NotNull String codiceFiscale, @NotNull String indirizzo, @NotNull String numero) {
 
+            try {
+                String query = "UPDATE medico SET indirizzoclinica=?, telefonoclinica=? WHERE codicefiscale=?;";
+                Connection conn = startConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+
+                stmt = conn.prepareStatement(query);
+                stmt.setString(1, indirizzo);
+                stmt.setString(2, numero);
+                stmt.setString(3, codiceFiscale);
+
+                int result = stmt.executeUpdate();
+                stmt.close();
+                conn.close();
+
+                if (result != 1) {
+                    System.err.println("Unable to change clinica for user, records changed were: " + result);
+                    return false;
+                }
+                return true;
+            } catch (SQLException ex) {
+                System.err.println("Unable to change clinica for user: " + ex.getMessage());
+                return false;
+            }
+
+    }
+
+    public ArrayList<Paziente> getListaPazientiMinimale(String codiceMedico) {
+
+        String query = "SELECT codicefiscale, nome, cognome, datanascita FROM persona " +
+                "WHERE codicefiscale IN (SELECT paziente FROM medicoassegnato WHERE medico=?);";
+
+        Connection conn = startConnection();
+        ArrayList<Paziente> retVal = new ArrayList<Paziente>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codiceMedico);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                Paziente p = new Paziente(
+                        results.getString(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getDate(4),
+                        "",
+                        "",
+                        "",
+                        "",
+                        codiceMedico);
+
+                retVal.add(p);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get lista pazienti minimale " + ex.getMessage());
+        }
+        return retVal;
+    }
 }

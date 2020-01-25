@@ -234,7 +234,8 @@ public class PazienteDAO extends BasicDAO {
                         results.getString(3),
                         results.getDate(4),
                         results.getString(5),
-                        results.getInt(6));
+                        results.getInt(6),
+                        null);
 
                 retVal.add(r);
             }
@@ -261,7 +262,7 @@ public class PazienteDAO extends BasicDAO {
         try {
 
             if(codicefiscale == null) {
-                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id, medico.codicefiscale as codMedico " +
                         "FROM prescrizioni " +
                         "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
                         "INNER JOIN medico ON medico.codicefiscale=medico " +
@@ -273,7 +274,7 @@ public class PazienteDAO extends BasicDAO {
             }
             else
             {
-                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
+                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id , medico.codicefiscale as codMedico " +
                         "FROM prescrizioni " +
                         "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
                         "INNER JOIN medico ON medico.codicefiscale=medico " +
@@ -296,7 +297,8 @@ public class PazienteDAO extends BasicDAO {
                         results.getString(3),
                         results.getDate(4),
                         results.getString(5),
-                        results.getInt(6));
+                        results.getInt(6),
+                        results.getString(7));
             }
 
             results.close();

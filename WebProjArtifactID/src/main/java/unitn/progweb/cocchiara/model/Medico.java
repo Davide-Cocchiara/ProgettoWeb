@@ -1,7 +1,9 @@
 package unitn.progweb.cocchiara.model;
 
+import org.jetbrains.annotations.NotNull;
+import unitn.progweb.cocchiara.dao.MedicoDAO;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Medico  {
     String clinica = "";
@@ -21,18 +23,21 @@ public class Medico  {
         return telefonoclinica;
     }
 
-    public boolean setClinica(String indirizzo) {
-        // TODO bro
-        return  false;
+    public boolean setInfoClinica(@NotNull String codiceFiscale, @NotNull String indirizzo, @NotNull String numero) {
+
+        MedicoDAO md = new MedicoDAO();
+        if(md.setInfoClinica(codiceFiscale, indirizzo,numero)){
+            this.clinica = indirizzo;
+            this.telefonoclinica = numero;
+            return true;
+        }
+        else
+            return false;
     }
 
-    public boolean setTelefonoclinica(String telefono) {
-        // TODO bro
-        return false;
-    }
 
-    public ArrayList<Paziente> getListPazienti() {
-        // TODO bro
-        return null;
+    public ArrayList<Paziente> getListPazienti(@NotNull String codiceMedico) {
+        MedicoDAO md = new MedicoDAO();
+        return md.getListaPazientiMinimale(codiceMedico);
     }
 }

@@ -31,7 +31,7 @@ public class GetPazienti extends HttpServlet {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
-        ArrayList<Paziente> listaPagamenti = utente.getMedico().getListPazienti();
+        ArrayList<Paziente> listaPagamenti = utente.getMedico().getListPazienti(utente.getPaziente().getCodicefiscale());
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = "{ \"content\": " + gson.toJson(listaPagamenti) + "}";

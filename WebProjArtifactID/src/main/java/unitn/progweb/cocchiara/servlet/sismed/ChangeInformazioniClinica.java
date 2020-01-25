@@ -36,16 +36,12 @@ public class ChangeInformazioniClinica extends HttpServlet {
 
         if (indirizzo != null && telefono != null) { // validate input
             Boolean changed = false;
-            if (!indirizzo.equals(utente.getMedico().getClinica())) {
-                if (!utente.getMedico().setClinica(indirizzo)) {
+            if (!indirizzo.equals(utente.getMedico().getClinica()) || !telefono.equals(utente.getMedico().getTelefonoclinica())) {
+                if (!utente.getMedico().setInfoClinica(utente.getPaziente().getCodicefiscale(), indirizzo, telefono)) {
                     error=true;
                 } else {changed =true;}
             }
-            if (!telefono.equals(utente.getMedico().getTelefonoclinica())) {
-                if (!utente.getMedico().setTelefonoclinica(telefono)) {
-                    error=true;
-                } else {changed =true;}
-            }
+
             if (error) {
                 response.sendRedirect(request.getContextPath() + "/sismed/profilomedico?changedinfo=false");
             }
