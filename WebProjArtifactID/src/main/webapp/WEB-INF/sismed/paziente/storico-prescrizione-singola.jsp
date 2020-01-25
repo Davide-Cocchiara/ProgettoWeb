@@ -28,10 +28,10 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <jsp:include page="<%=request.getContextPath()%>/sismed/sidebar.jsp" />
+        <jsp:include page="/WEB-INF/sismed/paziente/sidebar.jsp" />
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <jsp:include page="<%=request.getContextPath()%>/sismed/header.jsp" />
+                <jsp:include page="/WEB-INF/sismed/header.jsp" />
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header d-inline-flex" style="height: 55px;">
