@@ -20,4 +20,13 @@ public class Medico  {
         return telefonoclinica;
     }
 
+    public boolean setClinica(String indirizzo) {
+        // TODO bro
+        return  false;
+    }
+
+    public boolean setTelefonoclinica(String telefono) {
+        // TODO bro
+        return false;
+    }
 }
