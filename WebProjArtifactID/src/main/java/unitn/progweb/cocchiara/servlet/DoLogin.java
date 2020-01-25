@@ -1,15 +1,17 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
 
+import com.google.gson.Gson;
+
 import unitn.progweb.cocchiara.dao.UtenteDAO;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.Base64;
+import java.util.Map;
+
 
 // Extend HttpServlet class
 
@@ -25,13 +27,25 @@ public class DoLogin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        //String rememberme = request.getParameter("rememberme");
-        // TODO
+        String rememberme = request.getParameter("rememberme");
+
         HttpSession session = request.getSession();
         UtenteDAO dao = new UtenteDAO();
         Utente loggedPersona = dao.getUserCred(username,password);
         if (loggedPersona != null) { // Login success!
             session.setAttribute("utente", loggedPersona);
+
+            if(rememberme != null) {
+                Map.Entry<String, String> cookVal = dao.createOrUpdateCookieForUser(username);
+                Gson g = new Gson();
+
+                String cookieBase64Val = Base64.getEncoder().encodeToString(g.toJson(cookVal).getBytes());
+
+                Cookie userCookie = new Cookie("login", cookieBase64Val);
+                userCookie.setMaxAge(60 * 60 * 24 * 7); // 1 week
+
+                response.addCookie(userCookie);
+            }
             response.sendRedirect("welcome");
         }
         else {

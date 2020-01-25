@@ -1,5 +1,8 @@
 package unitn.progweb.cocchiara.servlet;// Import required java libraries
 
+import unitn.progweb.cocchiara.dao.UtenteDAO;
+import unitn.progweb.cocchiara.model.Utente;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +24,12 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
         // Set response content type
         HttpSession session = request.getSession();
+
+        Utente u = (Utente)session.getAttribute("utente");
+        if(u != null)
+        {
+            u.deleteCookie();
+        }
         session.setAttribute("utente", null);
         session.invalidate();
         response.sendRedirect("login");

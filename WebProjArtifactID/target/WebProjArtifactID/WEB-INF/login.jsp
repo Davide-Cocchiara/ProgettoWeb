@@ -46,7 +46,7 @@
                                         <div class="form-group"><input class="form-control form-control-persona" type="password" id="password" placeholder="Password" name="password" required></div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="rememberme"/><label class="form-check-label custom-control-label" for="rememberme">Ricordami</label></div>
+                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="rememberme" name="rememberme"/><label class="form-check-label custom-control-label" for="rememberme">Ricordami</label></div>
                                             </div>
                                         </div><button class="btn btn-primary btn-block text-white btn-persona" type="submit">Accedi</button>
                                         <hr>

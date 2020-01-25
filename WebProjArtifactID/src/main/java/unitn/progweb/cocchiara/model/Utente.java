@@ -41,4 +41,9 @@ public class Utente {
         UtenteDAO pd = new UtenteDAO();
         return pd.changePassword(paziente.codicefiscale,password,newpassword);
     }
+
+    public void deleteCookie() {
+        UtenteDAO ud = new UtenteDAO();
+        ud.deleteCookieForUser(paziente.codicefiscale);
+    }
 }

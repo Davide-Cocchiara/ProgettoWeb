@@ -347,7 +347,7 @@ create unique index "pk_authtoken" on "authtoken"
  "id"
 );
 
-create index "fkidx_224" on "authtoken"
+create unique index "fkidx_224" on "authtoken"
 (
  "codicefiscale"
 );

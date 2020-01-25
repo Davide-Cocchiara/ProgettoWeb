@@ -1,10 +1,15 @@
 package unitn.progweb.cocchiara.dao;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.model.Medico;
 import unitn.progweb.cocchiara.model.Paziente;
 import unitn.progweb.cocchiara.model.Utente;
 
 import java.sql.*;
+import java.util.AbstractMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class UtenteDAO extends BasicDAO {
 
@@ -66,7 +71,7 @@ public class UtenteDAO extends BasicDAO {
             results.close();
             stmt.close();
 
-            query = "UPDATE account SET hashpass=crypt(?, hashpass) WHERE codicefiscale=?";
+            query = "UPDATE account SET hashpass=crypt(?, gen_salt('bf', 8)) WHERE codicefiscale=?";
 
             stmt = conn.prepareStatement(query);
             stmt.setString(1, newpass);
@@ -85,6 +90,111 @@ public class UtenteDAO extends BasicDAO {
         catch (SQLException ex) {
             System.err.println("Unable to check password for user: " + ex.getMessage());
             return false;
+        }
+
+    }
+
+    @Nullable
+    public Map.Entry<String,String> createOrUpdateCookieForUser(@NotNull String codiceFiscale)
+    {
+        String token = UUID.randomUUID().toString();
+
+        Date expires = new Date(System.currentTimeMillis() + 7*24*60*60*1000);
+
+        String query = "INSERT INTO authtoken(codicefiscale,token,expires) VALUES (?,crypt(?, gen_salt('bf', 8)),?) " +
+                "ON CONFLICT (codicefiscale) DO UPDATE SET token=crypt(?, gen_salt('bf', 8)), expires=? RETURNING id;";
+
+        Connection conn = startConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codiceFiscale);
+            stmt.setString(2, token);
+            stmt.setDate(3,expires);
+            stmt.setString(4,token);
+            stmt.setDate(5,expires);
+            ResultSet results = stmt.executeQuery();
+
+            if (!results.next()) // Error!
+            {
+                results.close();
+                stmt.close();
+                conn.close();
+                System.err.println("Unable to create/update cookie token for user: " + codiceFiscale);
+                return null;
+            }
+
+            int resId = results.getInt(1);
+            results.close();
+            stmt.close();
+            conn.close();
+
+            Map.Entry<String,String> retVal=new AbstractMap.SimpleEntry<>(String.valueOf(resId),token);
+
+            return retVal;
+        }
+        catch (SQLException ex) {
+            System.err.println("Unable to create/update cookie token for user: " + ex.getMessage());
+            return null;
+        }
+
+    }
+
+    @Nullable // Return null if invalid, or codicefiscale if valid
+    public String tryLoginWithCookie(@NotNull String authId, @NotNull String authToken)
+    {
+
+        String query = "SELECT codicefiscale from authtoken WHERE id=? AND token=crypt(?, token) AND expires>NOW();";
+
+        Connection conn = startConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, Integer.parseInt(authId));
+            stmt.setString(2, authToken);
+
+            ResultSet results = stmt.executeQuery();
+
+            if (!results.next()) // Invalid cookie!
+                return null;
+
+            String retVal = results.getString(1);
+            results.close();
+            stmt.close();
+            conn.close();
+
+            return retVal;
+        }
+        catch (SQLException ex) {
+            System.err.println("Unable to try to login with cookie: " + ex.getMessage());
+            return null;
+        }
+        catch (Exception e)
+        {
+            System.err.println("Error trying to login with cookie: " + e.getMessage());
+            return null;
+        }
+
+    }
+
+    @Nullable
+    public void deleteCookieForUser(@NotNull String codiceFiscale)
+    {
+        String query = "DELETE FROM authtoken WHERE codicefiscale=?";
+
+        Connection conn = startConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codiceFiscale);
+
+            stmt.execute();
+            stmt.close();
+            conn.close();
+
+        }
+        catch (SQLException ex) {
+            System.err.println("Unable to delete cookie for user: " + ex.getMessage());
         }
 
     }
