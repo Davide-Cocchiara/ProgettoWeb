@@ -63,7 +63,7 @@
     <script src="<%=request.getContextPath()%>/js/tables.js"></script>
     <script>
         $( document ).ready(function() {
-            tables_listapagamenti("#pagamenti","<%=request.getContextPath()%>/sispaz/getpagamenti","<%=request.getContextPath()%>/sispaz/pagamentosingola?idprescrizione=");
+            tables_listapagamenti("#pagamenti","<%=request.getContextPath()%>/sispaz/getpagamenti","<%=request.getContextPath()%>/sispaz/pagamentosingolo?idpagamento=");
         });
     </script>
 </body>

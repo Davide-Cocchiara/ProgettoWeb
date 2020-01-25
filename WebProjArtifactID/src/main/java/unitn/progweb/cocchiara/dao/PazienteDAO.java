@@ -266,7 +266,7 @@ public class PazienteDAO extends BasicDAO {
                         "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
                         "INNER JOIN medico ON medico.codicefiscale=medico " +
                         "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio" +
+                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
                         "WHERE prescrizioni.id=?;";
                 stmt = conn.prepareStatement(query);
                 stmt.setInt(1, idPrescrizione);
@@ -278,7 +278,7 @@ public class PazienteDAO extends BasicDAO {
                         "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
                         "INNER JOIN medico ON medico.codicefiscale=medico " +
                         "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio" +
+                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
                         "WHERE prescrizioni.id=? AND prescrizioni.paziente=?;";
                 stmt = conn.prepareStatement(query);
                 stmt.setInt(1, idPrescrizione);

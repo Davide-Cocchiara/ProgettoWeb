@@ -6,6 +6,9 @@ public class Prescrizione {
     Date datarilascio;
     String prestazione;
     String medico;
+
+
+
     Date dataevasione;
     String provincia;
     int idprescrizione;
@@ -39,4 +42,5 @@ public class Prescrizione {
         return idprescrizione;
     }
 
+    public String getProvincia() { return provincia; }
 }

@@ -30,7 +30,7 @@ public class Avatar extends HttpServlet {
         // Set response content type
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
-        response.setContentType("image/gif");
+        response.setContentType("image/jpeg");
         try {
             Context ctx = new InitialContext();
             Context env = (Context) ctx.lookup("java:comp/env");
