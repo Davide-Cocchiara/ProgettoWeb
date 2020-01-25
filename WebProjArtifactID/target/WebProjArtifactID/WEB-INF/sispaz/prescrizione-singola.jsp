@@ -33,6 +33,7 @@
             <div id="content">
                 <jsp:include page="header.jsp" />
             <div class="container-fluid">
+
                 <div class="card shadow" id="toprint">
                     <div class="card-header d-inline-flex" style="height: 55px;">
                         <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Prescrizione</strong></p>
@@ -70,7 +71,7 @@
         <script>$('#stampabutton').click(function(){
             $('#toprint').printThis({
             });
-         //printPrescrizione('#toprint');
+         // TODO remove print button on print
         });</script>
 </body>
 

@@ -358,26 +358,24 @@ public class PazienteDAO extends BasicDAO {
 
             if(codicefiscale == null)
             {
-                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
-                        "FROM prescrizioni " +
-                        "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
-                        "INNER JOIN medico ON medico.codicefiscale=medico " +
-                        "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
-                        "WHERE prescrizioni.id=?";
+                query = "SELECT emesso, prestazioni.descrizione, ssp_prestazionidisponibili.costo, pagato, nome, ticket.id " +
+                        "FROM ticket INNER JOIN ssp_prestazionidisponibili ON ssp_prestazionidisponibili.idprovincia=ticket.idprovincia " +
+                        "AND ssp_prestazionidisponibili.idprestazione=ticket.idprestazione " +
+                        "INNER JOIN prestazioni ON prestazioni.id=ticket.idprestazione " +
+                        "INNER JOIN provincia ON provincia.sigla=ticket.idprovincia " +
+                        "WHERE ticket.id=?;";
                 stmt = conn.prepareStatement(query);
 
                 stmt.setInt(1, idPagamento);
             }
             else
             {
-                query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', persona.nome) AS medico, dataevasione, provincia.nome, prescrizioni.id " +
-                        "FROM prescrizioni " +
-                        "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
-                        "INNER JOIN medico ON medico.codicefiscale=medico " +
-                        "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                        "INNER JOIN provincia ON provincia.sigla=provinciarilascio " +
-                        "WHERE prescrizioni.id=? AND prescrizioni.paziente=?";
+                query = "SELECT emesso, prestazioni.descrizione, ssp_prestazionidisponibili.costo, pagato, nome, ticket.id " +
+                        "FROM ticket INNER JOIN ssp_prestazionidisponibili ON ssp_prestazionidisponibili.idprovincia=ticket.idprovincia " +
+                        "AND ssp_prestazionidisponibili.idprestazione=ticket.idprestazione " +
+                        "INNER JOIN prestazioni ON prestazioni.id=ticket.idprestazione " +
+                        "INNER JOIN provincia ON provincia.sigla=ticket.idprovincia " +
+                        "WHERE ticket.id=? AND ticket.paziente=?;";
                 stmt = conn.prepareStatement(query);
                 stmt.setInt(1, idPagamento);
                 stmt.setString(2, codicefiscale);
