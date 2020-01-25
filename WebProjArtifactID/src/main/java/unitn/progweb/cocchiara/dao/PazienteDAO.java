@@ -402,4 +402,32 @@ public class PazienteDAO extends BasicDAO {
         return retVal;
     }
 
+    public Boolean pagaPagamento(int idPagamento, java.sql.Date data, String codicefiscale) {
+        try {
+            String query = "UPDATE ticket SET pagato=? WHERE id=? AND paziente=? AND pagato IS NULL";
+            Connection conn = startConnection();
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            stmt = conn.prepareStatement(query);
+            stmt.setDate(1, data);
+            stmt.setInt(2, idPagamento);
+            stmt.setString(3,codicefiscale);
+
+            int result = stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+
+            if (result != 1) {
+                System.err.println("Unable to pay for given pagamento "+ idPagamento + ", rows returned: " + result);
+                System.err.println(idPagamento);
+                System.err.println(data);
+                System.err.println(codicefiscale);
+                return false;
+            }
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Unable to  pay for given pagamento: "+ idPagamento +",  "+ ex.getMessage());
+            return false;
+        }
+    }
 }

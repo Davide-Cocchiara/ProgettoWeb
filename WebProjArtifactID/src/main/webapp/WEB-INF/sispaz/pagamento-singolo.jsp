@@ -1,10 +1,11 @@
+<%@ page import="unitn.progweb.cocchiara.model.Pagamento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Table - Servizi Sanitari per il cittadino</title>
+    <title>Pagamento - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -48,9 +49,31 @@
                 <span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">
                     ${empty requestScope.pagamento.getDatapagamento() ? "<span style=\"color:red\">Non pagato!</span>" :  requestScope.pagamento.getDatapagamento() }
                 </span></div>
-        <div
-            class="card-body" ><a class="card-link text-center border rounded border-primary d-inline-flex float-right align-items-lg-center" href="<%=request.getContextPath()%>/sispaz/pagapagamento?idpagamento=${requestScope.pagamento.getIdpagamento()}">Paga Ora&nbsp;<i class="far fa-credit-card" style="font-size: 50px;"></i></a></div>
-    <div class="card-body"></div>
+
+                    <%
+                        if (request.getAttribute("pagamento") != null ) {
+                            Pagamento p = (Pagamento) request.getAttribute("pagamento");
+                            if (p.getDatapagamento()==null) {
+                                String pagabutton = "<div class=\"card-body\" > <a class=\"card-link text-center border rounded border-primary d-inline-flex float-right align-items-lg-center\" href=\""
+                                        + request.getContextPath()+ "/sispaz/pagapagamento?idpagamento=" + p.getIdpagamento()+"\">Paga Ora&nbsp;<i class=\"far fa-credit-card\" style=\"font-size: 50px;\"></i></a></div>";
+                                out.println(pagabutton);
+                            }
+                        }
+                    %>
+
+
+
+     <div class="card-body">
+        <%
+        if (request.getParameter("pagato") != null && request.getParameter("pagato").equals("true")) {
+        out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Pagamento avvenuto con successo<br></label>\n");
+        }
+        if (request.getParameter("pagato") != null && request.getParameter("pagato").equals("false")) {
+        out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Errore nel pagamento. Pagamento non effettuato!<br></label>\n");
+        }
+        %>
+    </div>
+
     </div>
     </div>
     </div>

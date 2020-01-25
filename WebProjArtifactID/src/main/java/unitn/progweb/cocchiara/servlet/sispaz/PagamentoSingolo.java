@@ -27,7 +27,6 @@ public class PagamentoSingolo extends HttpServlet {
         String s_pagamento = request.getParameter("idpagamento");
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
-
         Boolean error=false;
         Integer idpagamento = null;
         try {

@@ -26,10 +26,10 @@ public class Welcome extends HttpServlet {
         Utente u = (Utente) session.getAttribute("utente");
 
         if (u.isMedico() || u.isAdmin()) {
-            response.sendRedirect("servizi");
+            response.sendRedirect(request.getContextPath()+"/servizi");
         }
         else {
-            response.sendRedirect("sispaz/profilocittadino");
+            response.sendRedirect(request.getContextPath()+"/sispaz/profilocittadino");
         }
     }
 
