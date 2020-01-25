@@ -38,15 +38,18 @@
                         <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Pagamento</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
                             id="stampabutton" href="#" style="width: 40;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a></div>
                     <div class="card-body"
-                        style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">00/00/0000</span></div>
+                        ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.pagamento.getDataemissione()}</span></div>
                     <div
-                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Controllo Piedi</span></div>
+                        class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.pagamento.getPrestazione()}</span></div>
                 <div
-                    class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Costo</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">123,3€&nbsp;</span></div>
+                    class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Costo</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.pagamento.getCosto()}</span></div>
             <div
-                class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data&nbsp;Pagamento</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data&nbsp;Pagamento</strong></span>
+                <span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">
+                    ${empty requestScope.pagamento.getDatapagamento() ? "<span style=\"color:red\">Non pagato!</span>" :  requestScope.pagamento.getDatapagamento() }
+                </span></div>
         <div
-            class="card-body" style="padding: 1;height: 50px;"><a class="card-link text-center border rounded border-primary d-inline-flex float-right align-items-lg-center" href="#">Paga Ora&nbsp;<i class="far fa-credit-card" style="font-size: 50px;"></i></a></div>
+            class="card-body" ><a class="card-link text-center border rounded border-primary d-inline-flex float-right align-items-lg-center" href="<%=request.getContextPath()%>/sispaz/pagapagamento?idpagamento=${requestScope.pagamento.getIdpagamento()}">Paga Ora&nbsp;<i class="far fa-credit-card" style="font-size: 50px;"></i></a></div>
     <div class="card-body"></div>
     </div>
     </div>
