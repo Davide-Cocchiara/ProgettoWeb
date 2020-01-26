@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Table - Servizi Sanitari per il cittadino</title>
+    <title>Storico Referto Singolo - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -32,30 +32,24 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <jsp:include page="/WEB-INF/sismed/header.jsp" />
-            <div class="container-fluid">
-                <div class="card shadow">
-                    <div class="card-header d-inline-flex" style="height: 55px;">
-                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
-                            href="#" style="width: 40;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a></div>
-                    <div class="card-body"
-                        style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">00/00/0000</span></div>
-                    <div
-                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Controllo Piedi</span></div>
-                <div
-                    class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Medico</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">Dr. Dotto Dotto</span></div>
-            <div
-                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 18px;margin-top: 8px;"><strong>Relazione</strong></span>
-                <p class="border rounded border-light shadow-sm" style="background-color: #f9f9f9;margin-top: 6px;font-family: Lora, serif;">Fromage paneer brie. Camembert de normandie cheddar lancashire fromage babybel cheddar goat brie. Cheesy feet monterey jack airedale cottage cheese swiss gouda fromage frais fondue. Cream cheese macaroni cheese.Melted cheese gouda goat.
-                    Croque monsieur chalk and cheese cheese strings stinking bishop cream cheese camembert de normandie caerphilly cheese and wine. Jarlsberg hard cheese pecorino airedale dolcelatte feta monterey jack pecorino. Cheeseburger cheese strings
-                    lancashire when the cheese comes out everybody's happy.Cheesy feet manchego the big cheese. Feta ricotta boursin cream cheese jarlsberg camembert de normandie cheese on toast the big cheese. Airedale bavarian bergkase cream cheese
-                    manchego cheesy grin mozzarella manchego smelly cheese. When the cheese comes out everybody's happy brie cheese strings cheesy grin cheese strings.Cheesecake paneer cheesy feet. Bavarian bergkase brie cheddar airedale ricotta parmesan
-                    queso ricotta. Cheese and wine the big cheese babybel cheesy feet say cheese cheesy grin fromage frais jarlsberg. Cheesy feet cheese strings cow babybel fromage frais chalk and cheese.Caerphilly ricotta babybel. The big cheese when
-                    the cheese comes out everybody's happy goat emmental edam the big cheese cheese strings cheese strings. Rubber cheese cauliflower cheese lancashire cauliflower cheese babybel cheese strings caerphilly macaroni cheese. Rubber cheese
-                    mozzarella stilton cottage cheese rubber cheese stinking bishop caerphilly say cheese. Edam cheese strings.<br></p>
-        </div>
-        <div class="card-body"></div>
-    </div>
-    </div>
+                <div class="container-fluid">
+                    <div class="card shadow" id="toprint">
+                        <div class="card-header d-inline-flex" style="height: 55px;">
+                            <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto</strong></p><a class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+                                                                                                                                                                                                                                                                                                                 id="stampabutton" href="#" style="width: 40px;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a></div>
+                        <div class="card-body"
+                        ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.referto.getData()}</span></div>
+                        <div
+                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.referto.getPrestazione()}</span></div>
+                        <div
+                                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Medico</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.referto.getMedico()}</span></div>
+                        <div
+                                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 18px;margin-top: 8px;"><strong>Relazione</strong></span>
+                            <p class="border rounded border-light shadow-sm" style="background-color: #f9f9f9;margin-top: 6px;font-family: Lora, serif;">${requestScope.referto.getRelazione()}<br></p>
+                        </div>
+                        <div class="card-body"></div>
+                    </div>
+                </div>
     </div>
     <footer class="bg-white sticky-footer">
         <div class="container my-auto">
@@ -69,6 +63,13 @@
     <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+
+    <script src="<%=request.getContextPath()%>/js/printThis.js"></script>
+    <script>$('#stampabutton').click(function(){
+        $('#toprint').printThis({
+        });
+        // TODO remove print button on print
+    });</script>
 </body>
 
 </html>
