@@ -128,9 +128,8 @@ create index "fkidx_164" on "notifiche"
 create table "prestazioni"
 (
  "id"      serial,
- "ismedicinale" boolean not null,
  "descrizione"  varchar not null
-
+ "tipo" smallint not null
 );
 
 create unique index "pk_prestazioni" on "prestazioni"
