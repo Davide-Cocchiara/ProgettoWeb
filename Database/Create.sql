@@ -128,7 +128,7 @@ create index "fkidx_164" on "notifiche"
 create table "prestazioni"
 (
  "id"      serial,
- "descrizione"  varchar not null
+ "descrizione"  varchar not null,
  "tipo" smallint not null
 );
 
