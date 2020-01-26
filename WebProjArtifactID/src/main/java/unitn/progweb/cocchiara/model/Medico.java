@@ -58,5 +58,11 @@ public class Medico  {
     }
     public LinkedHashMap<String,String> getListEsamiRefertabiliPaziente(String codicepaziente) {
         return new MedicoDAO().getListEsamiRefertabiliPaziente(codicepaziente);
+	}
+    public Boolean addRicettaEsame(String idesame, String codicefiscalePaziente) {
+       return new MedicoDAO().addRicettaEsame(idesame, codicefiscalePaziente);
     }
-}
+
+    public Boolean addRicettaFarmaco(String idfarmaco, String codicefiscalePaziente) {
+        return new MedicoDAO().addRicettaFarmaco(idfarmaco, codicefiscalePaziente);
+    }

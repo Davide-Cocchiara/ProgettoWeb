@@ -1,9 +1,10 @@
-package unitn.progweb.cocchiara.servlet.sispaz;// Import required java libraries
+package unitn.progweb.cocchiara.servlet.sismed.paziente;// Import required java libraries
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import unitn.progweb.cocchiara.model.Pagamento;
-import unitn.progweb.cocchiara.model.Utente;
+import unitn.progweb.cocchiara.model.Paziente;
+import unitn.progweb.cocchiara.model.Prescrizione;
+import unitn.progweb.cocchiara.model.Referto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +18,8 @@ import java.util.ArrayList;
 
 // Extend HttpServlet class
 
-@WebServlet("/sispaz/getpagamenti")
-public class GetPagamenti extends HttpServlet {
+@WebServlet("/sismed/paziente/getprescrizioni")
+public class GetPrescrizioni extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
@@ -28,12 +29,12 @@ public class GetPagamenti extends HttpServlet {
             throws ServletException, IOException { ;
 
         HttpSession session = request.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
+        Paziente paziente = (Paziente) session.getAttribute("selectedpaziente");
 
-        ArrayList<Pagamento> listaPagamenti = utente.getPaziente().getListPagamentiMinimale();
+        ArrayList<Prescrizione> listaReferti = paziente.getListaPrescrizioniMinimale();
 
         Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
-        String json = "{ \"content\": " + gson.toJson(listaPagamenti) + "}";
+        String json = "{ \"content\": " + gson.toJson(listaReferti) + "}";
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

@@ -11,7 +11,7 @@ function tables_listareferti( selector,path_richiesta,path_dettaglio) {
             "columns": [
                 {"data": "data", "title": "Data"},
                 {"data": "prestazione", "title": "Prestazione"},
-                {"data": "medico", "title": "Medico"},
+                {"data": "medico", "title": "Rilasciato da"},
                 {
                     "title": "Dettagli", data: null,
                     "createdCell": function (td, cellData, rowData, row, col) {

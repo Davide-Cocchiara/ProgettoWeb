@@ -33,7 +33,7 @@ public class GetPazienti extends HttpServlet {
 
         ArrayList<Paziente> listaPagamenti = utente.getMedico().getListPazienti(utente.getPaziente().getCodicefiscale());
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
         String json = "{ \"content\": " + gson.toJson(listaPagamenti) + "}";
 
         response.setContentType("application/json");
