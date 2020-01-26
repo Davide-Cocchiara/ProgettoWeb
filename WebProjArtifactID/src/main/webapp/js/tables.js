@@ -81,7 +81,6 @@ function tables_listapazienti( selector,path_richiesta,path_dettaglio) {
             "url": path_richiesta,
             "dataSrc": "content"
         },
-        // TODO bro
         "columns": [
             {"data": "codicefiscale", "title": "Codice Fiscale"},
             {"data": "nome", "title": "Nome"},
