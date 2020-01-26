@@ -198,4 +198,41 @@ public class MedicoDAO extends BasicDAO {
         return retVal;
 
     }
+
+    public Boolean addRicettaEsame(@NotNull String codiceMedico, @NotNull String provinciaRilascio, @NotNull String idesame,@NotNull  String codicefiscalePaziente) {
+        // TODO bro
+
+        try {
+            String query = "INSERT INTO prescrizioni(paziente,medico,provinciarilascio,prestazione,datarilascio) " +
+                    "VALUES (?,?,?,?,NOW());";
+
+            Connection conn = startConnection();
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, codicefiscalePaziente);
+            stmt.setString(2, codiceMedico);
+            stmt.setString(3, provinciaRilascio);
+            stmt.setInt(4, Integer.parseInt(idesame));
+
+            int result = stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+
+            if (result != 1) {
+                System.err.println("Unable to change clinica for user, records changed were: " + result);
+                return false;
+            }
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Unable to change clinica for user: " + ex.getMessage());
+            return false;
+        }
+
+    }
+
+    public Boolean addRicettaFarmaco(@NotNull String codiceMedico, @NotNull String provinciaRilascio, @NotNull String idfarmaco,@NotNull String codicefiscalePaziente) {
+        // TODO bro
+        return false;
+    }
 }
