@@ -1,6 +1,7 @@
 package unitn.progweb.cocchiara.model;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.dao.MedicoDAO;
 import unitn.progweb.cocchiara.dao.PazienteDAO;
 
@@ -51,10 +52,9 @@ public class Medico  {
         else
             return null;
     }
-    public Boolean addReferto(java.util.Date data, String prestazione, String relazione,String codicefiscalePziente) {
-        java.sql.Date sqlDate = new java.sql.Date(data.getTime());
+    public Boolean addReferto(@NotNull String codicemedico,  @NotNull String prestazione, @NotNull  String relazione, @NotNull String codicefiscalePziente) {
         MedicoDAO md = new MedicoDAO();
-        return md.addReferto(sqlDate, prestazione, relazione,codicefiscalePziente);
+        return md.addReferto(codicemedico,  prestazione, relazione,codicefiscalePziente);
     }
     public LinkedHashMap<String,String> getListEsamiRefertabiliPaziente(String codicepaziente) {
         return new MedicoDAO().getListEsamiRefertabiliPaziente(codicepaziente);
