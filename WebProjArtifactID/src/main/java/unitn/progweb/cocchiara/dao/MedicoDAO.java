@@ -4,11 +4,10 @@ import org.jetbrains.annotations.NotNull;
 import unitn.progweb.cocchiara.model.Medico;
 import unitn.progweb.cocchiara.model.Paziente;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 public class MedicoDAO extends BasicDAO {
 
@@ -103,4 +102,13 @@ public class MedicoDAO extends BasicDAO {
         return retVal;
     }
 
+    public Boolean addReferto(java.sql.Date sqlDate, String prestazione, String relazione, String codicefiscalePziente) {
+        // TODO bro
+        return false;
+    }
+
+    public LinkedHashMap<String,String> getListEsamiRefertabiliPaziente(String codicepaziente) {
+        // TODO bro
+        return null;
+    }
 }

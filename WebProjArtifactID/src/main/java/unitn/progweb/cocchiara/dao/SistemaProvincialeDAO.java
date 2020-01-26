@@ -2,6 +2,8 @@ package unitn.progweb.cocchiara.dao;
 
 import java.sql.*;
 import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class SistemaProvincialeDAO extends BasicDAO {
     public LinkedHashMap<String, String> getListaMediciFromPronvincia(String provincia) {
@@ -28,5 +30,14 @@ public class SistemaProvincialeDAO extends BasicDAO {
             System.err.println("Unable to retrive list medici of given provincia" + ex.getMessage());
         }
         return out;
+    }
+
+    public LinkedHashMap<String,String> getListaFarmaciFromProvincia(String provincia) {
+        return null;
+        // TODO bro
+    }
+    public LinkedHashMap<String,String> getListaEsamiFromProvincia(String provincia) {
+        return null;
+        // TODO bro
     }
 }
