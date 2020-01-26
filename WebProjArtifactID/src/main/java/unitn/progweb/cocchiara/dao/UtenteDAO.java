@@ -196,6 +196,5 @@ public class UtenteDAO extends BasicDAO {
         catch (SQLException ex) {
             System.err.println("Unable to delete cookie for user: " + ex.getMessage());
         }
-
     }
 }

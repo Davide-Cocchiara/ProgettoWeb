@@ -1,3 +1,5 @@
+
+<%@ page import="java.time.LocalDate" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -37,13 +39,13 @@
                     <div class="card-header d-inline-flex" style="height: 55px;">
                         <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto</strong></p>
                     </div>
-                    <div class="card-body" style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><%= (new java.util.Date().toString())%></span></div>
+                    <div class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"> <%= LocalDate.now().toString()%></span></div>
                     <div
-                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><select class="border rounded float-right" style="font-size: 20px;"><optgroup label="Prestazioni Disponibili"><option value="12" selected="">Visita Base</option><option value="13">Visita Piedi</option><option value="14">Visita Boo</option></optgroup></select></div>
+                        class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><select class="border rounded float-right" style="font-size: 20px;"><optgroup label="Prestazioni Disponibili"><option value="12" selected="">Visita Base</option><option value="13">Visita Piedi</option><option value="14">Visita Boo</option></optgroup></select></div>
                 <div
-                    class="card-body" style="height: 25px;padding: 0px;padding-left: 20px;padding-top: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
+                    class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
             <div class="card-body d-inline-flex flex-grow-1 flex-shrink-1" style="height: auto;padding-top: 10px;"><textarea class="border rounded flex-grow-1" style="width: 100%;height: 200px;" wrap="hard"></textarea></div>
-            <div class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">123,03€</span></div>
+            <div class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">123,03€</span></div>
             <div
                 class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-top: 8px;"><strong>Pagamento Effettuato</strong></span><select class="border rounded float-right" style="font-size: 20px;"><option value="0" selected="">--</option><option value="13">Sì</option><option value="14">No</option></select></div>
         <div
