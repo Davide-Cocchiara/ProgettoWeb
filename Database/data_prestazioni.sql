@@ -10,7 +10,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dump dei dati della tabella public.prestazioni: 1.714 rows
+-- Dump dei dati della tabella public.prestazioni: 1.850 rows
 /*!40000 ALTER TABLE "prestazioni" DISABLE KEYS */;
 INSERT INTO "prestazioni" ("id", "descrizione", "tipo") VALUES
 	(1731, 'Acido 5 idrossi 3 indolacetico', 2),
@@ -148,8 +148,9 @@ INSERT INTO "prestazioni" ("id", "descrizione", "tipo") VALUES
 	(1863, 'Virus epatite B (HBV) Anticorpi Hbeag', 2),
 	(1864, 'Virus epatite B (HBV) Antigeni Hbeag', 2),
 	(1865, 'Viscosità ematica', 2),
-	(0, 'Visita Medica di Base', 0),
 	(1681, 'Radioterapia stereotassica', 0),
+	(-1, 'Visita Medica di Base', 0),
+	(1866, 'Coronavirus', 2),
 	(29, 'ACICLOVIR 8% 100ML USO ORALE', 1),
 	(1727, 'SERT', 0),
 	(901, 'LANSOPRAZOLO 30MG 14 UNITA'' USO ORALE', 1),
