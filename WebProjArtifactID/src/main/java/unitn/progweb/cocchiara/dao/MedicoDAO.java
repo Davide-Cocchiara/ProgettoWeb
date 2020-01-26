@@ -199,9 +199,7 @@ public class MedicoDAO extends BasicDAO {
 
     }
 
-    public Boolean addRicettaEsame(@NotNull String codiceMedico, @NotNull String provinciaRilascio, @NotNull String idesame,@NotNull  String codicefiscalePaziente) {
-        // TODO bro
-
+    public Boolean addRicetta(@NotNull String codiceMedico, @NotNull String provinciaRilascio, @NotNull String idesame,@NotNull  String codicefiscalePaziente) {
         try {
             String query = "INSERT INTO prescrizioni(paziente,medico,provinciarilascio,prestazione,datarilascio) " +
                     "VALUES (?,?,?,?,NOW());";
@@ -231,8 +229,4 @@ public class MedicoDAO extends BasicDAO {
 
     }
 
-    public Boolean addRicettaFarmaco(@NotNull String codiceMedico, @NotNull String provinciaRilascio, @NotNull String idfarmaco,@NotNull String codicefiscalePaziente) {
-        // TODO bro
-        return false;
-    }
 }
