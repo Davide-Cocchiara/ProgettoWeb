@@ -32,7 +32,7 @@ public class GetReferti extends HttpServlet {
 
         ArrayList<Referto> listaReferti = utente.getPaziente().getListaRefertiMinimale();
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
         String json = "{ \"content\": " + gson.toJson(listaReferti) + "}";
 
         response.setContentType("application/json");

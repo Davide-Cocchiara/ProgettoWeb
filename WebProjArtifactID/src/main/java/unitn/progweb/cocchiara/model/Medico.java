@@ -51,12 +51,23 @@ public class Medico  {
         else
             return null;
     }
-    public Boolean addReferto(java.util.Date data, String prestazione, String relazione,String codicefiscalePziente) {
-        java.sql.Date sqlDate = new java.sql.Date(data.getTime());
-        MedicoDAO md = new MedicoDAO();
-        return md.addReferto(sqlDate, prestazione, relazione,codicefiscalePziente);
-    }
+
     public LinkedHashMap<String,String> getListEsamiRefertabiliPaziente(String codicepaziente) {
         return new MedicoDAO().getListEsamiRefertabiliPaziente(codicepaziente);
+    }
+
+    public Boolean addReferto(java.util.Date data, String idricetta, String relazione,String codicefiscalePziente) {
+        java.sql.Date sqlDate = new java.sql.Date(data.getTime());
+        MedicoDAO md = new MedicoDAO();
+        return md.addReferto(sqlDate, idricetta, relazione,codicefiscalePziente);
+    }
+
+
+    public Boolean addRicettaEsame(String idesame, String codicefiscalePaziente) {
+       return new MedicoDAO().addRicettaEsame(idesame, codicefiscalePaziente);
+    }
+
+    public Boolean addRicettaFarmaco(String idfarmaco, String codicefiscalePaziente) {
+        return new MedicoDAO().addRicettaFarmaco(idfarmaco, codicefiscalePaziente);
     }
 }

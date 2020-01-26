@@ -34,7 +34,7 @@ public class GetPrescrizioni extends HttpServlet {
         ArrayList<Prescrizione> listaPrescrizioni = utente.getPaziente().getListaPrescrizioniMinimale();
 
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
         String json = "{ \"content\": " + gson.toJson(listaPrescrizioni) + "}";
 
         response.setContentType("application/json");

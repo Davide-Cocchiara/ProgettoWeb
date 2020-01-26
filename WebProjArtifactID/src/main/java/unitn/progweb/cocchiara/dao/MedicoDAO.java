@@ -102,14 +102,27 @@ public class MedicoDAO extends BasicDAO {
         return retVal;
     }
 
-    public Boolean addReferto(java.sql.Date sqlDate, String idricetta, String relazione, String codicefiscalePziente) {
-        // In caso di visita di base, l'idricetta è -1
-        return false;
-    }
-
     public LinkedHashMap<String,String> getListEsamiRefertabiliPaziente(String codicepaziente) {
         // In caso di visita di base, l'idricetta è -1
         // TODO bro
         return null;
     }
+
+    public Boolean addReferto(java.sql.Date sqlDate, String idricetta, String relazione, String codicefiscalePaziente) {
+        // In caso di visita di base, l'idricetta è -1
+        // TODO bro
+        return false;
+    }
+
+    public Boolean addRicettaEsame(String idesame, String codicefiscalePaziente) {
+        // TODO bro
+        return false;
+    }
+
+    public Boolean addRicettaFarmaco(String idfarmaco, String codicefiscalePaziente) {
+        // TODO bro
+        return false;
+    }
+
+
 }

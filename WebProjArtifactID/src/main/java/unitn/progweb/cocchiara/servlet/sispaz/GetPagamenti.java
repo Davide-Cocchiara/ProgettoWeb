@@ -32,7 +32,7 @@ public class GetPagamenti extends HttpServlet {
 
         ArrayList<Pagamento> listaPagamenti = utente.getPaziente().getListPagamentiMinimale();
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
         String json = "{ \"content\": " + gson.toJson(listaPagamenti) + "}";
 
         response.setContentType("application/json");
