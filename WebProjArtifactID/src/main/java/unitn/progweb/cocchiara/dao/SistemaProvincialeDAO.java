@@ -33,11 +33,63 @@ public class SistemaProvincialeDAO extends BasicDAO {
     }
 
     public LinkedHashMap<String,String> getListaFarmaciFromProvincia(String provincia) {
-        return null;
-        // TODO bro
+        LinkedHashMap<String,String>  out = new LinkedHashMap<String,String>();
+        String query = "SELECT idprestazione,descrizione FROM ssp_prestazionidisponibili " +
+                "INNER JOIN prestazioni ON prestazioni.id=idprestazione " +
+                "WHERE idprovincia=? AND tipo=1 " +
+                "AND idprestazione !='-1'";
+
+        Connection conn = startConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, provincia);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                String idPrestazione = String.valueOf(results.getInt(1));
+                String desc = results.getString(2);
+
+                out.put(idPrestazione,desc);
+            }
+            results.close();
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException ex) {
+            System.err.println("Unable to retrive farmaci from provincia" + ex.getMessage());
+        }
+        return out;
+
     }
     public LinkedHashMap<String,String> getListaEsamiFromProvincia(String provincia) {
-        return null;
-        // TODO bro
+        LinkedHashMap<String,String>  out = new LinkedHashMap<String,String>();
+        String query = "SELECT idprestazione,descrizione FROM ssp_prestazionidisponibili " +
+                "INNER JOIN prestazioni ON prestazioni.id=idprestazione " +
+                "WHERE idprovincia=? AND (tipo=0 OR tipo=2) " +
+                "AND idprestazione !='-1'";
+
+        Connection conn = startConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, provincia);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                String idPrestazione = String.valueOf(results.getInt(1));
+                String desc = results.getString(2);
+
+                out.put(idPrestazione,desc);
+            }
+            results.close();
+            stmt.close();
+            conn.close();
+        }
+        catch (SQLException ex) {
+            System.err.println("Unable to retrive esami from provincia" + ex.getMessage());
+        }
+        return out;
+
     }
 }

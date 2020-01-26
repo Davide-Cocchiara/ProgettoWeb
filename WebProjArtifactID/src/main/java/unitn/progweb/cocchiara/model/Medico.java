@@ -61,12 +61,10 @@ public class Medico {
         return new MedicoDAO().getListEsamiRefertabiliPaziente(codicepaziente);
     }
 
-    public Boolean addRicettaEsame(@NotNull String codicemedico, @NotNull String provinciaRilascio, String idesame, String codicefiscalePaziente) {
-        return new MedicoDAO().addRicettaEsame(codicemedico, provinciaRilascio, idesame, codicefiscalePaziente);
+    // Esame / Farmaco / Etc
+    public Boolean addRicetta(@NotNull String codicemedico, @NotNull String provinciaRilascio, String idesame, String codicefiscalePaziente) {
+        return new MedicoDAO().addRicetta(codicemedico, provinciaRilascio, idesame, codicefiscalePaziente);
     }
 
-    public Boolean addRicettaFarmaco(@NotNull String codicemedico, @NotNull String provinciaRilascio, String idfarmaco, String codicefiscalePaziente) {
-        return new MedicoDAO().addRicettaFarmaco(codicemedico, provinciaRilascio, idfarmaco, codicefiscalePaziente);
-    }
 
 }
