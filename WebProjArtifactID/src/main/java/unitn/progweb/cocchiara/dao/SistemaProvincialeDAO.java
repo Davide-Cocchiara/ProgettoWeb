@@ -64,18 +64,20 @@ public class SistemaProvincialeDAO extends BasicDAO {
         return out;
 
     }
-    public LinkedHashMap<String,String> getListaEsamiFromProvincia(String provincia) {
+    public LinkedHashMap<String,String> getListaEsamiFromProvincia(String provincia, Boolean diLaboratorio) {
         LinkedHashMap<String,String>  out = new LinkedHashMap<String,String>();
         String query = "SELECT idprestazione,descrizione FROM ssp_prestazionidisponibili " +
                 "INNER JOIN prestazioni ON prestazioni.id=idprestazione " +
-                "WHERE idprovincia=? AND (tipo=0 OR tipo=2) " +
-                "AND idprestazione !='-1'";
+                "WHERE idprovincia=? AND tipo=? " +
+                "AND idprestazione !='-1'" +
+                "ORDER BY tipo,descrizione";
 
         Connection conn = startConnection();
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, provincia);
+            stmt.setInt(2,diLaboratorio ? 2 : 0);
             ResultSet results = stmt.executeQuery();
 
             while (results.next()) {
