@@ -1,13 +1,13 @@
 package unitn.progweb.cocchiara.dao;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.model.Medico;
 import unitn.progweb.cocchiara.model.Paziente;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.sql.Date;
+import java.util.*;
 
 public class MedicoDAO extends BasicDAO {
 
@@ -101,14 +101,17 @@ public class MedicoDAO extends BasicDAO {
         return retVal;
     }
 
-    public Boolean addReferto(@NotNull String codiceMedico, @NotNull String idricetta, @NotNull String relazione, @NotNull String codicefiscalePaziente) {
+    public Boolean addReferto(@NotNull String codiceMedico, @NotNull String idricetta, @NotNull String relazione, @NotNull String codicefiscalePaziente,  @NotNull Boolean isPagato) {
 
         // Evasione ricetta specifica
         if (!idricetta.equals("-1")) {
-            String query = "WITH prescriz AS (UPDATE prescrizioni SET dataevasione=NOW() WHERE id=? AND dataevasione IS NULL returning prestazione) " +
-                    "INSERT INTO visite (paziente, medico, DATA, relazione, prestazione) " +
+            String query = "WITH prescriz AS (UPDATE prescrizioni SET dataevasione=NOW() WHERE id=? AND dataevasione IS NULL returning prestazione, provinciarilascio), " +
+                    "insertval AS (INSERT INTO visite (paziente, medico, DATA, relazione, prestazione) " +
                     "SELECT ?, ?, NOW(), ?, prestazione " +
-                    "FROM prescriz;";
+                    "FROM prescriz " +
+                    "returning paziente,prestazione,DATA,NULL) " +
+                    "INSERT INTO ticket(paziente,idprovincia,idprestazione,emesso,pagato) " +
+                    "(SELECT paziente,provinciarilascio,insertval.prestazione,DATA, ? FROM insertval, prescriz);";
 
 
             try {
@@ -121,6 +124,7 @@ public class MedicoDAO extends BasicDAO {
                 stmt.setString(2, codicefiscalePaziente);
                 stmt.setString(3, codiceMedico);
                 stmt.setString(4, relazione);
+                stmt.setDate(5, (isPagato ? new Date(System.currentTimeMillis()) : null));
 
                 int result = stmt.executeUpdate();
                 stmt.close();
@@ -137,8 +141,10 @@ public class MedicoDAO extends BasicDAO {
             }
         } else // -1, visita di base
         {
-            String query = "INSERT INTO visite (paziente, medico, DATA, relazione, prestazione) " +
-                    "VALUES(?, ?, NOW(), ?, -1);";
+            String query = "WITH visita as (INSERT INTO visite (paziente, medico, DATA, relazione, prestazione) " +
+                    "VALUES(?, ?, NOW(), ?, -1) returning prestazione, paziente, data) " +
+                    "INSERT INTO ticket(paziente,idprovincia,idprestazione,emesso,pagato) " +
+                    "(SELECT ?,persona.provincia,visita.prestazione, DATA, ? FROM visita INNER JOIN persona ON persona.codicefiscale=visita.paziente);";
 
             try {
                 Connection conn = startConnection();
@@ -149,6 +155,8 @@ public class MedicoDAO extends BasicDAO {
                 stmt.setString(1, codicefiscalePaziente);
                 stmt.setString(2, codiceMedico);
                 stmt.setString(3, relazione);
+                stmt.setString(4, codicefiscalePaziente);
+                stmt.setDate(5, (isPagato ? new Date(System.currentTimeMillis()) : null));
 
                 int result = stmt.executeUpdate();
                 stmt.close();
@@ -166,26 +174,34 @@ public class MedicoDAO extends BasicDAO {
         }
     }
 
-    public LinkedHashMap<String, String> getListEsamiRefertabiliPaziente(String codicepaziente) {
+    public LinkedHashMap<String, Map.Entry<String,String>> getListEsamiRefertabiliPaziente(String codicepaziente, String provincia) {
         // In caso di visita di base, l'idricetta è -1
 
-        String query = "SELECT prescrizioni.id, descrizione FROM prescrizioni " +
+        String query = "WITH subq AS (SELECT idprestazione,costo FROM ssp_prestazionidisponibili  WHERE idprovincia=?) " +
+                "SELECT prescrizioni.id, descrizione,costo FROM prescrizioni " +
                 "INNER JOIN prestazioni " +
                 "ON prescrizioni.prestazione=prestazioni.id " +
+                "INNER JOIN subq ON prescrizioni.prestazione=subq.idprestazione " +
                 "WHERE prestazioni.tipo=0 AND " +
-                "prescrizioni.paziente=? UNION " +
-                "SELECT -1 AS id,descrizione FROM prestazioni WHERE prestazioni.id=-1;"; // Visita Base always available
+                "prescrizioni.paziente=? AND " +
+                "prescrizioni.dataevasione IS NULL " +
+                "UNION " +
+                "SELECT -1 AS id,descrizione,costo FROM prestazioni " +
+                "INNER JOIN subq ON prestazioni.id=subq.idprestazione WHERE prestazioni.id=-1"; // Visita Base always available
 
         Connection conn = startConnection();
-        LinkedHashMap<String, String> retVal = new LinkedHashMap<String, String>();
+        LinkedHashMap<String, Map.Entry<String,String>> retVal = new LinkedHashMap<>();
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, codicepaziente);
+            stmt.setString(1,provincia);
+            stmt.setString(2, codicepaziente);
             ResultSet results = stmt.executeQuery();
 
             while (results.next()) {
-                retVal.put(String.valueOf(results.getInt(1)), results.getString(2));
+                Map.Entry<String,String> val = new AbstractMap.SimpleEntry<String,String>(results.getString(2),results.getString(3));
+
+                retVal.put(String.valueOf(results.getInt(1)), val);
             }
 
             results.close();
