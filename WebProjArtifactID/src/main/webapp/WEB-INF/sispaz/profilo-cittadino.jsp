@@ -152,31 +152,14 @@
                                             <div class="form-group"><label for="address"><strong>Email</strong></label><input class="form-control" type="email" placeholder="example@address.com" value="${sessionScope.utente.getPaziente().getEmail()}" name="email"></div>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <div class="form-group"><label for="country"><strong>Provincia</strong></label><select class="form-control" name="provincia">
-
+                                                    <div class="form-group"><label for="country"><strong>Provincia</strong></label>
+                                                        <select class="form-control" name="provincia">
                                                         <optgroup label="Provincia">
-                                                            <%
-                                                                SistemaNazionale sis  = (SistemaNazionale) getServletContext().getAttribute("sistemanazionale");
-                                                                LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
-                                                                Utente utente = (Utente)session.getAttribute("utente");
-                                                                for (Map.Entry<String,String> entry :listaProvince.entrySet()) {
-                                                                    if (entry.getKey().equals(utente.getPaziente().getProvincia())) {
-                                                                        out.print("<option selected value=\"");
-                                                                    }
-                                                                    else {
-                                                                        out.print("<option value=\"");
-                                                                    }
-                                                                    out.print(entry.getKey());
-                                                                    out.print("\">");
-                                                                    out.print(entry.getValue());
-                                                                    out.println("</option>");
-                                                                }
-                                                            %>
-
+                                                            ${requestScope.provinciaoutgroup}
 
                                                         </optgroup>
-
-                                                    </select></div>
+                                                    </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Salva Informazioni</button></div>

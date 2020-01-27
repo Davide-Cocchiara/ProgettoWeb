@@ -48,11 +48,21 @@
                                         style="font-size: 24px;"><strong>Prescrizione</strong></p>
                                 </div>
                                 <div class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Rilascio</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;"><%= LocalDate.now().toString()%></span></div>
+                                <form action="<%=request.getContextPath()%>/sismed/paziente/eroganuovaricetta" method="post">
+                                    <div class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Esame Prescritto</strong></span>
 
-                                <div
-                                    class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Esame Prescritto</strong></span><select class="border rounded float-right" style="font-size: 20px;"><optgroup label="Esami"><option value="" selected="">---</option><option value="14">Controllo Naso</option><option value="2">Controllo Piedi</option></optgroup></select></div>
-                            <div
-                                class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Completa Prescrizione</button></div>
+                                        <select class="form-control border rounded float-right" name="selectedesame">
+                                            <optgroup label="Esami">
+                                                ${requestScope.esamedropdown}
+
+                                            </optgroup>
+                                        </select>
+
+
+                                        <button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="submit">Completa Prescrizione</button>
+                                    </div>
+                                </form>
+                            <div class="card-footer"> </div>
                     </div>
                 </div>
                 <div class="tab-pane" role="tabpanel" id="tab-2">
@@ -61,12 +71,29 @@
                             <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Prescrizione</strong></p>
                         </div>
                         <div class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Rilascio</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;"><%= LocalDate.now().toString()%></span></div>
-                        <div
-                            class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Farmaco Prescritto</strong></span><select class="border rounded float-right" style="font-size: 20px;"><optgroup label="Farmaci"><option value="0">---</option><option value="12" selected="">Boccino 20mg</option><option value="13">Doccia 20ml</option></optgroup></select></div>
-                    <div
-                        class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Completa Prescrizione</button></div>
+                        <form action="<%=request.getContextPath()%>/sismed/paziente/eroganuovaricetta" method="post">
+                            <div class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Farmaco Prescritto</strong></span>
+
+                                    <select class="form-control" name="selectedesame">
+                                        <optgroup label="Farmaco">
+                                            ${requestScope.farmacodropdown}
+
+                                        </optgroup>
+                                    </select>
+                                <button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="submit">Completa Prescrizione</button>
+                            </div>
+                        </form>
+                    <div class="card-footer"></div>
             </div>
         </div>
+                        <%
+                            if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("true")) {
+                                out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Ricetta erogata con successo!<br></label>\n");
+                            }
+                            if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("false")) {
+                                out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Ricetta non erogata!<br></label>\n");
+                            }
+                        %>
     </div>
     </div>
     </div>
