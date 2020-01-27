@@ -1,12 +1,18 @@
 package unitn.progweb.cocchiara.servlet.sismed.paziente;// Import required java libraries
 
+import unitn.progweb.cocchiara.model.Paziente;
+import unitn.progweb.cocchiara.model.Utente;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 // Extend HttpServlet class
 
@@ -19,8 +25,32 @@ public class NuovaVisita extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { ;
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sismed/paziente/nuova-visita.jsp");
-        rd.forward(request, response);
+        String prestazionedropdown = "";
+        HttpSession session = request.getSession();
+        Utente utente = (Utente) session.getAttribute("utente");
+        Paziente selectedpaziente = (Paziente) session.getAttribute("selectedpaziente");
+        LinkedHashMap<String,String> listaprestazioni = utente.getMedico().getListEsamiRefertabiliPaziente(selectedpaziente.getCodicefiscale());
+        if (listaprestazioni!= null) {
+            for (Map.Entry<String,String> entry :listaprestazioni.entrySet()) {
+                // TODO parametro ticket, ID nel dropdown.
+                prestazionedropdown+= "<option value=\"";
+                prestazionedropdown+= entry.getKey();
+                prestazionedropdown+= "\">";
+                prestazionedropdown+=entry.getValue();
+                prestazionedropdown+=" # ";
+                prestazionedropdown+= entry.getKey();
+                prestazionedropdown+="</option>";
+            }
+            session.setAttribute("listaprestazioni",listaprestazioni);
+            request.setAttribute("prestazionedropdown",prestazionedropdown);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sismed/paziente/nuova-visita.jsp");
+            rd.forward(request, response);
+        } else {
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/error.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
     public void destroy() {

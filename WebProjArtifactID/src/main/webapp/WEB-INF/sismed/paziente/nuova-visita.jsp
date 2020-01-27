@@ -36,20 +36,39 @@
                 <jsp:include page="/WEB-INF/sismed/header.jsp" />
             <div class="container-fluid">
                 <div class="card shadow">
-                    <div class="card-header d-inline-flex" style="height: 55px;">
+                    <form method="post" action="<%=request.getContextPath()%>/sismed/paziente/eroganuovavisita">
+                    <div class="card-header d-inline-flex" style="height: 55px;width:100%">
                         <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto</strong></p>
                     </div>
                     <div class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"> <%= LocalDate.now().toString()%></span></div>
                     <div
-                        class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><select class="border rounded float-right" style="font-size: 20px;"><optgroup label="Prestazioni Disponibili"><option value="12" selected="">Visita Base</option><option value="13">Visita Piedi</option><option value="14">Visita Boo</option></optgroup></select></div>
+                        class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span>
+                        <select class="form-control" name="selectedprestazione">
+                            <optgroup label="Prestazione">
+                        ${requestScope.prestazionedropdown}
+                            </optgroup>
+                        </select>
+                    </div>
                 <div
                     class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
-            <div class="card-body d-inline-flex flex-grow-1 flex-shrink-1" style="height: auto;padding-top: 10px;"><textarea class="border rounded flex-grow-1" style="width: 100%;height: 200px;" wrap="hard"></textarea></div>
-            <div class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">123,03€</span></div>
-            <div
-                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-top: 8px;"><strong>Pagamento Effettuato</strong></span><select class="border rounded float-right" style="font-size: 20px;"><option value="0" selected="">--</option><option value="13">Sì</option><option value="14">No</option></select></div>
+            <div class="card-body d-inline-flex flex-grow-1 flex-shrink-1" style="height: auto;width:100%;padding-top: 10px;"><textarea class="border rounded flex-grow-1" style="width: 100%;height: 200px;" wrap="hard" name="relazione"></textarea></div>
+            <div class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-top: 8px;"><strong>Pagamento Effettuato</strong></span><select name="pagato" class="border rounded float-right" style="font-size: 20px;"><option value="0" selected="">No</option><option value="1">Sì</option></select></div>
         <div
-            class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Completa referto</button></div>
+            class="card-body"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="submit">Completa referto</button>
+        </div>
+                </form>
+                    <%
+                        if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("true")) {
+                            out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Visita erogata con successo!<br></label>\n");
+                        }
+                        if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("false")) {
+                            out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Visita non erogata!<br></label>\n");
+                        }
+                        if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("nopagamento")) {
+                            out.println("<label for=\"signature\" style=\"color: rgb(255,255,0);\"><strong>Errore: </strong>Visita erogata ma errore nel pagamento.<br></label>\n");
+                        }
+                    %>
+                    <div class="card-footer"></div>
     </div>
     </div>
     </div>

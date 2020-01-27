@@ -53,19 +53,20 @@ public class NuovaRicetta extends HttpServlet {
                 farmacodropdown+=entry.getValue();
                 farmacodropdown+="</option>";
             }
+            session.setAttribute("listaesami",listaesami);
+            session.setAttribute("listafarmaci",listafarmaci);
+
+            request.setAttribute("esamedropdown",esamedropdown);
+            request.setAttribute("farmacodropdown",farmacodropdown);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sismed/paziente/nuova-ricetta.jsp");
+            rd.forward(request, response);
 
         } else {
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/error.jsp");
-
+            rd.forward(request, response);
         }
-        session.setAttribute("listaesami",listaesami);
-        session.setAttribute("listafarmaci",listafarmaci);
 
-        request.setAttribute("esamedropdown",esamedropdown);
-        request.setAttribute("farmacodropdown",farmacodropdown);
-
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sismed/paziente/nuova-ricetta.jsp");
-        rd.forward(request, response);
     }
 
     public void destroy() {
