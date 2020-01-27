@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- TODO BRO: Qui non viene utilizzato il sidebar quindi lascialo come da bootstrap -->
+<!-- TODO BRO: copia da profilo medico -->
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Lista Prestazioni - Servizi Sanitari per il cittadino</title>
+    <title>Profilo Admin - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -35,7 +37,9 @@
                     <div class="sidebar-brand-text mx-3"><span class="text-center">Servizi <br>Amministrativi<br></span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
-                <ul class="nav navbar-nav text-light" id="accordionSidebar"></ul>
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-referti.html"><i class="fas fa-personas" style="font-size: 20px;"></i><span style="font-size: 20px;">Pazienti</span></a></li>
+                </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
@@ -145,126 +149,63 @@
         </div>
         </nav>
         <div class="container-fluid">
-            <div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Esami Disponibili</a></li>
-                    <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Farmaci Disponibili</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" role="tabpanel" id="tab-1">
-                        <div class="card shadow">
-                            <div class="card-header d-inline-flex" style="height: 55px;">
-                                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Esami Disponibili</strong></p>
+            <h3 class="text-dark mb-4">Profilo Amministrativo</h3>
+            <div class="row mb-3">
+                <div class="col-lg-4">
+                    <div class="card mb-3">
+                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="<%=request.getContextPath()%>/assets/img/admin.jpg" width="160" height="160">
+                            <div class="mb-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row mb-3 d-none">
+                        <div class="col">
+                            <div class="card text-white bg-primary shadow">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <p class="m-0">Peformance</p>
+                                            <p class="m-0"><strong>65.2%</strong></p>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-white bg-success shadow">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <p class="m-0">Peformance</p>
+                                            <p class="m-0"><strong>65.2%</strong></p>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                    <table class="table dataTable my-0" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 144px;">ID</th>
-                                                <th>Descrizione</th>
-                                                <th>Ticket</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>0102</td>
-                                                <td>Controllo Barche</td>
-                                                <td>0,44€</td>
-                                            </tr>
-                                            <tr></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td><strong>ID</strong><br></td>
-                                                <td><strong>Nome</strong></td>
-                                                <td><strong>Cognome</strong></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="tab-2">
-                        <div class="card shadow">
-                            <div class="card-header d-inline-flex" style="height: 55px;">
-                                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Farmaci Disponibile</strong></p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card shadow mb-3">
+                                <div class="card-header py-3">
+                                    <p class="text-primary m-0 font-weight-bold">Dati</p>
                                 </div>
-                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                    <table class="table dataTable my-0" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 144px;">ID</th>
-                                                <th>Descrizione</th>
-                                                <th>Ticket</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>0023</td>
-                                                <td>Boccino D'Oro</td>
-                                                <td>123,42€</td>
-                                            </tr>
-                                            <tr></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td><strong>ID</strong><br></td>
-                                                <td><strong>Nome</strong></td>
-                                                <td><strong>Cognome</strong></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly=""></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly=""></div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

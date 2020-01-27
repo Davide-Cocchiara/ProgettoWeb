@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- TODO BRO: Qui non viene utilizzato il sidebar quindi lascialo come da bootstrap -->
+<!-- TODO BRO: copia da prestazioni lista del medico e cambia parametro del paziente selezionato in selectedprovinciapaziente -->
+
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Eroga Servizio - Servizi Sanitari per il cittadino</title>
+    <title>Lista Prestazioni - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -35,10 +38,7 @@
                     <div class="sidebar-brand-text mx-3"><span class="text-center">Servizi <br>Amministrativi<br></span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
-                <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisSan/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisSan/eroga-servizio.html"><i class="fas fa-file-medical-alt" style="font-size: 20px;"></i><span style="font-size: 20px;">Eroga Farmaco / Esame</span></a></li>
-                </ul>
+                <ul class="nav navbar-nav text-light" id="accordionSidebar"></ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
@@ -150,68 +150,144 @@
         <div class="container-fluid">
             <div>
                 <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Eroga Farmaco</a></li>
-                    <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Eroga Esame</a></li>
+                    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Esami Disponibili</a></li>
+                    <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Farmaci Disponibili</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab-1">
                         <div class="card shadow">
                             <div class="card-header d-inline-flex" style="height: 55px;">
-                                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Eroga Farmaco</strong></p>
+                                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Esami Disponibili</strong></p>
                             </div>
-                            <div class="card-body" style="padding-bottom: 20px;height: 60px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Farmaco Prescritto</strong></span></div>
-                            <div class="card-body" style="padding-bottom: 20px;height: 40px;padding-top: 10px;"><select class="border rounded float-right" style="font-size: 20px;width: 100%;"><optgroup label="Ricette"><option value="" selected="">---</option><option value="14">02/03/2004 - Ricetta Farmaco 1</option><option value="2">04/04/2132 - Ricetta Farmaco 2</option></optgroup></select></div>
-                            <div
-                                class="card-body" style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto il</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
-                        <div
-                            class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto Da</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
-                    <div
-                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Provincia</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
-                <div
-                    class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">123,30€</span></div>
-            <div
-                class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Eroga Farmaco</button></div>
-    </div>
-    </div>
-    <div class="tab-pane" role="tabpanel" id="tab-2">
-        <div class="card shadow">
-            <div class="card-header d-inline-flex" style="height: 55px;">
-                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto Esame</strong></p>
-            </div>
-            <div class="card-body" style="padding-bottom: 20px;height: 60px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Esame Prescritto</strong></span></div>
-            <div class="card-body" style="padding-bottom: 20px;height: 40px;padding-top: 10px;"><select class="border rounded float-right" style="font-size: 20px;width: 100%;"><optgroup label="Ricette"><option value="" selected="">---</option><option value="14">02/03/2004 - Ricetta Esame 1</option><option value="2">04/04/2132 - Ricetta Esame 2</option></optgroup></select></div>
-            <div
-                class="card-body" style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto il</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
-        <div
-            class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto Da</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
-    <div
-        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Provincia</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
-        <div
-            class="card-body" style="height: 60px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">123,30€</span></div>
-            <div
-                class="card-body" style="height: 25px;padding: 0px;padding-left: 20px;padding-top: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
-                <div class="card-body d-inline-flex flex-grow-1 flex-shrink-1" style="height: auto;padding-top: 10px;"><textarea class="border rounded flex-grow-1" style="width: 100%;height: 200px;" wrap="hard"></textarea></div>
-                </div>
-                <div class="card shadow">
-                    <div class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Eroga Esame</button></div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                <footer class="bg-white sticky-footer">
-                    <div class="container my-auto">
-                        <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 text-nowrap">
+                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                    <table class="table dataTable my-0" id="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 144px;">ID</th>
+                                                <th>Descrizione</th>
+                                                <th>Ticket</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>0102</td>
+                                                <td>Controllo Barche</td>
+                                                <td>0,44€</td>
+                                            </tr>
+                                            <tr></tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td><strong>ID</strong><br></td>
+                                                <td><strong>Nome</strong></td>
+                                                <td><strong>Cognome</strong></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 align-self-center">
+                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                            <ul class="pagination">
+                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </footer>
-                </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-                <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
-                <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
-                <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
-                <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-                <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+                    <div class="tab-pane" role="tabpanel" id="tab-2">
+                        <div class="card shadow">
+                            <div class="card-header d-inline-flex" style="height: 55px;">
+                                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Farmaci Disponibile</strong></p>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 text-nowrap">
+                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                    <table class="table dataTable my-0" id="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 144px;">ID</th>
+                                                <th>Descrizione</th>
+                                                <th>Ticket</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>0023</td>
+                                                <td>Boccino D'Oro</td>
+                                                <td>123,42€</td>
+                                            </tr>
+                                            <tr></tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td><strong>ID</strong><br></td>
+                                                <td><strong>Nome</strong></td>
+                                                <td><strong>Cognome</strong></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 align-self-center">
+                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                            <ul class="pagination">
+                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
+        </div>
+    </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </body>
 
 </html>

@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!-- TODO BRO: Ti conviene copiare dall'altro e vedere come mantenere il foglio di stile. Fai un header suo e un sidebar suo. -->
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Info Paziente - Servizi Sanitari per il cittadino</title>
+    <title>Eroga Servizio - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assetsbootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
@@ -36,8 +38,8 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisSan/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisSan/eroga-servizio.html"><i class="fas fa-file-medical-alt" style="font-size: 20px;"></i><span style="font-size: 20px;">Eroga Farmaco / Esame</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisSan/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisSan/eroga-servizio.html"><i class="fas fa-file-medical-alt" style="font-size: 20px;"></i><span style="font-size: 20px;">Eroga Farmaco / Esame</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -148,113 +150,70 @@
         </div>
         </nav>
         <div class="container-fluid">
-            <h3 class="text-dark mb-4">Info Paziente</h3>
-            <div class="row mb-3">
-                <div class="col-lg-4">
-                    <div class="card mb-3">
-                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="<%=request.getContextPath()%>/assets/img/3.jpg" width="160" height="160">
-                            <div class="mb-3"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="row mb-3 d-none">
-                        <div class="col">
-                            <div class="card text-white bg-primary shadow">
-                                <div class="card-body">
-                                    <div class="row mb-2">
-                                        <div class="col">
-                                            <p class="m-0">Peformance</p>
-                                            <p class="m-0"><strong>65.2%</strong></p>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                                    </div>
-                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                </div>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Eroga Farmaco</a></li>
+                    <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Eroga Esame</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="tab-1">
+                        <div class="card shadow">
+                            <div class="card-header d-inline-flex" style="height: 55px;">
+                                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Eroga Farmaco</strong></p>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card text-white bg-success shadow">
-                                <div class="card-body">
-                                    <div class="row mb-2">
-                                        <div class="col">
-                                            <p class="m-0">Peformance</p>
-                                            <p class="m-0"><strong>65.2%</strong></p>
-                                        </div>
-                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                                    </div>
-                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow mb-3">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Dati</p>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly=""></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly=""></div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group"><label for="first_name"><strong>Data di nascita</strong></label><input class="form-control" type="text" placeholder="0/0/0000" name="nascita" readonly=""></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group"><label for="last_name"><strong>Luogo di nascita</strong></label><input class="form-control" type="text" placeholder="Gubbio, PG" name="luogonascita" readonly=""></div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group"><label for="first_name"><strong>Sesso</strong></label><input class="form-control" type="text" placeholder="Mischio" name="sesso" readonly=""></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group"><label for="first_name"><strong>Codice Fiscale</strong></label><input class="form-control" type="text" placeholder="CGNNMO00A01E256D" name="codicefiscale" readonly=""></div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Contatti</p>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group"><label for="address"><strong>Mail</strong></label><input class="form-control" type="text" placeholder="example@address.com" name="email" readonly=""></div>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <div class="form-group"><label for="city"><strong>Indirizzo</strong></label><input class="form-control" type="text" placeholder="Via Gnocchi, 00" name="indirizzo" readonly=""></div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group"><label for="country"><strong>Provincia</strong></label><input class="form-control" type="text" placeholder="Gubbio, GB" name="indirizzo" readonly=""></div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div class="card-body" style="padding-bottom: 20px;height: 60px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Farmaco Prescritto</strong></span></div>
+                            <div class="card-body" style="padding-bottom: 20px;height: 40px;padding-top: 10px;"><select class="border rounded float-right" style="font-size: 20px;width: 100%;"><optgroup label="Ricette"><option value="" selected="">---</option><option value="14">02/03/2004 - Ricetta Farmaco 1</option><option value="2">04/04/2132 - Ricetta Farmaco 2</option></optgroup></select></div>
+                            <div
+                                class="card-body" style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto il</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+                        <div
+                            class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto Da</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+                    <div
+                        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Provincia</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+                <div
+                    class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">123,30€</span></div>
+            <div
+                class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Eroga Farmaco</button></div>
     </div>
-    <footer class="bg-white sticky-footer">
-        <div class="container my-auto">
-            <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
-        </div>
-    </footer>
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-    <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+    </div>
+    <div class="tab-pane" role="tabpanel" id="tab-2">
+        <div class="card shadow">
+            <div class="card-header d-inline-flex" style="height: 55px;">
+                <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Referto Esame</strong></p>
+            </div>
+            <div class="card-body" style="padding-bottom: 20px;height: 60px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Esame Prescritto</strong></span></div>
+            <div class="card-body" style="padding-bottom: 20px;height: 40px;padding-top: 10px;"><select class="border rounded float-right" style="font-size: 20px;width: 100%;"><optgroup label="Ricette"><option value="" selected="">---</option><option value="14">02/03/2004 - Ricetta Esame 1</option><option value="2">04/04/2132 - Ricetta Esame 2</option></optgroup></select></div>
+            <div
+                class="card-body" style="padding: 1;padding-top: 5;padding-right: 5;padding-bottom: 5;padding-left: 5;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto il</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+        <div
+            class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prescritto Da</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+    <div
+        class="card-body" style="padding: 1;height: 50px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Provincia</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">---</span></div>
+        <div
+            class="card-body" style="height: 60px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Ticket</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">123,30€</span></div>
+            <div
+                class="card-body" style="height: 25px;padding: 0px;padding-left: 20px;padding-top: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
+                <div class="card-body d-inline-flex flex-grow-1 flex-shrink-1" style="height: auto;padding-top: 10px;"><textarea class="border rounded flex-grow-1" style="width: 100%;height: 200px;" wrap="hard"></textarea></div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Eroga Esame</button></div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <footer class="bg-white sticky-footer">
+                    <div class="container my-auto">
+                        <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
+                    </div>
+                </footer>
+                </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+                <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
+                <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
+                <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+                <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+                <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </body>
 
 </html>

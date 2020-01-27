@@ -131,4 +131,8 @@ public class SistemaProvincialeDAO extends BasicDAO {
         }
         return retVal;
     }
+
+    // TODO GET LISTA FARMACI FROM PROVINCIA
+
+    // TODO GET LISTA ESAMI FROM PROVINCIA
 }

@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- TODO BRO: Qui non viene utilizzato il sidebar quindi lascialo come da bootstrap -->
+<!-- TODO BRO: copia da pazienti lista del medico e cambia parametro del paziente selezionato in selectedprovinciapaziente -->
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Report Prestazioni - Servizi Sanitari per il cittadino</title>
+    <title>Lista Pazienti - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -145,142 +147,65 @@
         </div>
         </nav>
         <div class="container-fluid">
-            <div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-1">Farmaci Erogati</a></li>
-                    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-2">Esami Erogati</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane" role="tabpanel" id="tab-1">
-                        <div class="card shadow">
-                            <div class="card-body" style="padding: 20px;padding-top: 10px;padding-bottom: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><a class="card-link" href="#"><i class="fa fa-search border rounded d-inline-flex float-right align-content-center align-self-center m-auto justify-content-xl-center align-items-xl-center" style="font-size: 20px;padding: 3px;"></i></a>
-                                <input
-                                    class="border rounded d-inline-flex float-right" type="date" value="0"></div>
-                            <div class="card-body border rounded" style="padding-top: 10px;">
-                                <div class="row">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                    <table class="table dataTable my-0" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 144px;">Data</th>
-                                                <th>Farmaco</th>
-                                                <th>Medico</th>
-                                                <th>Paziente</th>
-                                                <th>Ticket</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>02/02/03 22:33</td>
-                                                <td>Buffetto</td>
-                                                <td>Dr. Eco Ive</td>
-                                                <td>NNGGG21B30R213N<br></td>
-                                                <td>123,1€</td>
-                                            </tr>
-                                            <tr></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td><strong>Data</strong><br></td>
-                                                <td><strong>Farmaco</strong></td>
-                                                <td><strong>Medico</strong></td>
-                                                <td><strong>Paziente</strong></td>
-                                                <td><strong>Ticket</strong><br></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Scarica Report .XLS</button></div>
+            <div class="card shadow">
+                <div class="card-header d-inline-flex" style="height: 55px;">
+                    <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Pazienti</strong></p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 text-nowrap">
+                            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
                         </div>
                     </div>
-                    <div class="tab-pane active" role="tabpanel" id="tab-2">
-                        <div class="card shadow">
-                            <div class="card-body" style="padding: 20px;padding-top: 10px;padding-bottom: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><a class="card-link" href="#"><i class="fa fa-search border rounded d-inline-flex float-right align-content-center align-self-center m-auto justify-content-xl-center align-items-xl-center" style="font-size: 20px;padding: 3px;"></i></a>
-                                <input
-                                    class="border rounded d-inline-flex float-right" type="date" value="0"></div>
-                            <div class="card-body border rounded" style="padding-top: 10px;">
-                                <div class="row">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                    <table class="table dataTable my-0" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 144px;">Data</th>
-                                                <th>Esame</th>
-                                                <th>Medico</th>
-                                                <th>Paziente</th>
-                                                <th>Ticket</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>02/02/03 22:33</td>
-                                                <td>Buffetto</td>
-                                                <td>Dr. Eco Ive</td>
-                                                <td>NNGGG21B30R213N<br></td>
-                                                <td>123,1€</td>
-                                            </tr>
-                                            <tr></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td><strong>Data</strong><br></td>
-                                                <td><strong>Esame</strong></td>
-                                                <td><strong>Medico</strong></td>
-                                                <td><strong>Paziente</strong></td>
-                                                <td><strong>Ticket</strong><br></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Scarica Report .XLS</button></div>
+                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                        <table class="table dataTable my-0" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 144px;">Codice Fiscale</th>
+                                    <th>Nome</th>
+                                    <th>Cognome</th>
+                                    <th>Data Nascita</th>
+                                    <th>Dettagli</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DAADEA80C02A475A</td>
+                                    <td>Ada</td>
+                                    <td>Eda</td>
+                                    <td>02/03/1980<br></td>
+                                    <td><a href="../SisMed/paziente/info-paziente.html"><i class="far fa-list-alt" style="font-size: 20px;line-height: 18px;color: rgb(51,0,255);font-weight: bold;font-style: normal;"></i></a></td>
+                                </tr>
+                                <tr></tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><strong>Codice Fiscale</strong><br></td>
+                                    <td><strong>Nome</strong></td>
+                                    <td><strong>Cognome</strong></td>
+                                    <td><strong>Data Nascita</strong><br></td>
+                                    <td><strong>Dettagli</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 align-self-center">
+                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
+                        </div>
+                        <div class="col-md-6">
+                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                <ul class="pagination">
+                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- TODO BRO: Ti conviene copiare dall'altro e vedere come mantenere il foglio di stile. Fai un header suo e un sidebar suo. -->
+
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profilo Admin - Servizi Sanitari per il cittadino</title>
+    <title>Info Paziente - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/assetsbootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
@@ -36,7 +38,8 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisMed/paziente/storico-referti.html"><i class="fas fa-personas" style="font-size: 20px;"></i><span style="font-size: 20px;">Pazienti</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="/SisSan/info-paziente.html"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>DAADEA80C02A475A</strong><br><strong>Ada Eda</strong></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-center" href="/SisSan/eroga-servizio.html"><i class="fas fa-file-medical-alt" style="font-size: 20px;"></i><span style="font-size: 20px;">Eroga Farmaco / Esame</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -147,11 +150,11 @@
         </div>
         </nav>
         <div class="container-fluid">
-            <h3 class="text-dark mb-4">Profilo Amministrativo</h3>
+            <h3 class="text-dark mb-4">Info Paziente</h3>
             <div class="row mb-3">
                 <div class="col-lg-4">
                     <div class="card mb-3">
-                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="<%=request.getContextPath()%>/assets/img/admin.jpg" width="160" height="160">
+                        <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="<%=request.getContextPath()%>/assets/img/3.jpg" width="160" height="160">
                             <div class="mb-3"></div>
                         </div>
                     </div>
@@ -187,25 +190,55 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="card shadow mb-3">
-                                <div class="card-header py-3">
-                                    <p class="text-primary m-0 font-weight-bold">Dati</p>
+                    <div class="card shadow mb-3">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">Dati</p>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly=""></div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="form-row">
-                                            <div class="col">
-                                                <div class="form-group"><label for="username"><strong>Nome</strong></label><input class="form-control" type="text" name="name" placeholder="nome" readonly=""></div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group"><label for="email"><strong>Cognome</strong></label><input class="form-control" type="email" placeholder="cognome" name="surname" readonly=""></div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="first_name"><strong>Data di nascita</strong></label><input class="form-control" type="text" placeholder="0/0/0000" name="nascita" readonly=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group"><label for="last_name"><strong>Luogo di nascita</strong></label><input class="form-control" type="text" placeholder="Gubbio, PG" name="luogonascita" readonly=""></div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="first_name"><strong>Sesso</strong></label><input class="form-control" type="text" placeholder="Mischio" name="sesso" readonly=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group"><label for="first_name"><strong>Codice Fiscale</strong></label><input class="form-control" type="text" placeholder="CGNNMO00A01E256D" name="codicefiscale" readonly=""></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">Contatti</p>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group"><label for="address"><strong>Mail</strong></label><input class="form-control" type="text" placeholder="example@address.com" name="email" readonly=""></div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group"><label for="city"><strong>Indirizzo</strong></label><input class="form-control" type="text" placeholder="Via Gnocchi, 00" name="indirizzo" readonly=""></div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group"><label for="country"><strong>Provincia</strong></label><input class="form-control" type="text" placeholder="Gubbio, GB" name="indirizzo" readonly=""></div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
