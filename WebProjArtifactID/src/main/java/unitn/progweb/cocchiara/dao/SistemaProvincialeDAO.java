@@ -1,5 +1,7 @@
 package unitn.progweb.cocchiara.dao;
 
+import unitn.progweb.cocchiara.model.Paziente;
+
 import java.sql.*;
 import java.util.LinkedHashMap;
 import java.util.ArrayList;
@@ -91,5 +93,42 @@ public class SistemaProvincialeDAO extends BasicDAO {
         }
         return out;
 
+    }
+
+    public ArrayList<Paziente> getListaPazientiMinimaleFromProvincia(String provincia) {
+
+        String query = "SELECT codicefiscale, nome, cognome, datanascita, medico FROM persona " +
+                "INNER JOIN medicoassegnato ON medicoassegnato.paziente=codicefiscale " +
+                "WHERE provincia=?;";
+
+        Connection conn = startConnection();
+        ArrayList<Paziente> retVal = new ArrayList<Paziente>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, provincia);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                Paziente p = new Paziente(
+                        results.getString(1),
+                        results.getString(2),
+                        results.getString(3),
+                        results.getDate(4),
+                        "",
+                        "",
+                        provincia,
+                        "",
+                        results.getString(5));
+
+                retVal.add(p);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get lista pazienti minimale " + ex.getMessage());
+        }
+        return retVal;
     }
 }

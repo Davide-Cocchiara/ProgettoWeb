@@ -218,12 +218,12 @@ public class MedicoDAO extends BasicDAO {
             conn.close();
 
             if (result != 1) {
-                System.err.println("Unable to change clinica for user, records changed were: " + result);
+                System.err.println("Unable to add ricetta for user, records changed were: " + result);
                 return false;
             }
             return true;
         } catch (SQLException ex) {
-            System.err.println("Unable to change clinica for user: " + ex.getMessage());
+            System.err.println("Unable to add ricetta for user: " + ex.getMessage());
             return false;
         }
 

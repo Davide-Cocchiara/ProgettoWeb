@@ -35,7 +35,7 @@ function tables_listaprescrizioni( selector,path_richiesta,path_dettaglio) {
             {"data": "datarilascio", "title": "Data Rilascio"},
             {"data": "prestazione", "title": "Prestazione"},
             {"data": "medico", "title": "Medico"},
-            {"data": "dataevasione", "title": "Data Evasione"},
+            {"data": "dataevasione", "title": "Data Evasione","sDefaultContent": "<div style=\"color:red\">Non evasa</div>"},
             {"data": "provincia", "title": "Provincia"},
             {
                 "name": "Dettagli", data: null,
