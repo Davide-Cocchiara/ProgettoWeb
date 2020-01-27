@@ -1,9 +1,9 @@
-package unitn.progweb.cocchiara.servlet.sismed;// Import required java libraries
+package unitn.progweb.cocchiara.servlet.sissan;// Import required java libraries
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import unitn.progweb.cocchiara.model.Paziente;
+import unitn.progweb.cocchiara.model.SistemaProvinciale;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 // Extend HttpServlet class
 
-@WebServlet("/sismed/getpazienti")
+@WebServlet("/sissan/getpazienti")
 public class GetPazienti extends HttpServlet {
 
     public void init() throws ServletException {
@@ -31,7 +31,7 @@ public class GetPazienti extends HttpServlet {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
-        ArrayList<Paziente> listaPazienti = utente.getMedico().getListPazienti(utente.getPaziente().getCodicefiscale());
+        ArrayList<Paziente> listaPazienti = new SistemaProvinciale(utente.getPaziente().getProvincia()).getListaPazienti();
 
         Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
         String json = "{ \"content\": " + gson.toJson(listaPazienti) + "}";

@@ -3,6 +3,12 @@ package unitn.progweb.cocchiara.model;
 import java.util.Date;
 
 public class Prescrizione {
+
+    final static public int PRESTAZIONE_SPECIALISTICO = 0;
+    final static public int PRESTAZIONE_FARMACO = 1;
+    final static public int PRESTAZIONE_LABORATORIO = 2;
+
+
     Date datarilascio;
     String prestazione;
     String medico;

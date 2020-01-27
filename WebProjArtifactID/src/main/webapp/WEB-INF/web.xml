@@ -1,5 +1,6 @@
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-  <display-name>Archetype Created Web Application</display-name>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <display-name>Archetype Created Web Application</display-name>
     <!--
 <error-page>
     <location>/WEB-INF/error.jsp</location>
@@ -40,4 +41,32 @@
         <servlet-name>StartSetup</servlet-name>
         <url-pattern>/WEB-INF/startsetup</url-pattern>
     </servlet-mapping>
+
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/welcome</url-pattern>
+        <url-pattern>/avatar</url-pattern>
+        <url-pattern>/servizi</url-pattern>
+        <url-pattern>/sispaz/*</url-pattern>
+        <url-pattern>/sissan/*</url-pattern>
+        <url-pattern>/sismed/*</url-pattern>
+        <url-pattern>/login</url-pattern>
+
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>adminFilter</filter-name>
+        <url-pattern>/sissan/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>medicoFilter</filter-name>
+        <url-pattern>/sismed/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SelectedPazienteFilter</filter-name>
+        <url-pattern>/sismed/paziente/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SelectedProvinciaPazienteFilter</filter-name>
+        <url-pattern>/sissan/paziente/*</url-pattern>
+    </filter-mapping>
 </web-app>

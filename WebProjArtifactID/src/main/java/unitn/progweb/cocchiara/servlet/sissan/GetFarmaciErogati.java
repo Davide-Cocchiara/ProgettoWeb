@@ -3,6 +3,8 @@ package unitn.progweb.cocchiara.servlet.sissan;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import unitn.progweb.cocchiara.model.Pagamento;
+import unitn.progweb.cocchiara.model.Prescrizione;
+import unitn.progweb.cocchiara.model.SistemaProvinciale;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 
 // Restituisce in JSON le info da convertire in XLS
 @WebServlet("/sissan/getfarmacierogati")
@@ -29,11 +32,11 @@ public class GetFarmaciErogati extends HttpServlet {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
-        // TODO Non pagamenti ma FARMACI
-        ArrayList<Pagamento> listaPagamenti = utente.getPaziente().getListPagamentiMinimale();
+        SistemaProvinciale prov = new SistemaProvinciale(utente.getPaziente().getProvincia());
+        ArrayList<Map.Entry<String, Pagamento>> farm =  prov.getReportPrestazioniErogateFromProvincia(Prescrizione.PRESTAZIONE_FARMACO);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
-        String json = "{ \"content\": " + gson.toJson(listaPagamenti) + "}";
+        String json = "{ \"content\": " + gson.toJson(farm) + "}";
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

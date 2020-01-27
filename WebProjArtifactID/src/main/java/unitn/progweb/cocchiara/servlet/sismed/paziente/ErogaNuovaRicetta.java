@@ -34,14 +34,16 @@ public class ErogaNuovaRicetta extends HttpServlet {
 
 
         LinkedHashMap<String,String>  listafarmaci = (LinkedHashMap<String,String>) session.getAttribute("listafarmaci");
-        LinkedHashMap<String,String>  listaesami = (LinkedHashMap<String,String>) session.getAttribute("listaesami");
+        LinkedHashMap<String,String>  listaesamispec = (LinkedHashMap<String,String>) session.getAttribute("listaesamispec");
+        LinkedHashMap<String,String>  listaesamilab = (LinkedHashMap<String,String>) session.getAttribute("listaesamilab");
 
         session.setAttribute("listafarmaci",null); // No longer needed.
-        session.setAttribute("listaesami",null); // No longer needed.
+        session.setAttribute("listaesamispec",null); // No longer needed.
+        session.setAttribute("listaesamilab",null); // No longer needed.
 
         // Provided id esame is valid and it's either a farmaco or an esame
         // Try adding the ricetta
-        if (selectedesame!= null && (listafarmaci.containsKey(selectedesame) || listaesami.containsKey(selectedesame))
+        if (selectedesame!= null && (listafarmaci.containsKey(selectedesame) || listaesamispec.containsKey(selectedesame) || listaesamilab.containsKey(selectedesame))
         &&  utente.getMedico().addRicetta(utente.getPaziente().getCodicefiscale(),utente.getPaziente().getProvincia(),selectedesame,selectedpaziente.getCodicefiscale())
         ) {
             response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovaricetta?erogata=true");

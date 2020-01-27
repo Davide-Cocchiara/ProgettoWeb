@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!-- TODO BRO: Qui non viene utilizzato il sidebar quindi lascialo come da bootstrap -->
-<!-- TODO BRO: copia da pazienti lista del medico e cambia parametro del paziente selezionato in selectedprovinciapaziente -->
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Lista Pazienti - Servizi Sanitari per il cittadino</title>
+    <title>Lista pazienti - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -29,201 +27,64 @@
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: rgb(224,255,205);background-image: linear-gradient(180deg, rgba(164,205,155,1) 10%, rgba(100,170,120,1) 100%);">
-            <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <div class="sidebar-brand-icon rotate-n-15"><i class="fa fa-plus-square"></i></div>
-                    <div class="sidebar-brand-text mx-3"><span class="text-center">Servizi <br>Amministrativi<br></span></div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                <ul class="nav navbar-nav text-light" id="accordionSidebar"></ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
-            </div>
-        </nav>
-        <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
-                <nav class="navbar navbar-dark navbar-expand bg-success shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button><a class="text-center" href="/SisMed/paziente/storico-referti.html" style="color: rgb(255,255,255);"></a>
-                        <div
-                            class="dropdown"><a class="dropdown-toggle bg-info border rounded border-success" data-toggle="dropdown" aria-expanded="false" href="#" style="color: rgb(255,255,255);margin: 0px;padding: 5px;">Funzioni Amministrative</a>
-                            <div class="dropdown-menu"
-                                role="menu" style="background-color: rgb(54,185,204);"><a class="dropdown-item" role="presentation" href="#">Report Prestazioni Erogate</a><a class="dropdown-item" role="presentation" href="#">Info Prestazioni</a></div>
-                    </div>
-                    <ul class="nav navbar-nav flex-nowrap ml-auto">
-                        <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-search"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto navbar-search w-100">
-                                    <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                        <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
-                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="badge badge-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in"
-                                    role="menu">
-                                    <h6 class="dropdown-header">alerts center</h6>
-                                    <a class="d-flex align-items-center dropdown-item" href="#">
-                                        <div class="mr-3">
-                                            <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                        </div>
-                                        <div><span class="small text-gray-500">December 12, 2019</span>
-                                            <p>A new monthly report is ready to download!</p>
-                                        </div>
-                                    </a>
-                                    <a class="d-flex align-items-center dropdown-item" href="#">
-                                        <div class="mr-3">
-                                            <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                                        </div>
-                                        <div><span class="small text-gray-500">December 7, 2019</span>
-                                            <p>$290.29 has been deposited into your account!</p>
-                                        </div>
-                                    </a>
-                                    <a class="d-flex align-items-center dropdown-item" href="#">
-                                        <div class="mr-3">
-                                            <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                                        </div>
-                                        <div><span class="small text-gray-500">December 2, 2019</span>
-                                            <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                                        </div>
-                                    </a><a class="text-center dropdown-item small text-gray-500" href="#">Show All Alerts</a></div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1" role="presentation">
-                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-envelope fa-fw"></i><span class="badge badge-danger badge-counter">7</span></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in"
-                                    role="menu">
-                                    <h6 class="dropdown-header">alerts center</h6>
-                                    <a class="d-flex align-items-center dropdown-item" href="#">
-                                        <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar4.jpeg">
-                                            <div class="bg-success status-indicator"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span></div>
-                                            <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                                        </div>
-                                    </a>
-                                    <a class="d-flex align-items-center dropdown-item" href="#">
-                                        <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar2.jpeg">
-                                            <div class="status-indicator"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate"><span>I have the photos that you ordered last month!</span></div>
-                                            <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                        </div>
-                                    </a>
-                                    <a class="d-flex align-items-center dropdown-item" href="#">
-                                        <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar3.jpeg">
-                                            <div class="bg-warning status-indicator"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span></div>
-                                            <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                        </div>
-                                    </a>
-                                    <a class="d-flex align-items-center dropdown-item" href="#">
-                                        <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="<%=request.getContextPath()%>/assets/img/avatars/avatar5.jpeg">
-                                            <div class="bg-success status-indicator"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
-                                            <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                        </div>
-                                    </a><a class="text-center dropdown-item small text-gray-500" href="#">Show All Alerts</a></div>
-                            </div>
-                            <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
-                        </li>
-                        <div class="d-none d-sm-block topbar-divider"></div>
-                        <li class="nav-item dropdown no-arrow" role="presentation">
-                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="filter: brightness(200%) saturate(200%);">Nome Cognome</span><img class="border rounded-circle img-profile" src="<%=request.getContextPath()%>/assets/img/utente.jpg"></a>
-                                <div
-                                    class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="/SisSan/profilo-admin.html"><i class="fas fa-persona fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
-            </div>
-            </li>
-            </ul>
+<div id="wrapper">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background-color: rgb(224,255,205);background-image: linear-gradient(180deg, rgba(164,205,155,1) 10%, rgba(100,170,120,1) 100%);">
+        <div class="container-fluid d-flex flex-column p-0">
+            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                <div class="sidebar-brand-icon rotate-n-15"><i class="fa fa-plus-square"></i></div>
+                <div class="sidebar-brand-text mx-3"><span class="text-center">Servizi <br>Amministrativi<br></span></div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <ul class="nav navbar-nav text-light" id="accordionSidebar"></ul>
+            <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
-        </nav>
-        <div class="container-fluid">
-            <div class="card shadow">
-                <div class="card-header d-inline-flex" style="height: 55px;">
-                    <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Pazienti</strong></p>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 text-nowrap">
-                            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                        </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <jsp:include page="header.jsp" />
+            <div class="container-fluid">
+                <div class="card shadow">
+                    <div class="card-header d-inline-flex" style="height: 55px;">
+                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Pazienti</strong></p>
+                        <a  id="stampabutton" class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"  href="#" style="width: 40;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a>
+
                     </div>
-                    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                        <table class="table dataTable my-0" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th style="width: 144px;">Codice Fiscale</th>
-                                    <th>Nome</th>
-                                    <th>Cognome</th>
-                                    <th>Data Nascita</th>
-                                    <th>Dettagli</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>DAADEA80C02A475A</td>
-                                    <td>Ada</td>
-                                    <td>Eda</td>
-                                    <td>02/03/1980<br></td>
-                                    <td><a href="../SisMed/paziente/info-paziente.html"><i class="far fa-list-alt" style="font-size: 20px;line-height: 18px;color: rgb(51,0,255);font-weight: bold;font-style: normal;"></i></a></td>
-                                </tr>
-                                <tr></tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td><strong>Codice Fiscale</strong><br></td>
-                                    <td><strong>Nome</strong></td>
-                                    <td><strong>Cognome</strong></td>
-                                    <td><strong>Data Nascita</strong><br></td>
-                                    <td><strong>Dettagli</strong></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 align-self-center">
-                            <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                        </div>
-                        <div class="col-md-6">
-                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                    <div class="card-body">
+                        <table class="table dataTable my-0" id="pazienti"></table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer class="bg-white sticky-footer">
-        <div class="container my-auto">
-            <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
-        </div>
-    </footer>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © Servizi Sanitari per il cittadino 2020</span></div>
+            </div>
+        </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-    <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+
+<script src="<%=request.getContextPath()%>/js/tables.js"></script>
+<script>
+    $( document ).ready(function() {
+        tables_listapazienti("#pazienti","<%=request.getContextPath()%>/sissan/getpazienti","<%=request.getContextPath()%>/sissan/selectprovinciapaziente?selectedprovinciapaziente=");
+    });
+</script>
+<script src="<%=request.getContextPath()%>/js/printThis.js"></script>
+
+<script>$('#stampabutton').click(function(){
+    $('#pazienti').printThis({
+    });
+    // TODO remove print button on print
+});</script>
 </body>
 
 </html>

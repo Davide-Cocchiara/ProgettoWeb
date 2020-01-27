@@ -25,25 +25,35 @@ public class NuovaRicetta extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        String esamedropdown = "";
+        String esamespecialisticodropdown = "";
+        String esamelaboratoriodropdown = "";
         String farmacodropdown = "";
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         SistemaProvinciale sistema=  new SistemaProvinciale(utente.getPaziente().getProvincia());
 
         // Get lista esami and farmaci of Medico's provincia, and use it's ids as values in dropdown menu
-        LinkedHashMap<String,String> listaesami = sistema.getListaEsamiDisponibili();
+        LinkedHashMap<String,String> listaesamiSpecialistici = sistema.getListaEsamiDisponibili(false);
+        LinkedHashMap<String,String> listaesamiLaboratorio = sistema.getListaEsamiDisponibili(true);
         LinkedHashMap<String,String> listafarmaci=  sistema.getListaFarmaciDisponibili();
 
-        if (  listaesami!= null && listafarmaci != null) {
+        if (  listaesamiSpecialistici!= null && listaesamiLaboratorio!= null && listafarmaci != null) {
             //same_dropdown += "";
 
-            for (Map.Entry<String,String> entry :listaesami.entrySet()) {
-                esamedropdown+= "<option value=\"";
-                esamedropdown+= entry.getKey();
-                esamedropdown+= "\">";
-                esamedropdown+=entry.getValue();
-                esamedropdown+="</option>";
+            for (Map.Entry<String,String> entry :listaesamiSpecialistici.entrySet()) {
+                esamespecialisticodropdown+= "<option value=\"";
+                esamespecialisticodropdown+= entry.getKey();
+                esamespecialisticodropdown+= "\">";
+                esamespecialisticodropdown+=entry.getValue();
+                esamespecialisticodropdown+="</option>";
+            }
+
+            for (Map.Entry<String,String> entry :listaesamiLaboratorio.entrySet()) {
+                esamelaboratoriodropdown += "<option value=\"";
+                esamelaboratoriodropdown += entry.getKey();
+                esamelaboratoriodropdown += "\">";
+                esamelaboratoriodropdown += entry.getValue();
+                esamelaboratoriodropdown += "</option>";
             }
 
             for (Map.Entry<String,String> entry :listafarmaci.entrySet()) {
@@ -53,11 +63,14 @@ public class NuovaRicetta extends HttpServlet {
                 farmacodropdown+=entry.getValue();
                 farmacodropdown+="</option>";
             }
-            session.setAttribute("listaesami",listaesami);
+            session.setAttribute("listaesamispec",listaesamiSpecialistici);
+            session.setAttribute("listaesamilab",listaesamiLaboratorio);
             session.setAttribute("listafarmaci",listafarmaci);
 
-            request.setAttribute("esamedropdown",esamedropdown);
+            request.setAttribute("esamespecdropdown",esamespecialisticodropdown);
+            request.setAttribute("esamelabdropdown",esamelaboratoriodropdown);
             request.setAttribute("farmacodropdown",farmacodropdown);
+
 
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sismed/paziente/nuova-ricetta.jsp");
             rd.forward(request, response);

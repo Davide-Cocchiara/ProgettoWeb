@@ -50,7 +50,7 @@ public class GetQRStoricoPrescrizione extends HttpServlet {
         else {
             Prescrizione prescrizione = paziente.getPrescrizione(idprescrizione,paziente.getCodicefiscale());
             if (prescrizione != null) {
-                // TODO decidere se mettere codice fiscale medico o meno.
+
                 response.setContentType("image/png");
                 QRCodeWriter qrCodeWriter = new QRCodeWriter();
                 String QRtext = "Medico: " + prescrizione.getMedico() + " (" + prescrizione.getCodiceMedico() + ")"+

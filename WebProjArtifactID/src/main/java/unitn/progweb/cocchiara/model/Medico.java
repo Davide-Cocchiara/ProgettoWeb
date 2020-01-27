@@ -52,13 +52,13 @@ public class Medico {
             return null;
     }
 
-    public Boolean addReferto(@NotNull String codicemedico, @NotNull String prestazione, @NotNull String relazione, @NotNull String codicefiscalePziente) {
+    public Boolean addReferto(@NotNull String codicemedico, @NotNull String prestazione, @NotNull String relazione, @NotNull String codicefiscalePziente, @NotNull Boolean isPagato) {
         MedicoDAO md = new MedicoDAO();
-        return md.addReferto(codicemedico, prestazione, relazione, codicefiscalePziente);
+        return md.addReferto(codicemedico, prestazione, relazione, codicefiscalePziente, isPagato);
     }
 
-    public LinkedHashMap<String, String> getListEsamiRefertabiliPaziente(@NotNull String codicepaziente) {
-        return new MedicoDAO().getListEsamiRefertabiliPaziente(codicepaziente);
+    public LinkedHashMap<String, Map.Entry<String,String>> getListEsamiRefertabiliPaziente(@NotNull String codicepaziente, @NotNull String provincia) {
+        return new MedicoDAO().getListEsamiRefertabiliPaziente(codicepaziente, provincia);
     }
 
     // Esame / Farmaco / Etc

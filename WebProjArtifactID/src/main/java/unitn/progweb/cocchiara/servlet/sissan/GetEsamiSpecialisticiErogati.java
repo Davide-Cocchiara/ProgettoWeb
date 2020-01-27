@@ -1,9 +1,10 @@
-package unitn.progweb.cocchiara.servlet.sismed;// Import required java libraries
+package unitn.progweb.cocchiara.servlet.sissan;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import unitn.progweb.cocchiara.model.Paziente;
+import unitn.progweb.cocchiara.model.Pagamento;
+import unitn.progweb.cocchiara.model.Prescrizione;
+import unitn.progweb.cocchiara.model.SistemaProvinciale;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.ServletException;
@@ -15,26 +16,26 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 
-// Extend HttpServlet class
-
-@WebServlet("/sismed/getpazienti")
-public class GetPazienti extends HttpServlet {
+// Restituisce in JSON le info da convertire in XLS
+@WebServlet("/sissan/getesamispecerogati")
+public class GetEsamiSpecialisticiErogati extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { ;
-
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
-        ArrayList<Paziente> listaPazienti = utente.getMedico().getListPazienti(utente.getPaziente().getCodicefiscale());
+        SistemaProvinciale prov = new SistemaProvinciale(utente.getPaziente().getProvincia());
+        ArrayList<Map.Entry<String, Pagamento>> farm =  prov.getReportPrestazioniErogateFromProvincia(Prescrizione.PRESTAZIONE_SPECIALISTICO);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
-        String json = "{ \"content\": " + gson.toJson(listaPazienti) + "}";
+        String json = "{ \"content\": " + gson.toJson(farm) + "}";
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

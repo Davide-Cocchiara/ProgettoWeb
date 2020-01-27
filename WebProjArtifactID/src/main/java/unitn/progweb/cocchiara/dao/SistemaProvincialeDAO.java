@@ -1,11 +1,10 @@
 package unitn.progweb.cocchiara.dao;
 
+import unitn.progweb.cocchiara.model.Pagamento;
 import unitn.progweb.cocchiara.model.Paziente;
 
 import java.sql.*;
-import java.util.LinkedHashMap;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 public class SistemaProvincialeDAO extends BasicDAO {
     public LinkedHashMap<String, String> getListaMediciFromPronvincia(String provincia) {
@@ -134,7 +133,44 @@ public class SistemaProvincialeDAO extends BasicDAO {
         return retVal;
     }
 
-    // TODO GET LISTA FARMACI FROM PROVINCIA
 
-    // TODO GET LISTA ESAMI FROM PROVINCIA
+    // Paziente, DatiPagamento
+    public ArrayList<Map.Entry<String, Pagamento>> getReportPrestazioniErogateFromProvincia(String provincia, int tipo) {
+        String query = "SELECT emesso, idprestazione, descrizione, costo, pagato, ticket.id, paziente " +
+                "FROM ticket INNER JOIN prestazioni " +
+                "ON ticket.idprestazione=prestazioni.id AND (tipo=?) " +
+                "INNER JOIN ssp_prestazionidisponibili ON prestazioni.id=ssp_prestazionidisponibili.idprestazione " +
+                "where pagato is not NULL " +
+                "AND idprovincia=?;";
+
+        Connection conn = startConnection();
+        ArrayList<Map.Entry<String, Pagamento>> retVal = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, tipo);
+            stmt.setString(2,provincia);
+            ResultSet results = stmt.executeQuery();
+
+            while (results.next()) {
+                // (Date dataemissione, String prestazione, String costo, Date datapagamento, String provinciarilascio, int idpagamento)
+                Pagamento r = new Pagamento(
+                        results.getDate(1),
+                        "[" + results.getString(2) + "] " + results.getString(3),
+                        results.getString(4),
+                        results.getDate(5),
+                        results.getString(6),
+                        results.getInt(7));
+
+                retVal.add(new AbstractMap.SimpleEntry<>(results.getString(8), r));
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.err.println("Unable to get lista prestazioni erogate provincia  " + ex.getMessage());
+        }
+        return retVal;
+    }
+
 }

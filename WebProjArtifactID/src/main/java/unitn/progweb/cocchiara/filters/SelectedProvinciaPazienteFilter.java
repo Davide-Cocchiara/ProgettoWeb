@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(	urlPatterns = {"/sissan/paziente/*"})
+@WebFilter(	filterName = "SelectedProvinciaPazienteFilter")
 public class SelectedProvinciaPazienteFilter implements Filter{
 
     public void init(FilterConfig arg0) throws ServletException {}

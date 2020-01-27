@@ -31,35 +31,26 @@ public class ErogaNuovaVisita extends HttpServlet {
 
         String selectedprestazione = request.getParameter("selectedprestazione");
         String pagato = request.getParameter("pagato");
-        String relazione  = request.getParameter("relazione");
+        String relazione = request.getParameter("relazione");
 
 
-        LinkedHashMap<String,String>  listaprestazioni = (LinkedHashMap<String,String>) session.getAttribute("listaprestazioni");
+        LinkedHashMap<String, String> listaprestazioni = (LinkedHashMap<String, String>) session.getAttribute("listaprestazioni");
 
-        session.setAttribute("listaprestazioni",null); // No longer needed.
-
-
-        if (selectedprestazione!= null &&  listaprestazioni.containsKey(selectedprestazione) && pagato!=null && relazione!=null  &&
-        (utente.getMedico().addReferto(utente.getPaziente().getCodicefiscale(),selectedprestazione,relazione,selectedpaziente.getCodicefiscale()))){
-
-                // TODO pagamento
-                /* if (pagato.equals("1")) { // Avvia pagamento
-                    selectedpaziente.pagaPagamento()
-                    // In caso di errore..
-                    response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovavisita?erogata=nopagamento");
-                }
-                else {// Non avviare pagamento
-                }
-                */
-                response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovavisita?erogata=true");
-
-            }
-            else {
-                response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovavisita?erogata=false");
-            }
+        session.setAttribute("listaprestazioni", null); // No longer needed.
 
 
+        if (selectedprestazione != null && listaprestazioni.containsKey(selectedprestazione) && pagato != null && relazione != null &&
+                (utente.getMedico().addReferto(utente.getPaziente().getCodicefiscale(),
+                        selectedprestazione,
+                        relazione,
+                        selectedpaziente.getCodicefiscale(),
+                        pagato.equals("1")))
+        ) {
+            response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovavisita?erogata=true");
 
+        } else {
+            response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovavisita?erogata=false");
+        }
 
 
     }

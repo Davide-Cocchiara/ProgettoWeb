@@ -29,16 +29,17 @@ public class NuovaVisita extends HttpServlet {
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
         Paziente selectedpaziente = (Paziente) session.getAttribute("selectedpaziente");
-        LinkedHashMap<String,String> listaprestazioni = utente.getMedico().getListEsamiRefertabiliPaziente(selectedpaziente.getCodicefiscale());
+        LinkedHashMap<String,Map.Entry<String,String>> listaprestazioni = utente.getMedico().getListEsamiRefertabiliPaziente(selectedpaziente.getCodicefiscale(), selectedpaziente.getProvincia());
         if (listaprestazioni!= null) {
-            for (Map.Entry<String,String> entry :listaprestazioni.entrySet()) {
-                // TODO parametro ticket, ID nel dropdown.
+            for (Map.Entry<String,Map.Entry<String,String>> entry :listaprestazioni.entrySet()) {
                 prestazionedropdown+= "<option value=\"";
                 prestazionedropdown+= entry.getKey();
                 prestazionedropdown+= "\">";
-                prestazionedropdown+=entry.getValue();
-                prestazionedropdown+=" # ";
-                prestazionedropdown+= entry.getKey();
+                prestazionedropdown+= entry.getValue().getKey() + " (" + entry.getValue().getValue() + "€)";
+                if(!entry.getKey().equals("-1")) {
+                    prestazionedropdown += " - Ricetta #";
+                    prestazionedropdown += entry.getKey();
+                }
                 prestazionedropdown+="</option>";
             }
             session.setAttribute("listaprestazioni",listaprestazioni);
