@@ -34,39 +34,9 @@ public class SistemaProvincialeDAO extends BasicDAO {
         return out;
     }
 
-    public LinkedHashMap<String, String> getListaFarmaciFromProvincia(String provincia) {
-        LinkedHashMap<String, String> out = new LinkedHashMap<String, String>();
-        String query = "SELECT idprestazione,descrizione FROM ssp_prestazionidisponibili " +
-                "INNER JOIN prestazioni ON prestazioni.id=idprestazione " +
-                "WHERE idprovincia=? AND tipo=1 " +
-                "AND idprestazione !='-1'";
-
-        Connection conn = startConnection();
-
-        try {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, provincia);
-            ResultSet results = stmt.executeQuery();
-
-            while (results.next()) {
-                String idPrestazione = String.valueOf(results.getInt(1));
-                String desc = results.getString(2);
-
-                out.put(idPrestazione, desc);
-            }
-            results.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.err.println("Unable to retrive farmaci from provincia" + ex.getMessage());
-        }
-        return out;
-
-    }
-
-    public LinkedHashMap<String, String> getListaEsamiFromProvincia(String provincia, Boolean diLaboratorio) {
-        LinkedHashMap<String, String> out = new LinkedHashMap<String, String>();
-        String query = "SELECT idprestazione,descrizione FROM ssp_prestazionidisponibili " +
+    public ArrayList<Map.Entry<String, Map.Entry<String, String>>> getListaPrestazioniFromProvincia(String provincia, int tipoPrestazione) {
+        ArrayList<Map.Entry<String, Map.Entry<String, String>>> out = new ArrayList<Map.Entry<String, Map.Entry<String, String>>>();
+        String query = "SELECT idprestazione, descrizione, costo FROM ssp_prestazionidisponibili " +
                 "INNER JOIN prestazioni ON prestazioni.id=idprestazione " +
                 "WHERE idprovincia=? AND tipo=? " +
                 "AND idprestazione !='-1'" +
@@ -77,14 +47,14 @@ public class SistemaProvincialeDAO extends BasicDAO {
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, provincia);
-            stmt.setInt(2, diLaboratorio ? 2 : 0);
+            stmt.setInt(2, tipoPrestazione );
             ResultSet results = stmt.executeQuery();
 
             while (results.next()) {
                 String idPrestazione = String.valueOf(results.getInt(1));
                 String desc = results.getString(2);
-
-                out.put(idPrestazione, desc);
+                String cost = results.getString(3);
+                out.add(new AbstractMap.SimpleEntry<>(idPrestazione, new AbstractMap.SimpleEntry<>(desc,cost)));
             }
             results.close();
             stmt.close();
@@ -159,10 +129,10 @@ public class SistemaProvincialeDAO extends BasicDAO {
                         "[" + results.getString(2) + "] " + results.getString(3),
                         results.getString(4),
                         results.getDate(5),
-                        results.getString(6),
-                        results.getInt(7));
+                        provincia,
+                        results.getInt(6));
 
-                retVal.add(new AbstractMap.SimpleEntry<>(results.getString(8), r));
+                retVal.add(new AbstractMap.SimpleEntry<>(results.getString(7), r));
             }
 
             results.close();

@@ -49,12 +49,9 @@
                 <div class="container-fluid">
                     <div>
                         <ul class="nav nav-tabs">
-                            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Eroga
-                                Farmaco</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Eroga
-                                Esame</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Eroga
-                                Esame</a></li>
+                            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Specialistici</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Laboratorio</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Farmaci</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" role="tabpanel" id="tab-1">
@@ -106,7 +103,7 @@
                                                 style="height: 0px;"></i></a>
                                     </div>
                                     <div class="card-body">
-                                        <table class="table dataTable my-0" id="farmaco" style="width: 100%;"></table>
+                                        <table class="table dataTable my-0" id="farmaci" style="width: 100%;"></table>
                                     </div>
 
                                 </div>
@@ -138,7 +135,7 @@
         $( document ).ready(function() {
             tables_listadisponibiliesami("#specialistici","<%=request.getContextPath()%>/sissan/getesamispecdisponibili");
             tables_listadisponibiliesami("#laboratorio","<%=request.getContextPath()%>/sissan/getesamilabdisponibili");
-            tables_listadisponibiliesami("#farmaci","<%=request.getContextPath()%>/sissan/getfarmacilabdisponibili");
+            tables_listadisponibiliesami("#farmaci","<%=request.getContextPath()%>/sissan/getfarmacidisponibili");
         });
     </script>
     <script src="<%=request.getContextPath()%>/js/printThis.js"></script>

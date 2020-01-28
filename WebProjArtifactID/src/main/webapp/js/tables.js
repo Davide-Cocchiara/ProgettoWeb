@@ -124,10 +124,42 @@ function tables_listaprescrizionierogabili( selector,path_richiesta,path_dettagl
     })
 }
 
-function tables_listareportesami( selector,path_richiesta) {
-    // TODO BRO
+function tables_listareportesamierogati(selector, path_richiesta) {
+    var table = $(selector).DataTable({
+        "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
+        },
+        "ajax": {
+            "url": path_richiesta,
+            "dataSrc": "content"
+        },
+        "columns": [
+            {"data": "value.idpagamento", "title": "ID"},
+            {"data": "value.datapagamento", "title": "Pagato"},
+            {"data": "value.dataemissione", "title": "Emesso"},
+            {"data": "value.prestazione", "title": "Prestazione"},
+            {"data": "key", "title": "Paziente"},
+            {"data": "value.costo", "title": "Costo"}
+        ]
+    })
 }
 
 function tables_listadisponibiliesami( selector,path_richiesta) {
     // TODO BRO
+    var table = $(selector).DataTable({
+        "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
+        },
+        "ajax": {
+            "url": path_richiesta,
+            "dataSrc": "content"
+        },
+        "columns": [
+            {"data": "key", "title": "ID"},
+            {"data": "value.key", "title": "Tipo"},
+            {"data": "value.value", "title": "Costo"}
+        ]
+    })
 }

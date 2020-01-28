@@ -51,12 +51,9 @@
                 <div class="container-fluid">
                     <div>
                         <ul class="nav nav-tabs">
-                            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Eroga
-                                Farmaco</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Eroga
-                                Esame</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Eroga
-                                Esame</a></li>
+                            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Specialistici</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Laoratorio</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Farmaci</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" role="tabpanel" id="tab-1">
@@ -108,7 +105,7 @@
                                                 style="height: 0px;"></i></a>
                                     </div>
                                     <div class="card-body">
-                                        <table class="table dataTable my-0" id="farmaco" style="width: 100%;"></table>
+                                        <table class="table dataTable my-0" id="farmaci" style="width: 100%;"></table>
                                     </div>
 
                                 </div>
@@ -138,9 +135,9 @@
     <script src="<%=request.getContextPath()%>/js/tables.js"></script>
     <script>
         $( document ).ready(function() {
-            tables_listareportesami("#specialistici","<%=request.getContextPath()%>/sissan/getesamispecerogati");
-            tables_listareportesami("#laboratorio","<%=request.getContextPath()%>/sissan/getesamilaberogati");
-            tables_listareportesami("#farmaci","<%=request.getContextPath()%>/sissan/getfarmacierogati");
+            tables_listareportesamierogati("#specialistici","<%=request.getContextPath()%>/sissan/getesamispecerogati");
+            tables_listareportesamierogati("#laboratorio","<%=request.getContextPath()%>/sissan/getesamilaberogati");
+            tables_listareportesamierogati("#farmaci","<%=request.getContextPath()%>/sissan/getfarmacierogati");
         });
     </script>
     <script src="<%=request.getContextPath()%>/js/printThis.js"></script>

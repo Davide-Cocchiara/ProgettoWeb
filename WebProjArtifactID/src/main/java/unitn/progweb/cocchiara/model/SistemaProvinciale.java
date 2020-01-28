@@ -24,11 +24,11 @@ public class SistemaProvinciale {
     public LinkedHashMap<String, String> getListaMedici() {
         return new SistemaProvincialeDAO().getListaMediciFromPronvincia(provincia);
     }
-    public LinkedHashMap<String,String> getListaFarmaciDisponibili() {
-        return new SistemaProvincialeDAO().getListaFarmaciFromProvincia(provincia);
+    public ArrayList<Map.Entry<String, Map.Entry<String, String>>> getListaFarmaciDisponibili() {
+        return new SistemaProvincialeDAO().getListaPrestazioniFromProvincia(provincia, Prescrizione.PRESTAZIONE_FARMACO);
     }
-    public LinkedHashMap<String,String> getListaEsamiDisponibili(@NotNull Boolean diLaboratorio) {
-        return new SistemaProvincialeDAO().getListaEsamiFromProvincia(provincia, diLaboratorio);
+    public ArrayList<Map.Entry<String, Map.Entry<String, String>>> getListaEsamiDisponibili(@NotNull Boolean diLaboratorio) {
+        return new SistemaProvincialeDAO().getListaPrestazioniFromProvincia(provincia, (diLaboratorio ? Prescrizione.PRESTAZIONE_LABORATORIO : Prescrizione.PRESTAZIONE_SPECIALISTICO));
     }
 
     public ArrayList<Map.Entry<String, Pagamento>> getReportPrestazioniErogateFromProvincia(@NotNull  int tipo) {
