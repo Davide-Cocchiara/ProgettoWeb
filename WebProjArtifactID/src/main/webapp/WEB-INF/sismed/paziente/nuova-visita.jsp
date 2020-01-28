@@ -55,19 +55,20 @@
             <div class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-top: 8px;"><strong>Pagamento Effettuato</strong></span><select name="pagato" class="border rounded float-right" style="font-size: 20px;"><option value="0" selected="">No</option><option value="1">Sì</option></select></div>
         <div
             class="card-body"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="submit">Completa referto</button>
+            <%
+                if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("true")) {
+                    out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Visita erogata con successo!<br></label>\n");
+                }
+                if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("false")) {
+                    out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Visita non erogata!<br></label>\n");
+                }
+                if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("nopagamento")) {
+                    out.println("<label for=\"signature\" style=\"color: rgb(255,255,0);\"><strong>Errore: </strong>Visita erogata ma errore nel pagamento.<br></label>\n");
+                }
+            %>
         </div>
                 </form>
-                    <%
-                        if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("true")) {
-                            out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Visita erogata con successo!<br></label>\n");
-                        }
-                        if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("false")) {
-                            out.println("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Visita non erogata!<br></label>\n");
-                        }
-                        if (request.getParameter("erogata") != null && request.getParameter("erogata").equals("nopagamento")) {
-                            out.println("<label for=\"signature\" style=\"color: rgb(255,255,0);\"><strong>Errore: </strong>Visita erogata ma errore nel pagamento.<br></label>\n");
-                        }
-                    %>
+
                     <div class="card-footer"></div>
     </div>
     </div>

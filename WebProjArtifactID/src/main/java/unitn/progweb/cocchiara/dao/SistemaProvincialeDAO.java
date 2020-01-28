@@ -133,15 +133,16 @@ public class SistemaProvincialeDAO extends BasicDAO {
         return retVal;
     }
 
+// TODO BRO Unable to get lista prestazioni erogate provincia  Bad value for type int : CHLMRW82C15B157R
 
     // Paziente, DatiPagamento
     public ArrayList<Map.Entry<String, Pagamento>> getReportPrestazioniErogateFromProvincia(String provincia, int tipo) {
-        String query = "SELECT emesso, idprestazione, descrizione, costo, pagato, ticket.id, paziente " +
+        String query = "SELECT emesso, ticket.idprestazione, descrizione, costo, pagato, ticket.id, paziente " +
                 "FROM ticket INNER JOIN prestazioni " +
                 "ON ticket.idprestazione=prestazioni.id AND (tipo=?) " +
                 "INNER JOIN ssp_prestazionidisponibili ON prestazioni.id=ssp_prestazionidisponibili.idprestazione " +
                 "where pagato is not NULL " +
-                "AND idprovincia=?;";
+                "AND ssp_prestazionidisponibili.idprovincia=?;";
 
         Connection conn = startConnection();
         ArrayList<Map.Entry<String, Pagamento>> retVal = new ArrayList<>();

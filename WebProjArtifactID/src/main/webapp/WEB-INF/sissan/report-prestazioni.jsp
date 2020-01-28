@@ -48,148 +48,75 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <jsp:include page="header.jsp" />
-        <div class="container-fluid">
-            <div>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-1">Farmaci Erogati</a></li>
-                    <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-2">Esami Erogati</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane" role="tabpanel" id="tab-1">
-                        <div class="card shadow">
-                            <div class="card-body" style="padding: 20px;padding-top: 10px;padding-bottom: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><a class="card-link" href="#"><i class="fa fa-search border rounded d-inline-flex float-right align-content-center align-self-center m-auto justify-content-xl-center align-items-xl-center" style="font-size: 20px;padding: 3px;"></i></a>
-                                <input
-                                    class="border rounded d-inline-flex float-right" type="date" value="0"></div>
-                            <div class="card-body border rounded" style="padding-top: 10px;">
-                                <div class="row">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                <div class="container-fluid">
+                    <div>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Eroga
+                                Farmaco</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Eroga
+                                Esame</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Eroga
+                                Esame</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                <div class="card shadow">
+                                    <div class="card-header d-inline-flex" style="height: 55px;">
+                                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info"
+                                           id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;">
+                                            <strong>Esami Specialistici Erogati</strong></p>
+                                        <a id="stampabutton_spec"
+                                           class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+                                           href="#" style="width: 40;height: 23px;">Stampa<i
+                                                class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center"
+                                                style="height: 0px;"></i></a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    <div class="card-body">
+                                        <table class="table dataTable my-0" id="specialistici" style="width: 100%;"></table>
                                     </div>
-                                </div>
-                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                    <table class="table dataTable my-0" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 144px;">Data</th>
-                                                <th>Farmaco</th>
-                                                <th>Medico</th>
-                                                <th>Paziente</th>
-                                                <th>Ticket</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>02/02/03 22:33</td>
-                                                <td>Buffetto</td>
-                                                <td>Dr. Eco Ive</td>
-                                                <td>NNGGG21B30R213N<br></td>
-                                                <td>123,1€</td>
-                                            </tr>
-                                            <tr></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td><strong>Data</strong><br></td>
-                                                <td><strong>Farmaco</strong></td>
-                                                <td><strong>Medico</strong></td>
-                                                <td><strong>Paziente</strong></td>
-                                                <td><strong>Ticket</strong><br></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+
                                 </div>
                             </div>
-                            <div class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Scarica Report .XLS</button></div>
-                        </div>
-                    </div>
-                    <div class="tab-pane active" role="tabpanel" id="tab-2">
-                        <div class="card shadow">
-                            <div class="card-body" style="padding: 20px;padding-top: 10px;padding-bottom: 10px;"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data</strong></span><a class="card-link" href="#"><i class="fa fa-search border rounded d-inline-flex float-right align-content-center align-self-center m-auto justify-content-xl-center align-items-xl-center" style="font-size: 20px;padding: 3px;"></i></a>
-                                <input
-                                    class="border rounded d-inline-flex float-right" type="date" value="0"></div>
-                            <div class="card-body border rounded" style="padding-top: 10px;">
-                                <div class="row">
-                                    <div class="col-md-6 text-nowrap">
-                                        <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                            <div class="tab-pane " role="tabpanel" id="tab-2">
+                                <div class="card shadow">
+                                    <div class="card-header d-inline-flex" style="height: 55px;">
+                                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info"
+                                           id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;">
+                                            <strong>Esami Laboratorio Erogati</strong></p>
+                                        <a id="stampabutton_lab"
+                                           class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+                                           href="#" style="width: 40;height: 23px;">Stampa<i
+                                                class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center"
+                                                style="height: 0px;"></i></a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                                    <div class="card-body">
+                                        <table class="table dataTable my-0" id="laboratorio" style="width: 100%;"></table>
                                     </div>
-                                </div>
-                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                    <table class="table dataTable my-0" id="dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 144px;">Data</th>
-                                                <th>Esame</th>
-                                                <th>Medico</th>
-                                                <th>Paziente</th>
-                                                <th>Ticket</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>02/02/03 22:33</td>
-                                                <td>Buffetto</td>
-                                                <td>Dr. Eco Ive</td>
-                                                <td>NNGGG21B30R213N<br></td>
-                                                <td>123,1€</td>
-                                            </tr>
-                                            <tr></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td><strong>Data</strong><br></td>
-                                                <td><strong>Esame</strong></td>
-                                                <td><strong>Medico</strong></td>
-                                                <td><strong>Paziente</strong></td>
-                                                <td><strong>Ticket</strong><br></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 1 of 1</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
+
                                 </div>
                             </div>
-                            <div class="card-footer"><button class="btn btn-primary text-right border rounded float-right d-xl-flex" type="button">Scarica Report .XLS</button></div>
+                            <div class="tab-pane " role="tabpanel" id="tab-3">
+                                <div class="card shadow">
+                                    <div class="card-header d-inline-flex" style="height: 55px;">
+                                        <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info"
+                                           id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;">
+                                            <strong>Farmaci Erogati</strong></p>
+                                        <a id="stampabutton_farm"
+                                           class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
+                                           href="#" style="width: 40;height: 23px;">Stampa<i
+                                                class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center"
+                                                style="height: 0px;"></i></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table dataTable my-0" id="farmaco" style="width: 100%;"></table>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
-        </div>
     </div>
     <footer class="bg-white sticky-footer">
         <div class="container my-auto">
@@ -203,6 +130,36 @@
     <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="<%=request.getContextPath()%>/js/tables.js"></script>
+    <script>
+        $( document ).ready(function() {
+            tables_listareportesami("#specialistici","<%=request.getContextPath()%>/sissan/getesamispecerogati");
+            tables_listareportesami("#laboratorio","<%=request.getContextPath()%>/sissan/getesamilaberogati");
+            tables_listareportesami("#farmaci","<%=request.getContextPath()%>/sissan/getfarmacierogati");
+        });
+    </script>
+    <script src="<%=request.getContextPath()%>/js/printThis.js"></script>
+
+    <script>
+        $('#stampabutton_spec').click(function(){
+        $('#specialistici').printThis({
+        });
+    });
+        $('#stampabutton_lab').click(function(){
+            $('#laboratorio').printThis({
+            });
+        });
+        $('#stampabutton_farm').click(function(){
+            $('#farmaci').printThis({
+            });
+        });
+
+    </script>
 </body>
 
 </html>

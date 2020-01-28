@@ -123,3 +123,11 @@ function tables_listaprescrizionierogabili( selector,path_richiesta,path_dettagl
         ]
     })
 }
+
+function tables_listareportesami( selector,path_richiesta) {
+    // TODO BRO
+}
+
+function tables_listadisponibiliesami( selector,path_richiesta) {
+    // TODO BRO
+}

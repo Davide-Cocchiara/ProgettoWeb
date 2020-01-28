@@ -23,8 +23,18 @@
             Amministrative</a>
             <div class="dropdown-menu"
                  role="menu" style="background-color: rgb(54,185,204);"><a class="dropdown-item" role="presentation"
-                                                                           href="<%=request.getContextPath()%>/sissan/reportprestazioni">Report Prestazioni Erogate</a><a
-                    class="dropdown-item" role="presentation" href="<%=request.getContextPath()%>/sissan/prestazionilista">Info Prestazioni</a></div>
+                                                                           href="<%=request.getContextPath()%>/sissan/reportprestazioni">Report
+                Prestazioni Erogate</a>
+
+
+                <a
+                    class="dropdown-item" role="presentation"
+                    href="<%=request.getContextPath()%>/sissan/prestazionilista">Info Prestazioni</a>
+                <a
+                        class="dropdown-item" role="presentation"
+                        href="<%=request.getContextPath()%>/sissan/pazientilista">Lista Pazienti</a>
+            </div>
+
         </div>
 
 
