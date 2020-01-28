@@ -10,8 +10,8 @@ import java.io.IOException;
 
 // Extend HttpServlet class
 
-@WebServlet("/sissan/paziente/erogaservizio")
-public class ErogaServizio extends HttpServlet {
+@WebServlet("/sissan/paziente/prescrizionierogabili")
+public class PrescrizioniErogabili extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
@@ -19,7 +19,7 @@ public class ErogaServizio extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { ;
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sissan/paziente/eroga-servizio.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sissan/paziente/prescrizioni-erogabili.jsp");
         rd.forward(request, response);
     }
 

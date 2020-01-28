@@ -95,7 +95,6 @@
     <script>$('#stampabutton').click(function(){
         $('#toprint').printThis({
         });
-        // TODO remove print button on print
     });</script>
 </body>
 

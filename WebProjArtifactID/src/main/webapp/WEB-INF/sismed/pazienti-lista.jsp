@@ -85,7 +85,6 @@
     <script>$('#stampabutton').click(function(){
         $('#pazienti').printThis({
         });
-        // TODO remove print button on print
     });</script>
 </body>
 

@@ -48,4 +48,8 @@ public class SistemaProvinciale {
     public ArrayList<Paziente> getListaPazienti() {
         return new SistemaProvincialeDAO().getListaPazientiMinimaleFromProvincia(provincia);
     }
+
+    public Boolean erogaFarmaco(Integer idprescrizione) {
+        return new SistemaProvincialeDAO().erogaRicetta(provincia, idprescrizione,true);
+    }
 }

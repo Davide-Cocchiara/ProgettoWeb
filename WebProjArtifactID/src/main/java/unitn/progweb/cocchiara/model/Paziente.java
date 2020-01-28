@@ -128,6 +128,12 @@ public class Paziente {
         PazienteDAO pd = new PazienteDAO();
         return pd.getListaPrescrizioniMinimale(codicefiscale);
     }
+
+    public ArrayList<Prescrizione> getListaPrescrizioni_Tipo(int tipoPrescrizione) {
+        PazienteDAO pd = new PazienteDAO();
+        return pd.getListaPrescrizioni_Tipo(codicefiscale, tipoPrescrizione);
+    }
+
     public Prescrizione getPrescrizione(int idPrescrizione, String codicefiscale) {
         PazienteDAO pd = new PazienteDAO();
         return pd.getPrescrizione(idPrescrizione, codicefiscale);

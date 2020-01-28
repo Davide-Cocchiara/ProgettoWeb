@@ -20,7 +20,7 @@
         <hr class="sidebar-divider my-0">
         <ul class="nav navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item" role="presentation"><a class="nav-link text-center active" href="<%=request.getContextPath()%>/sissan/paziente/infopaziente"><i class="fas fa-persona" style="font-size: 20px;"></i><strong>${sessionScope.selectedprovinciapaziente.getCodicefiscale()}</strong><br><strong>${sessionScope.selectedprovinciapaziente.getNome()} ${sessionScope.selectedprovinciapaziente.getCognome()}</strong></a></li>
-            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="<%=request.getContextPath()%>/sissan/paziente/erogaservizio"><i class="fas fa-file-medical-alt" style="font-size: 20px;"></i><span style="font-size: 20px;">Eroga Farmaco / Esame</span></a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link text-center" href="<%=request.getContextPath()%>/sissan/paziente/prescrizionierogabili"><i class="fas fa-file-medical-alt" style="font-size: 20px;"></i><span style="font-size: 20px;">Eroga Farmaco / Esame</span></a></li>
         </ul>
         <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>

@@ -71,12 +71,15 @@
                                         </select>
 
 
+
+                                    </div>
+                                    <div class="card-footer">
                                         <button class="btn btn-primary text-right border rounded float-right d-xl-flex"
                                                 type="submit">Completa Prescrizione
                                         </button>
                                     </div>
                                 </form>
-                                <div class="card-footer"></div>
+
                             </div>
                         </div>
 
@@ -103,12 +106,15 @@
 
                                             </optgroup>
                                         </select>
+
+                                    </div>
+                                    <div class="card-footer">
                                         <button class="btn btn-primary text-right border rounded float-right d-xl-flex"
                                                 type="submit">Completa Prescrizione
                                         </button>
                                     </div>
                                 </form>
-                                <div class="card-footer"></div>
+
                             </div>
                         </div>
 
@@ -135,12 +141,14 @@
 
                                             </optgroup>
                                         </select>
+                                    </div>
+                                    <div class="card-footer">
                                         <button class="btn btn-primary text-right border rounded float-right d-xl-flex"
                                                 type="submit">Completa Prescrizione
                                         </button>
                                     </div>
                                 </form>
-                                <div class="card-footer"></div>
+
                             </div>
                         </div>
                         <%

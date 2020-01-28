@@ -73,7 +73,6 @@
     <script>$('#stampabutton').click(function(){
         $('#prescrizioni').printThis({
         });
-        // TODO remove print button on print
     });</script>
 </body>
 

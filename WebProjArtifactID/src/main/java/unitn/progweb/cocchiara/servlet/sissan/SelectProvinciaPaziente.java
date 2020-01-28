@@ -28,7 +28,7 @@ public class SelectProvinciaPaziente extends HttpServlet {
         String s_selectedprovinciapaziente = request.getParameter("selectedprovinciapaziente");
 
         if (s_selectedprovinciapaziente != null) {
-            // Check that asked paziente is actually of medico
+            // Check that asked paziente is actually of provincia
             Paziente selectedprovinciapaziente = new SistemaProvinciale(utente.getPaziente().getProvincia()).getPazienteOfProvincia(s_selectedprovinciapaziente);
             if (selectedprovinciapaziente != null) {
                 session.setAttribute("selectedprovinciapaziente", selectedprovinciapaziente);

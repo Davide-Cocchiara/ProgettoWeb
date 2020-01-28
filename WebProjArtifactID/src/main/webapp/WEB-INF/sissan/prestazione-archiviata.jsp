@@ -1,10 +1,12 @@
+<%@ page import="unitn.progweb.cocchiara.model.Prescrizione" %>
+<%@ page import="unitn.progweb.cocchiara.model.Pagamento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Storico Prescrizione Singola - Servizi Sanitari per il cittadino</title>
+    <title>Prescrizione Erogabile - Servizi Sanitari per il cittadino</title>
     <meta name="description" content="Sistema di Servizi Sanitari per il cittadino, 2020, ProgWeb">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -28,31 +30,37 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <jsp:include page="/WEB-INF/sismed/paziente/sidebar.jsp" />
+        <jsp:include page="/WEB-INF/sissan/paziente/sidebar.jsp" />
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <jsp:include page="/WEB-INF/sismed/header.jsp" />
+                <jsp:include page="/WEB-INF/sissan/header.jsp" />
                 <div class="container-fluid">
 
                     <div class="card shadow" id="toprint">
                         <div class="card-header d-inline-flex" style="height: 55px;">
-                            <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Prescrizione</strong></p>
+                            <p class="text-center d-xl-flex justify-content-center align-items-center align-content-center my-auto justify-content-xl-center align-items-xl-center dataTables_info" id="dataTable_info" role="status" aria-live="polite" style="font-size: 24px;"><strong>Prescrizione Erogabile</strong></p>
                             <a  id="stampabutton" class="d-inline-flex float-right d-xl-flex flex-row-reverse justify-content-center align-items-center align-self-center ml-auto justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"
                                 href="#" style="width: 40;height: 23px;">Stampa<i class="fas fa-print border rounded d-inline-flex align-items-lg-center justify-content-xl-center align-items-xl-center" style="height: 0px;"></i></a></div>
                         <div class="card-body">
-                            <span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Rilascio</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizione.getDatarilascio()}</span></div>
+                            <span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Rilascio</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getDatarilascio()}</span></div>
                         <div
-                                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Evasione</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizione.getDataevasione()}</span></div>
+                                class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Evasione</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getDataevasione()}</span></div>
                         <div
-                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizione.getPrestazione()}</span></div>
+                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getPrestazione()}</span></div>
                         <div
-                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Medico</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizione.getMedico()}</span></div>
+                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Medico</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getMedico()}</span></div>
                         <div
-                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Provincia</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizione.getProvincia()}</span></div>
-                        <div class="card-body">
-                            <img style="float:right;padding:5px;"src="<%=request.getContextPath()%>/sispaz/getqrstoricoprescrizione?idprescrizione=${requestScope.prescrizione.getIdprescrizione()}"/>
-                        </div>
+                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Provincia</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getProvincia()}</span></div>
+                        <div
+                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Costo</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getCosto()}</span></div>
+
+
                     </div>
+                    <%
+                        if (request.getParameter("prescrizioneerogata") != null && request.getParameter("prescrizioneerogata").equals("true")) {
+                            out.println("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Prescrizione erogata con successo!<br></label>\n");
+                        }
+                    %>
                 </div>
         </div>
         <footer class="bg-white sticky-footer">
