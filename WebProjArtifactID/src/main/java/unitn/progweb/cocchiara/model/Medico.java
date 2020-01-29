@@ -4,7 +4,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.dao.MedicoDAO;
 import unitn.progweb.cocchiara.dao.PazienteDAO;
+import unitn.progweb.cocchiara.dao.UtenteDAO;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.ArrayList;
 
@@ -54,7 +57,14 @@ public class Medico {
 
     public Boolean addReferto(@NotNull String codicemedico, @NotNull String prestazione, @NotNull String relazione, @NotNull String codicefiscalePziente, @NotNull Boolean isPagato) {
         MedicoDAO md = new MedicoDAO();
-        return md.addReferto(codicemedico, prestazione, relazione, codicefiscalePziente, isPagato);
+        if (md.addReferto(codicemedico, prestazione, relazione, codicefiscalePziente, isPagato)) {
+            UtenteDAO ud = new UtenteDAO();
+            Date d = new Date(System.currentTimeMillis());
+            ud.addNotifica(codicefiscalePziente,DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDate.now()) + " - Referto da visualizzare." );
+            return true;
+        } else
+            return false;
+
     }
 
     public LinkedHashMap<String, Map.Entry<String,String>> getListEsamiRefertabiliPaziente(@NotNull String codicepaziente, @NotNull String provincia) {
@@ -63,7 +73,12 @@ public class Medico {
 
     // Esame / Farmaco / Etc
     public Boolean addRicetta(@NotNull String codicemedico, @NotNull String provinciaRilascio, String idesame, String codicefiscalePaziente) {
-        return new MedicoDAO().addRicetta(codicemedico, provinciaRilascio, idesame, codicefiscalePaziente);
+       if(new MedicoDAO().addRicetta(codicemedico, provinciaRilascio, idesame, codicefiscalePaziente)){
+            UtenteDAO ud = new UtenteDAO();
+            ud.addNotifica(codicefiscalePaziente,DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDate.now()) + " - Ricetta da visualizzare.");
+        return true;
+    } else
+            return false;
     }
 
 

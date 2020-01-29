@@ -8,15 +8,11 @@ import unitn.progweb.cocchiara.model.Utente;
 
 import java.sql.*;
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 
 public class UtenteDAO extends BasicDAO {
-
-
-
-
-
 
     public Utente getUserCred(String username, String password) {
         String query = "SELECT persona.codicefiscale FROM persona JOIN account ON persona.codicefiscale=account.codicefiscale WHERE persona.codicefiscale=? AND hashpass=crypt(?, hashpass);";
@@ -27,18 +23,16 @@ public class UtenteDAO extends BasicDAO {
             stmt.setString(1, username);
             stmt.setString(2, password);
             ResultSet results = stmt.executeQuery();
-            if (results.next())
-            {
+            if (results.next()) {
                 Paziente paziente = new PazienteDAO().getUserFromCodice(results.getString(1));
                 Medico medico = new MedicoDAO().getMedicoFromCodice(results.getString(1));
-                Boolean isAdmin = new AdminDAO().isAdmin(results.getString(1),conn);
-                out = new Utente(paziente,medico,isAdmin);
+                Boolean isAdmin = new AdminDAO().isAdmin(results.getString(1), conn);
+                out = new Utente(paziente, medico, isAdmin);
             }
             results.close();
             stmt.close();
             conn.close();
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.err.println("Unable to search for the Utente: " + ex.getMessage());
         }
         return out;
@@ -48,11 +42,10 @@ public class UtenteDAO extends BasicDAO {
         Paziente paziente = new PazienteDAO().getUserFromCodice(codiceFiscale);
         Medico medico = new MedicoDAO().getMedicoFromCodice(codiceFiscale);
         Boolean isAdmin = new AdminDAO().isAdmin(codiceFiscale, null);
-        return new Utente(paziente,medico,isAdmin);
+        return new Utente(paziente, medico, isAdmin);
     }
 
-    public Boolean changePassword(String username, String oldpass, String newpass)
-    {
+    public Boolean changePassword(String username, String oldpass, String newpass) {
         String query = "SELECT codicefiscale from account WHERE codicefiscale=? AND hashpass=crypt(?, hashpass);";
         Connection conn = startConnection();
         try {
@@ -81,13 +74,12 @@ public class UtenteDAO extends BasicDAO {
             stmt.close();
             conn.close();
 
-            if(result != 1) {
+            if (result != 1) {
                 System.err.println("Unable to change password for user, records changed were: " + result);
                 return false;
             }
             return true;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.err.println("Unable to check password for user: " + ex.getMessage());
             return false;
         }
@@ -95,11 +87,10 @@ public class UtenteDAO extends BasicDAO {
     }
 
     @Nullable
-    public Map.Entry<String,String> createOrUpdateCookieForUser(@NotNull String codiceFiscale)
-    {
+    public Map.Entry<String, String> createOrUpdateCookieForUser(@NotNull String codiceFiscale) {
         String token = UUID.randomUUID().toString();
 
-        Date expires = new Date(System.currentTimeMillis() + 7*24*60*60*1000);
+        Date expires = new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000);
 
         String query = "INSERT INTO authtoken(codicefiscale,token,expires) VALUES (?,crypt(?, gen_salt('bf', 8)),?) " +
                 "ON CONFLICT (codicefiscale) DO UPDATE SET token=crypt(?, gen_salt('bf', 8)), expires=? RETURNING id;";
@@ -110,9 +101,9 @@ public class UtenteDAO extends BasicDAO {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, codiceFiscale);
             stmt.setString(2, token);
-            stmt.setDate(3,expires);
-            stmt.setString(4,token);
-            stmt.setDate(5,expires);
+            stmt.setDate(3, expires);
+            stmt.setString(4, token);
+            stmt.setDate(5, expires);
             ResultSet results = stmt.executeQuery();
 
             if (!results.next()) // Error!
@@ -129,11 +120,10 @@ public class UtenteDAO extends BasicDAO {
             stmt.close();
             conn.close();
 
-            Map.Entry<String,String> retVal=new AbstractMap.SimpleEntry<>(String.valueOf(resId),token);
+            Map.Entry<String, String> retVal = new AbstractMap.SimpleEntry<>(String.valueOf(resId), token);
 
             return retVal;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.err.println("Unable to create/update cookie token for user: " + ex.getMessage());
             return null;
         }
@@ -141,8 +131,7 @@ public class UtenteDAO extends BasicDAO {
     }
 
     @Nullable // Return null if invalid, or codicefiscale if valid
-    public String tryLoginWithCookie(@NotNull String authId, @NotNull String authToken)
-    {
+    public String tryLoginWithCookie(@NotNull String authId, @NotNull String authToken) {
 
         String query = "SELECT codicefiscale from authtoken WHERE id=? AND token=crypt(?, token) AND expires>NOW();";
 
@@ -164,13 +153,10 @@ public class UtenteDAO extends BasicDAO {
             conn.close();
 
             return retVal;
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.err.println("Unable to try to login with cookie: " + ex.getMessage());
             return null;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println("Error trying to login with cookie: " + e.getMessage());
             return null;
         }
@@ -178,8 +164,7 @@ public class UtenteDAO extends BasicDAO {
     }
 
     @Nullable
-    public void deleteCookieForUser(@NotNull String codiceFiscale)
-    {
+    public void deleteCookieForUser(@NotNull String codiceFiscale) {
         String query = "DELETE FROM authtoken WHERE codicefiscale=?";
 
         Connection conn = startConnection();
@@ -192,9 +177,70 @@ public class UtenteDAO extends BasicDAO {
             stmt.close();
             conn.close();
 
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.err.println("Unable to delete cookie for user: " + ex.getMessage());
+        }
+    }
+
+
+    public ArrayList<Utente.Notifica> getNotifiche(@NotNull String codiceFiscale) {
+        String query = "SELECT id,testo from notifiche WHERE persona=?;";
+        Connection conn = startConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codiceFiscale);
+            ResultSet results = stmt.executeQuery();
+
+            ArrayList<Utente.Notifica> retVal = new ArrayList<>();
+            while (results.next()) // Wrong password
+            {
+                retVal.add(new Utente.Notifica(
+                        results.getInt(1),
+                        results.getString(2)));
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+            return retVal;
+        } catch (SQLException ex) {
+            System.err.println("Unable to get notifiche for user: " + ex.getMessage());
+        }
+        return null;
+    }
+
+    public Boolean deleteNotifica(@NotNull String codiceFiscale, @NotNull int idNotifica) {
+        String query = "DELETE FROM notifiche WHERE persona=? AND id=?;";
+        Connection conn = startConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codiceFiscale);
+            stmt.setInt(2, idNotifica);
+
+            stmt.execute();
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Unable to delete notifica for user: " + ex.getMessage());
+        }
+        return false;
+    }
+
+    public void addNotifica(@NotNull String codiceFiscale, String text) {
+        String query = "INSERT INTO notifiche(persona,testo) VALUES (?,?)";
+        Connection conn = startConnection();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, codiceFiscale);
+            stmt.setString(2, text );
+
+            stmt.execute();
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException ex) {
+            System.err.println("Unable to add notifica for user: " + ex.getMessage());
         }
     }
 }

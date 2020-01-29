@@ -3,6 +3,8 @@ package unitn.progweb.cocchiara.model;
 import org.jetbrains.annotations.NotNull;
 import unitn.progweb.cocchiara.dao.UtenteDAO;
 
+import java.util.ArrayList;
+
 public class Utente {
     Paziente paziente = null;
     Medico medico = null;
@@ -45,5 +47,37 @@ public class Utente {
     public void deleteCookie() {
         UtenteDAO ud = new UtenteDAO();
         ud.deleteCookieForUser(paziente.codicefiscale);
+    }
+
+    static public class Notifica
+    {
+
+        int id;
+        String text;
+
+        public Notifica(int id, String text) {
+            this.id = id;
+            this.text = text;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+
+    }
+
+    public ArrayList<Notifica> getNotifiche()
+    {
+        return new UtenteDAO().getNotifiche(paziente.codicefiscale);
+    }
+
+    public Boolean deleteNotifica(int idNotifica)
+    {
+        return new UtenteDAO().deleteNotifica(paziente.codicefiscale,idNotifica);
     }
 }
