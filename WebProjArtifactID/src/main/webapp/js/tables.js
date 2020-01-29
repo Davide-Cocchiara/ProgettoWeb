@@ -146,7 +146,6 @@ function tables_listareportesamierogati(selector, path_richiesta) {
 }
 
 function tables_listadisponibiliesami( selector,path_richiesta) {
-    // TODO BRO
     var table = $(selector).DataTable({
         "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
         "language": {

@@ -1,6 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!-- TODO BRO: Aggiungi i due tipi di lista in tables.js. Esempio applicato in lista pazienti medico  Copia le librerie src giuste-->
-<!-- TODO BRO: Come punti per ottenere i dati /sissan/getesamierogati e /sissan/getfarmacierogati -->
 
 <html>
 
@@ -52,7 +50,7 @@
                     <div>
                         <ul class="nav nav-tabs">
                             <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Specialistici</a></li>
-                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Laoratorio</a></li>
+                            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Laboratorio</a></li>
                             <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Farmaci</a></li>
                         </ul>
                         <div class="tab-content">

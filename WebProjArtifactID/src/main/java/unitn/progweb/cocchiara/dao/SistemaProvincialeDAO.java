@@ -103,7 +103,6 @@ public class SistemaProvincialeDAO extends BasicDAO {
         return retVal;
     }
 
-// TODO BRO Unable to get lista prestazioni erogate provincia  Bad value for type int : CHLMRW82C15B157R
 
     // Paziente, DatiPagamento
     public ArrayList<Map.Entry<String, Pagamento>> getReportPrestazioniErogateFromProvincia(String provincia, int tipo) {

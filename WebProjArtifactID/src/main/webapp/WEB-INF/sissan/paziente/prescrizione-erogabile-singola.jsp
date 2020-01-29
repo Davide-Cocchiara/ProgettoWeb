@@ -2,7 +2,7 @@
 <%@ page import="unitn.progweb.cocchiara.model.Pagamento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-
+<!-- TODO: Eroga+Paga Medicinale, Report + bill ticket Esame Laboratorio -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
