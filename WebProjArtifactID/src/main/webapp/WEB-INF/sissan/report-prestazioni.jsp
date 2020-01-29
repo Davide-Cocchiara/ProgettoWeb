@@ -68,6 +68,7 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table dataTable my-0" id="specialistici" style="width: 100%;"></table>
+                                        <button class="btn btn-primary btn-sm"  id="xlsspecialistici" type="button">Report XLS</button>
                                     </div>
 
                                 </div>
@@ -86,6 +87,7 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table dataTable my-0" id="laboratorio" style="width: 100%;"></table>
+                                        <button class="btn btn-primary btn-sm"  id="xlslaboratorio" type="button">Report XLS</button>
                                     </div>
 
                                 </div>
@@ -104,6 +106,7 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table dataTable my-0" id="farmaci" style="width: 100%;"></table>
+                                        <button class="btn btn-primary btn-sm"  id="xlsfarmaci" type="button">Report XLS</button>
                                     </div>
 
                                 </div>
@@ -155,6 +158,28 @@
         });
 
     </script>
+
+    <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/toXLS.js"></script>
+<script>
+
+
+
+    $("#xlsfarmaci").click(function(){
+        downloadXLS("farmaci","Report Farmaci.xls","Report Farmaci");
+    });
+
+    $("#xlslaboratorio").click(function(){
+        downloadXLS("laboratorio","Report Laboratorio.xls","Report Laboratorio");
+    });
+    $("#xlsspecialistici").click(function(){
+        downloadXLS("specialistici","Report Specialistici.xls","Report Specialistici");
+    });
+
+
+
+</script>
+
 </body>
 
 </html>
