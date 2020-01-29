@@ -17,6 +17,8 @@
 <nav class="navbar navbar-dark navbar-expand bg-info shadow mb-4 topbar static-top"
      style="background-color: #1cc88a!important;">
     <div class="container-fluid">
+        <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+
         <div
                 class="dropdown"><a class="dropdown-toggle bg-info border rounded border-success" data-toggle="dropdown"
                                     aria-expanded="false" href="#"

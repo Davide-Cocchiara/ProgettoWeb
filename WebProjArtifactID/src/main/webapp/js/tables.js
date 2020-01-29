@@ -1,5 +1,6 @@
 function tables_listareferti( selector,path_richiesta,path_dettaglio) {
         var table = $(selector).DataTable({
+
             "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
@@ -24,6 +25,7 @@ function tables_listareferti( selector,path_richiesta,path_dettaglio) {
 }
 function tables_listaprescrizioni( selector,path_richiesta,path_dettaglio) {
     var table = $(selector).DataTable({
+
         "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
@@ -50,6 +52,7 @@ function tables_listaprescrizioni( selector,path_richiesta,path_dettaglio) {
 }
 function tables_listapagamenti( selector,path_richiesta,path_dettaglio) {
     var table = $(selector).DataTable({
+
         "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
@@ -77,6 +80,7 @@ function tables_listapagamenti( selector,path_richiesta,path_dettaglio) {
 
 function tables_listapazienti( selector,path_richiesta,path_dettaglio) {
     var table = $(selector).DataTable({
+
         "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
@@ -104,6 +108,7 @@ function tables_listapazienti( selector,path_richiesta,path_dettaglio) {
 
 function tables_listaprescrizionierogabili( selector,path_richiesta,path_dettaglio) {
     var table = $(selector).DataTable({
+
         "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
@@ -131,6 +136,7 @@ function tables_listaprescrizionierogabili( selector,path_richiesta,path_dettagl
 
 function tables_listareportesamierogati(selector, path_richiesta) {
     var table = $(selector).DataTable({
+
         "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
@@ -153,6 +159,7 @@ function tables_listareportesamierogati(selector, path_richiesta) {
 
 function tables_listadisponibiliesami( selector,path_richiesta) {
     var table = $(selector).DataTable({
+
         "lengthMenu": [[10, 25, 50,100, -1], [10, 25, 50,100, "All"]],
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
