@@ -109,8 +109,8 @@
 <script src="<%=request.getContextPath()%>/js/tables.js"></script>
 <script>
     $( document ).ready(function() {
-        tables_listaprescrizionierogabili("#farmaci","<%=request.getContextPath()%>/sissan/paziente/getprescrizionierogabili?tipo=farmaci","<%=request.getContextPath()%>/sissan/paziente/prescrizioneerogabilesingola?idprescrizione=");
-        tables_listaprescrizionierogabili("#laboratorio","<%=request.getContextPath()%>/sissan/paziente/getprescrizionierogabili?tipo=laboratorio","<%=request.getContextPath()%>/sissan/paziente/prescrizioneerogabilesingola?idprescrizione=");
+        tables_listaprescrizionierogabili("#farmaci","<%=request.getContextPath()%>/sissan/paziente/getprescrizionierogabili?tipo=farmaci","<%=request.getContextPath()%>/sissan/paziente/farmacoerogabilesingolo?idprescrizione=");
+        tables_listaprescrizionierogabili("#laboratorio","<%=request.getContextPath()%>/sissan/paziente/getprescrizionierogabili?tipo=laboratorio","<%=request.getContextPath()%>/sissan/paziente/laboratorioerogabilesingolo?idprescrizione=");
     });
 </script>
 <script src="<%=request.getContextPath()%>/js/printThis.js"></script>

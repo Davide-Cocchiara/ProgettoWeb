@@ -439,14 +439,17 @@ public class PazienteDAO extends BasicDAO {
         }
     }
 
-    public ArrayList<Prescrizione> getListaPrescrizioni_Tipo(String codicefiscale, int tipoPrescrizione) {
+    public ArrayList<Prescrizione> getListaPrescrizioni_Tipo(String codicefiscale, int tipoPrescrizione, Boolean soloNonErogate) {
 
         String query = "SELECT datarilascio, descrizione, CONCAT(cognome,' ', nome) AS medico, dataevasione, prescrizioni.provinciarilascio, prescrizioni.id, tipo " +
                 "FROM prescrizioni " +
                 "INNER JOIN prestazioni ON prestazione=prestazioni.id " +
                 "INNER JOIN medico ON medico.codicefiscale=medico " +
                 "INNER JOIN persona on medico.codicefiscale=persona.codicefiscale " +
-                "WHERE prescrizioni.paziente=? AND prestazioni.tipo=? ;";
+                "WHERE prescrizioni.paziente=? AND prestazioni.tipo=? ";
+
+        if(soloNonErogate)
+            query += "AND dataevasione IS NULL";
 
         Connection conn = startConnection();
         ArrayList<Prescrizione> retVal = new ArrayList<Prescrizione>();

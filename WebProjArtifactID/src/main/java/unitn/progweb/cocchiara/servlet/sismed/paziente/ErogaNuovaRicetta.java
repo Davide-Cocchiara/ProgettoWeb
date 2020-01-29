@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 // Extend HttpServlet class
@@ -33,18 +35,41 @@ public class ErogaNuovaRicetta extends HttpServlet {
         Paziente selectedpaziente = (Paziente) session.getAttribute("selectedpaziente");
 
 
-        LinkedHashMap<String,String>  listafarmaci = (LinkedHashMap<String,String>) session.getAttribute("listafarmaci");
-        LinkedHashMap<String,String>  listaesamispec = (LinkedHashMap<String,String>) session.getAttribute("listaesamispec");
-        LinkedHashMap<String,String>  listaesamilab = (LinkedHashMap<String,String>) session.getAttribute("listaesamilab");
+        ArrayList<Map.Entry<String, Map.Entry<String, String>>> listafarmaci = (ArrayList<Map.Entry<String, Map.Entry<String, String>>>) session.getAttribute("listafarmaci");
+        ArrayList<Map.Entry<String, Map.Entry<String, String>>>  listaesamispec = (ArrayList<Map.Entry<String, Map.Entry<String, String>>>) session.getAttribute("listaesamispec");
+        ArrayList<Map.Entry<String, Map.Entry<String, String>>>  listaesamilab = (ArrayList<Map.Entry<String, Map.Entry<String, String>>>) session.getAttribute("listaesamilab");
 
         session.setAttribute("listafarmaci",null); // No longer needed.
         session.setAttribute("listaesamispec",null); // No longer needed.
         session.setAttribute("listaesamilab",null); // No longer needed.
+        Boolean contained = false;
 
+        if(selectedesame != null) {
+            for (Map.Entry<String, Map.Entry<String, String>> stringEntryEntry : listafarmaci) {
+                if (stringEntryEntry.getKey().equals(selectedesame)) {
+                    contained = true;
+                    break;
+                }
+            }
+            if (!contained)
+                for (Map.Entry<String, Map.Entry<String, String>> stringEntryEntry : listaesamispec) {
+                    if (stringEntryEntry.getKey().equals(selectedesame)) {
+                        contained = true;
+                        break;
+                    }
+                }
+            if (!contained)
+                for (Map.Entry<String, Map.Entry<String, String>> stringEntryEntry : listaesamilab) {
+                    if (stringEntryEntry.getKey().equals( selectedesame)) {
+                        contained = true;
+                        break;
+                    }
+                }
+        }
         // Provided id esame is valid and it's either a farmaco or an esame
         // Try adding the ricetta
-        if (selectedesame!= null && (listafarmaci.containsKey(selectedesame) || listaesamispec.containsKey(selectedesame) || listaesamilab.containsKey(selectedesame))
-        &&  utente.getMedico().addRicetta(utente.getPaziente().getCodicefiscale(),utente.getPaziente().getProvincia(),selectedesame,selectedpaziente.getCodicefiscale())
+
+        if (contained && utente.getMedico().addRicetta(utente.getPaziente().getCodicefiscale(),utente.getPaziente().getProvincia(),selectedesame,selectedpaziente.getCodicefiscale())
         ) {
             response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovaricetta?erogata=true");
         } else {

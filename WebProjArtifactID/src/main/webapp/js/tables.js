@@ -5,6 +5,7 @@ function tables_listareferti( selector,path_richiesta,path_dettaglio) {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
             },
             "ajax": {
+                "async" : true,
                 "url": path_richiesta,
                 "dataSrc": "content"
             },
@@ -28,6 +29,7 @@ function tables_listaprescrizioni( selector,path_richiesta,path_dettaglio) {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
         },
         "ajax": {
+            "async" : true,
             "url": path_richiesta,
             "dataSrc": "content"
         },
@@ -53,6 +55,7 @@ function tables_listapagamenti( selector,path_richiesta,path_dettaglio) {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
         },
         "ajax": {
+            "async" : true,
             "url": path_richiesta,
             "dataSrc": "content"
         },
@@ -79,6 +82,7 @@ function tables_listapazienti( selector,path_richiesta,path_dettaglio) {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
         },
         "ajax": {
+            "async" : true,
             "url": path_richiesta,
             "dataSrc": "content"
         },
@@ -105,6 +109,7 @@ function tables_listaprescrizionierogabili( selector,path_richiesta,path_dettagl
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
         },
         "ajax": {
+            "async" : true,
             "url": path_richiesta,
             "dataSrc": "content"
         },
@@ -131,6 +136,7 @@ function tables_listareportesamierogati(selector, path_richiesta) {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
         },
         "ajax": {
+            "async" : true,
             "url": path_richiesta,
             "dataSrc": "content"
         },
@@ -152,6 +158,7 @@ function tables_listadisponibiliesami( selector,path_richiesta) {
             "url": "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Italian.json"
         },
         "ajax": {
+            "async" : true,
             "url": path_richiesta,
             "dataSrc": "content"
         },

@@ -143,7 +143,7 @@ public class SistemaProvincialeDAO extends BasicDAO {
         return retVal;
     }
 
-    public Boolean erogaRicetta(String provincia, Integer idprescrizione, Boolean pagato) {
+    public Boolean erogaFarmaco(String provincia, Integer idprescrizione, Boolean pagato) {
 
         // Evasione ricetta specifica
         String query = "WITH prescriz AS (UPDATE prescrizioni SET dataevasione=NOW() WHERE id=? AND dataevasione IS NULL AND provinciarilascio=? " +
@@ -175,6 +175,46 @@ public class SistemaProvincialeDAO extends BasicDAO {
             System.err.println("Unable to eroga Ricetta: " + ex.getMessage());
             return false;
         }
+
+    }
+
+
+    public Boolean erogaEsameLaboratorio(String provincia, String medico, String relazione, Integer idprescrizione) {
+
+        // Evasione ricetta specifica
+        String query = "WITH prescriz AS (UPDATE prescrizioni SET dataevasione=NOW() WHERE id=? AND dataevasione IS NULL returning prestazione, provinciarilascio, paziente), " +
+                    "insertval AS (INSERT INTO visite (paziente, medico, DATA, relazione, prestazione) " +
+                    "SELECT paziente, ?, NOW(), ?, prestazione " +
+                    "FROM prescriz " +
+                    "returning paziente,prestazione,DATA,NULL) " +
+                    "INSERT INTO ticket(paziente,idprovincia,idprestazione,emesso) " +
+                    "(SELECT prescriz.paziente,?,insertval.prestazione,DATA FROM insertval, prescriz);";
+
+
+            try {
+                Connection conn = startConnection();
+
+                PreparedStatement stmt = conn.prepareStatement(query);
+
+                stmt = conn.prepareStatement(query);
+                stmt.setInt(1, idprescrizione);
+                stmt.setString(2, medico);
+                stmt.setString(3, relazione);
+                stmt.setString(4, provincia);
+
+                int result = stmt.executeUpdate();
+                stmt.close();
+                conn.close();
+
+                if (result <= 0) {
+                    System.err.println("No referto lab was added: " + result);
+                    return false;
+                }
+                return true;
+            } catch (SQLException ex) {
+                System.err.println("Unable to add referto lab: " + ex.getMessage());
+                return false;
+            }
 
     }
 }

@@ -2,7 +2,7 @@
 <%@ page import="unitn.progweb.cocchiara.model.Pagamento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<!-- TODO: Eroga+Paga Medicinale, Report + bill ticket Esame Laboratorio -->
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -26,6 +26,12 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Header-Dark.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Highlight-Phone.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/Team-Boxed.css">
+    <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 </head>
 
 <body id="page-top">
@@ -46,7 +52,7 @@
                         <div
                                 class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Data Evasione</strong></span><span class="border rounded d-inline-flex float-right mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getDataevasione()}</span></div>
                         <div
-                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Prestazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getPrestazione()}</span></div>
+                                class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Denominazione</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getPrestazione()}</span></div>
                         <div
                                 class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Medico</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getMedico()}</span></div>
                         <div
@@ -54,18 +60,17 @@
                         <div
                                 class="card-body" ><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;"><strong>Costo</strong></span><span class="border rounded d-inline-flex float-right d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;">${requestScope.prescrizioneerogabile.getCosto()}</span></div>
 
+
                         <div class="card-footer">
-                            <%
-                                if (request.getAttribute("prescrizioneerogabile") != null ) {
 
-                                    Prescrizione pr = (Prescrizione) request.getAttribute("prescrizioneerogabile");
+                            <div class="card-body" >
+                                <button id="pagabutton" class="card-link text-center border rounded border-primary d-inline-flex float-right align-items-lg-center">
+                                    Paga Ora&nbsp;<i class="far fa-credit-card" style="font-size: 50px"></i>
+                                </button>
+                            </div>
 
-                                        String pagabutton = "<div class=\"card-body\" > <a class=\"card-link text-center border rounded border-primary d-inline-flex float-right align-items-lg-center\" href=\""
-                                                + request.getContextPath()+ "/sissan/paziente/erogaprescrizione?idprescrizione=" + pr.getIdprescrizione()+"\">Paga Ora&nbsp;<i class=\"far fa-credit-card\" style=\"font-size: 50px;\"></i></a></div>";
-                                        out.println(pagabutton);
-
-                                }
-                            %>
+                            <div id="requestsuccess">
+                            </div>
                         </div>
 
                     </div>
@@ -78,13 +83,32 @@
             </div>
         </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-        <script src="<%=request.getContextPath()%>/assets/js/jquery.min.js"></script>
-        <script src="<%=request.getContextPath()%>/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll-1.js"></script>
-        <script src="<%=request.getContextPath()%>/assets/js/Header-Blue--Sticky-Header--Smooth-Scroll.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-        <script src="<%=request.getContextPath()%>/assets/js/theme.js"></script>
 
+    <script>
+
+        var pagaurl = "<% if (request.getAttribute("prescrizioneerogabile") != null ) {
+                                    Prescrizione pr = (Prescrizione) request.getAttribute("prescrizioneerogabile");
+                                    out.print(request.getContextPath()+ "/sissan/paziente/erogafarmaco?idprescrizione=" + pr.getIdprescrizione());
+                                }
+                            %>";
+
+        $(document).ready(function(){
+            $("#pagabutton").click(function(){
+                $.ajax({url: pagaurl,  method:"POST", async: true, success: function(result){
+                        if(result === "true")
+                        {
+
+                            $("#requestsuccess").html("<label for=\"signature\" style=\"color: rgb(0,220,0);\"><strong>Successo: </strong>Prestazione erogata con successo!<br></label>\n");
+                            $("#pagabutton").remove();
+                        }
+                        else
+                        {
+                            $("#requestsuccess").html("<label for=\"signature\" style=\"color: rgb(255,0,0);\"><strong>Errore: </strong>Prestazione non erogata!<br></label>\n");
+                        }
+                    }});
+            });
+        });
+    </script>
     <script src="<%=request.getContextPath()%>/js/printThis.js"></script>
     <script>$('#stampabutton').click(function(){
         $('#toprint').printThis({

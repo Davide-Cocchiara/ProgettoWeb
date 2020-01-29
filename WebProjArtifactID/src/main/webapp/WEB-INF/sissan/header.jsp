@@ -5,6 +5,7 @@
   Time: 21:01
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -43,7 +44,7 @@
                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
                                                            aria-expanded="false" href="#"><span
                         class="d-none d-lg-inline mr-2 text-gray-600 small"
-                        style="filter: brightness(200%) saturate(200%);">${sessionScope.utente.getPaziente().getNome()} ${sessionScope.utente.getPaziente().getCognome()}</span><img
+                        style="text-align: right;filter: brightness(200%) saturate(200%);">${sessionScope.utente.getPaziente().getNome()} ${sessionScope.utente.getPaziente().getCognome()}<br>Provincia di <%=request.getSession().getAttribute("provinciastampabile")%></span><img
                         class="border rounded-circle img-profile" src="<%=request.getContextPath()%>/avatar"></a>
                     <div
                             class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a

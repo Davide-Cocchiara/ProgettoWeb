@@ -129,9 +129,9 @@ public class Paziente {
         return pd.getListaPrescrizioniMinimale(codicefiscale);
     }
 
-    public ArrayList<Prescrizione> getListaPrescrizioni_Tipo(int tipoPrescrizione) {
+    public ArrayList<Prescrizione> getListaPrescrizioni_Tipo(int tipoPrescrizione, Boolean soloErogabili) {
         PazienteDAO pd = new PazienteDAO();
-        return pd.getListaPrescrizioni_Tipo(codicefiscale, tipoPrescrizione);
+        return pd.getListaPrescrizioni_Tipo(codicefiscale, tipoPrescrizione, soloErogabili);
     }
 
     public Prescrizione getPrescrizione(int idPrescrizione, String codicefiscale) {

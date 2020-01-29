@@ -37,7 +37,7 @@ public class GetPrescrizioniErogabili extends HttpServlet {
             tipoPres = Prescrizione.PRESTAZIONE_LABORATORIO;
 
         Paziente paziente = (Paziente) session.getAttribute("selectedprovinciapaziente");
-        ArrayList<Prescrizione> listaPrescrizioniErogabili = paziente.getListaPrescrizioni_Tipo(tipoPres);
+        ArrayList<Prescrizione> listaPrescrizioniErogabili = paziente.getListaPrescrizioni_Tipo(tipoPres, true);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy/MM/dd").create();
         String json = "{ \"content\": " + gson.toJson(listaPrescrizioniErogabili) + "}";

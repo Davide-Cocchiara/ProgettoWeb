@@ -3,6 +3,7 @@ package unitn.progweb.cocchiara.servlet;// Import required java libraries
 import com.google.gson.Gson;
 
 import unitn.progweb.cocchiara.dao.UtenteDAO;
+import unitn.progweb.cocchiara.model.SistemaNazionale;
 import unitn.progweb.cocchiara.model.Utente;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -34,6 +36,10 @@ public class DoLogin extends HttpServlet {
         Utente loggedPersona = dao.getUserCred(username,password);
         if (loggedPersona != null) { // Login success!
             session.setAttribute("utente", loggedPersona);
+
+            SistemaNazionale sis  = (SistemaNazionale) getServletContext().getAttribute("sistemanazionale");
+            LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
+            session.setAttribute("provinciastampabile", listaProvince.get(loggedPersona.getPaziente().getProvincia()));
 
             if(rememberme != null) {
                 Map.Entry<String, String> cookVal = dao.createOrUpdateCookieForUser(username);

@@ -13,13 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
-import java.util.LinkedHashMap;
 
 // Extend HttpServlet class
 
-@WebServlet("/sissan/paziente/erogafarmaco")
-public class ErogaFarmaco extends HttpServlet {
+@WebServlet("/sissan/paziente/erogalaboratorio")
+public class ErogaLaboratorio extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
@@ -34,6 +32,8 @@ public class ErogaFarmaco extends HttpServlet {
 
         String selectedprestazione = request.getParameter("idprescrizione");
 
+
+
         Boolean error=false;
         Integer idprescrizione = null;
         try {
@@ -42,10 +42,13 @@ public class ErogaFarmaco extends HttpServlet {
             error = true;
         }
 
+        String relazione = request.getParameter("relazione");
+        String codiceMedico = utente.getPaziente().getCodicefiscale();
+
         SistemaProvinciale sp = new SistemaProvinciale(utente.getPaziente().getProvincia());
 
-        if(!error && (selectedprestazione != null) && sp != null &&
-                sp.erogaFarmaco(idprescrizione))
+        if(!error && relazione != null && (selectedprestazione != null) && sp != null &&
+                sp.erogaEsameLaboratorio(idprescrizione,codiceMedico,relazione))
         {
             PrintWriter p = response.getWriter();
             p.write("true");

@@ -14,8 +14,8 @@ import java.io.IOException;
 
 // Extend HttpServlet class
 
-@WebServlet("/sissan/paziente/prescrizioneerogabilesingola")
-public class PrescrizioneErogabileSingola extends HttpServlet {
+@WebServlet("/sissan/paziente/farmacoerogabilesingolo")
+public class FarmacoErogabileSingolo extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
@@ -43,11 +43,11 @@ public class PrescrizioneErogabileSingola extends HttpServlet {
         else {
             Prescrizione prescrizione = paziente.getPrescrizione(idprescrizione,paziente.getCodicefiscale());
             if (prescrizione != null &&
-                    (prescrizione.getTipo() == Prescrizione.PRESTAZIONE_FARMACO ||
-                     prescrizione.getTipo() == Prescrizione.PRESTAZIONE_LABORATORIO))
+                    (prescrizione.getTipo() == Prescrizione.PRESTAZIONE_FARMACO)
+                && prescrizione.getDataevasione() == null)
             {
                 request.setAttribute("prescrizioneerogabile",prescrizione);
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sissan/paziente/prescrizione-erogabile-singola.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/sissan/paziente/farmaco-erogabile-singolo.jsp");
                 rd.forward(request,response);
             }
             else {

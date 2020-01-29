@@ -49,8 +49,7 @@
                             </optgroup>
                         </select>
                     </div>
-                <div
-                    class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
+                <div class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-right: 2px;"><strong>Relazione</strong></span></div>
             <div class="card-body d-inline-flex flex-grow-1 flex-shrink-1" style="height: auto;width:100%;padding-top: 10px;"><textarea class="border rounded flex-grow-1" style="width: 100%;height: 200px;" wrap="hard" name="relazione"></textarea></div>
             <div class="card-body"><span class="d-inline-flex d-lg-inline mr-2 text-gray-600 small" style="font-size: 20px;margin-top: 8px;"><strong>Pagamento Effettuato</strong></span><select name="pagato" class="border rounded float-right" style="font-size: 20px;"><option value="0" selected="">No</option><option value="1">Sì</option></select></div>
         <div

@@ -50,6 +50,9 @@ public class SistemaProvinciale {
     }
 
     public Boolean erogaFarmaco(Integer idprescrizione) {
-        return new SistemaProvincialeDAO().erogaRicetta(provincia, idprescrizione,true);
+        return new SistemaProvincialeDAO().erogaFarmaco(provincia, idprescrizione,true);
+    }
+    public Boolean erogaEsameLaboratorio(Integer idprescrizione, String codiceMedico, String relazione) {
+        return new SistemaProvincialeDAO().erogaEsameLaboratorio(provincia, codiceMedico, relazione, idprescrizione);
     }
 }
