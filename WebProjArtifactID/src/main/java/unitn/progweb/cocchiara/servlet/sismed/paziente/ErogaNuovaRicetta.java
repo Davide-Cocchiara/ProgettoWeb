@@ -69,7 +69,7 @@ public class ErogaNuovaRicetta extends HttpServlet {
         // Provided id esame is valid and it's either a farmaco or an esame
         // Try adding the ricetta
 
-        if (contained && utente.getMedico().addRicetta(utente.getPaziente().getCodicefiscale(),utente.getPaziente().getProvincia(),selectedesame,selectedpaziente.getCodicefiscale())
+        if (contained && utente.getMedico().addRicetta(utente.getPaziente().getCodicefiscale(),utente.getPaziente().getProvincia(),selectedesame,selectedpaziente.getCodicefiscale(), selectedpaziente.getEmail())
         ) {
             response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovaricetta?erogata=true");
         } else {

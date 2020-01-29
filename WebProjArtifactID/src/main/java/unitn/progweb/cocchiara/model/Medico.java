@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import unitn.progweb.cocchiara.dao.MedicoDAO;
 import unitn.progweb.cocchiara.dao.PazienteDAO;
 import unitn.progweb.cocchiara.dao.UtenteDAO;
+import unitn.progweb.cocchiara.utility.MailManager;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -55,12 +56,15 @@ public class Medico {
             return null;
     }
 
-    public Boolean addReferto(@NotNull String codicemedico, @NotNull String prestazione, @NotNull String relazione, @NotNull String codicefiscalePziente, @NotNull Boolean isPagato) {
+    public Boolean addReferto(@NotNull String codicemedico, @NotNull String prestazione, @NotNull String relazione, @NotNull String codicefiscalePziente, @NotNull Boolean isPagato, @NotNull String pMail) {
         MedicoDAO md = new MedicoDAO();
         if (md.addReferto(codicemedico, prestazione, relazione, codicefiscalePziente, isPagato)) {
             UtenteDAO ud = new UtenteDAO();
             Date d = new Date(System.currentTimeMillis());
             ud.addNotifica(codicefiscalePziente,DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDate.now()) + " - Referto da visualizzare." );
+
+            MailManager.SendMail(pMail,"Nuovo referto da visualizzare! Entra nella tua pagina personale!");
+
             return true;
         } else
             return false;
@@ -72,10 +76,11 @@ public class Medico {
     }
 
     // Esame / Farmaco / Etc
-    public Boolean addRicetta(@NotNull String codicemedico, @NotNull String provinciaRilascio, String idesame, String codicefiscalePaziente) {
+    public Boolean addRicetta(@NotNull String codicemedico, @NotNull String provinciaRilascio, String idesame, String codicefiscalePaziente, @NotNull String pMail) {
        if(new MedicoDAO().addRicetta(codicemedico, provinciaRilascio, idesame, codicefiscalePaziente)){
             UtenteDAO ud = new UtenteDAO();
             ud.addNotifica(codicefiscalePaziente,DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDate.now()) + " - Ricetta da visualizzare.");
+           MailManager.SendMail(pMail,"Nuova ricetta da visualizzare! Entra nella tua pagina personale!");
         return true;
     } else
             return false;

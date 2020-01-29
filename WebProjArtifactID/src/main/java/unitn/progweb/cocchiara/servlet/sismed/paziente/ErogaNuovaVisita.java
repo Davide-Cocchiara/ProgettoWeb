@@ -44,7 +44,7 @@ public class ErogaNuovaVisita extends HttpServlet {
                         selectedprestazione,
                         relazione,
                         selectedpaziente.getCodicefiscale(),
-                        pagato.equals("1")))
+                        pagato.equals("1"),selectedpaziente.getEmail()))
         ) {
             response.sendRedirect(request.getContextPath() + "/sismed/paziente/nuovavisita?erogata=true");
 

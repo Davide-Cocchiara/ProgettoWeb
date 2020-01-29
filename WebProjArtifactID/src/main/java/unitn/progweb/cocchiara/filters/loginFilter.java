@@ -3,13 +3,11 @@ package unitn.progweb.cocchiara.filters;
 
 import com.google.gson.Gson;
 import unitn.progweb.cocchiara.dao.UtenteDAO;
+import unitn.progweb.cocchiara.model.SistemaNazionale;
 import unitn.progweb.cocchiara.model.Utente;
 
 import java.io.IOException;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -61,7 +59,12 @@ public class loginFilter implements Filter{
                             String resultVal = ud.tryLoginWithCookie(entr.getKey(), entr.getValue());
                             if (resultVal != null) // Cookie login success!
                             {
-                                session.setAttribute("utente", ud.getUserFromCodice(resultVal));
+                                Utente ute = ud.getUserFromCodice(resultVal);
+                                session.setAttribute("utente",ute );
+
+                                SistemaNazionale sis  = (SistemaNazionale)  session.getServletContext().getAttribute("sistemanazionale");
+                                LinkedHashMap<String, String> listaProvince = sis.getListaProvince();
+                                session.setAttribute("provinciastampabile", listaProvince.get(ute.getPaziente().getProvincia()));
 
 
                                 if (!curPlace.equals("/login"))
