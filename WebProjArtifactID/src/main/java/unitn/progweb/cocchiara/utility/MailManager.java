@@ -3,16 +3,23 @@ package unitn.progweb.cocchiara.utility;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 
- public class MailManager {
+public class MailManager {
     public static void SendMail(String to, String msg) {
         Thread t = new Thread() {
             public void run() {
                 //Thread Implmentation code here
+                try {
 
-                String host = "localhost";
-                final String user = "serviziosanitario@cocchiara.com";//change accordingly
-                final String password = "12341234";//change accordingly
+
+                Context ctx = new InitialContext();
+                Context env = (Context) ctx.lookup("java:comp/env");
+
+                String host = (String) env.lookup("mailhost");
+                final String user = (String) env.lookup("mailusername");
+                final String password = (String) env.lookup("mailuserpassword");
 
 
                 //Get the session object
@@ -28,7 +35,7 @@ import javax.mail.internet.*;
                         });
 
                 //Compose the message
-                try {
+
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(user));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
